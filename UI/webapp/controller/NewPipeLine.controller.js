@@ -11,7 +11,8 @@ sap.ui.define([
 		 * @memberOf scp.com.saparate.view.NewPipeLine
 		 */
 		onInit: function () {
-
+			this._oRouter = this.getOwnerComponent().getRouter();
+			this._oRouter.getRoute("NewPipeLine").attachPatternMatched(this._onObjectMatched, this);
 		},
 
 		/**
@@ -42,6 +43,12 @@ sap.ui.define([
 		navigatetoProjectPipeline: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Projects");
+		},
+		selectRepo: function (oEvent) {
+
+		},
+		_onObjectMatched: function (oEvent) {
+			this.getView().setModel(this.getOwnerComponent().getModel("repoType"));
 		}
 	});
 

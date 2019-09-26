@@ -57,19 +57,29 @@
 					"bundleName": "scp.com.saparate.i18n.i18n"
 				}
 			},
-			"": {
+			"repoType": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
 				"preload": true,
-				"uri": "model/Navigation.json"
+				"uri": "mockData/Repotype.json"
+			},
+			"Repos": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true,
+				"uri": "mockData/Repos.json"
+			},
+			"branch": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true,
+				"uri": "mockData/branch.json"
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -81,49 +91,43 @@
 				"controlId": "appView",
 				"clearControlAggregation": false
 			},
-			"routes": [
-				{
-					"name": "Dashboard",
-					"pattern": "",
-					"target": [
-						"Dashboard"
-					]
-				},
-				{
-					"name": "App",
-					"pattern": "App",
-					"target": [
-						"App"
-					]
-				},
-				{
-					"name": "UserStoryBoard",
-					"pattern": "UserStoryBoard",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"UserStoryBoard"
-					]
-				},
-				{
-					"name": "Projects",
-					"pattern": "Projects",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"Projects"
-					]
-				},
-				{
-					"name": "NewPipeLine",
-					"pattern": "NewPipeLine",
-					"titleTarget": "",
-					"greedy": false,
-					"target": [
-						"NewPipeLine"
-					]
-				}
-			],
+			"routes": [{
+				"name": "Dashboard",
+				"pattern": "",
+				"target": [
+					"Dashboard"
+				]
+			}, {
+				"name": "App",
+				"pattern": "App",
+				"target": [
+					"App"
+				]
+			}, {
+				"name": "UserStoryBoard",
+				"pattern": "UserStoryBoard",
+				"titleTarget": "",
+				"greedy": false,
+				"target": [
+					"UserStoryBoard"
+				]
+			}, {
+				"name": "Projects",
+				"pattern": "Projects",
+				"titleTarget": "",
+				"greedy": false,
+				"target": [
+					"Projects"
+				]
+			}, {
+				"name": "NewPipeLine",
+				"pattern": "NewPipeLine",
+				"titleTarget": "",
+				"greedy": false,
+				"target": [
+					"NewPipeLine"
+				]
+			}],
 			"targets": {
 				"TargetLogin": {
 					"viewType": "XML",

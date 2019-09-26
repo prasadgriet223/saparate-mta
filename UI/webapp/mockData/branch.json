@@ -1,0 +1,40 @@
+{
+   "branches":[
+      {
+         "name":"newtutorial",
+         "commit":{
+            "sha":"f7790cb84bc20df57176a1fb354f2a7a3ebf7744",
+            "url":"https://api.github.com/repos/ashok5a5/tutorial/commits/f7790cb84bc20df57176a1fb354f2a7a3ebf7744"
+         },
+         "protected":false,
+         "protection":{
+            "enabled":false,
+            "required_status_checks":{
+               "enforcement_level":"off",
+               "contexts":[
+
+               ]
+            }
+         },
+         "protection_url":"https://api.github.com/repos/ashok5a5/tutorial/branches/newtutorial/protection"
+      },
+      {
+         "name":"tutorial1",
+         "commit":{
+            "sha":"f7790cb84bc20df57176a1fb354f2a7a3ebf7744",
+            "url":"https://api.github.com/repos/ashok5a5/tutorial/commits/f7790cb84bc20df57176a1fb354f2a7a3ebf7744"
+         },
+         "protected":false,
+         "protection":{
+            "enabled":false,
+            "required_status_checks":{
+               "enforcement_level":"off",
+               "contexts":[
+
+               ]
+            }
+         },
+         "protection_url":"https://api.github.com/repos/ashok5a5/tutorial/branches/tutorial1/protection"
+      }
+   ]
+}
