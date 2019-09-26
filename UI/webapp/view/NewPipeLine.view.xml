@@ -17,19 +17,19 @@
 		</headerContent>
 		<content>
 			<Wizard id="CreatePipeLine">
-				<WizardStep id="ProductTypeStep" title="Connect" validated="true">
+				<WizardStep id="RepoTypeStep" title="Connect" validated="false">
 					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-					<List noDataText="Drop list items here" items="{ path: 'RepoType>/RepoType' }" id="list1" itemPress="selectRepo" mode="SingleSelectLeft">
+					<List noDataText="No Repo Types" items="{ path: 'RepoType>/RepoType' }" id="list1" selectionChange="selectRepoType"  mode="SingleSelectLeft">
 						<items>
 							<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" id="item15"/>
 						</items>
 					</List>
 					<content/>
 				</WizardStep>
-				<WizardStep id="ProductInfoStep" validated="true" title="Select">
-					<List noDataText="Drop list items here" items="{ path: 'Repos>/repo' }" id="list2" mode="SingleSelectLeft">
+				<WizardStep id="RepoStep" validated="false" title="Select">
+					<List noDataText="No Repos" items="{ path: 'Repos>/repo' }" id="list2" selectionChange="selectRepo"  mode="SingleSelectLeft">
 						<items>
-							<ObjectListItem title="{Repos>full_name}" type="Active" press="onListItemPress">
+							<ObjectListItem title="{Repos>full_name}" type="Active" press="onRepoItemPress">
 								<attributes>
 									<ObjectAttribute text="{Repos>branches_url}"/>
 									<ObjectAttribute text="{Repos>clone_url}"/>
@@ -39,20 +39,20 @@
 					</List>
 					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
 				</WizardStep>
-				<WizardStep id="OptionalInfoStep" validated="true" title="Configure">
-					<!--<MessageStrip class="sapUiSmallMarginBottom" text="Configure your PipeLine" showIcon="true"/>-->
-					<List noDataText="Drop list items here" id="list3">
+				<WizardStep id="branchesStep" validated="false" title="Configure">
+						<List noDataText="No Repos" items="{ path: 'branch>/branches' }" id="list3" mode="SingleSelectLeft">
 						<items>
-							<StandardListItem type="Navigation" title="Starter PipeLine" description="Description text" icon="sap-icon://picture" id="item19"/>
-							<StandardListItem type="Navigation" title="Existing Azure Pipelines" description="Description text" icon="sap-icon://picture" id="item20"/>
-							<StandardListItem type="Navigation" title=".Net Desktop" description="Description text" icon="sap-icon://picture" id="item21"/>
-							<StandardListItem type="Navigation" title="Andriod" description="Description text" icon="sap-icon://picture" id="item22"/>
-							<StandardListItem type="Navigation" title="Ant" description="Description text" icon="sap-icon://picture" id="item23"/>
+							<ObjectListItem title="{branch>name}" type="Active" press="onListItemPress">
+								<attributes>
+									<ObjectAttribute text="{branch>commit/url}"/>
+									<ObjectAttribute text="{branch>commit/sha}"/>
+								</attributes>
+							</ObjectListItem>
 						</items>
 					</List>
 					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
 				</WizardStep>
-				<WizardStep id="PricingStep" validated="true" title="Review">
+				<WizardStep id="PricingStep" validated="false" title="Review">
 					<c:CodeEditor
 						value="specVersion: '1.0' metadata: name: com/saparate type: application builder: customTasks: - name: webide-extension-task-updateNeoApp afterTask: generateVersionInfo configuration: destDir: dist appFolder: webapp nameSpace: scp - name: webide-extension-task-updateManifestJson afterTask: webide-extension-task-updateNeoApp configuration: appFolder: webapp destDir: dist - name: webide-extension-task-lint afterTask: webide-extension-task-updateManifestJson configuration: destDir: dist appFolder: webapp nameSpace: scp - name: webide-extension-task-resources afterTask: webide-extension-task-lint configuration: nameSpace: scp"
 						height="300px" type="XML"/>
