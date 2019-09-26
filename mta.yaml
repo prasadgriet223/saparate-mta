@@ -1,0 +1,31 @@
+ID: com.saparate.scp
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: UI
+   type: html5
+   path: UI
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: uaa_com.saparate.scp
+    - name: dest_com.saparate.scp
+
+resources:
+ - name: uaa_com.saparate.scp
+   parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+   type: org.cloudfoundry.managed-service
+
+ - name: dest_com.saparate.scp
+   parameters:
+      service-plan: lite
+      service: destination
+   type: org.cloudfoundry.managed-service
+

@@ -1,0 +1,139 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="scp.com.saparate.controller.NewPipeLine" xmlns:c="sap.ui.codeeditor">
+	<Page xmlns="sap.m" id="idPipeline" floatingFooter="true">
+		<headerContent>
+			<OverflowToolbar id="otb1">
+				<Label text="Project New"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://favorite"/>
+				<Select forceSelection="false" selectedKey="New" change="navigatetoProjectPipeline">
+					<core:ListItem key="New" text="New PipeLine"/>
+					<core:ListItem key="Import" text="Import PipeLine"/>
+				</Select>
+			</OverflowToolbar>
+		</headerContent>
+		<content>
+			<Toolbar width="100%" id="toolbar2">
+				<content>
+					<Bar id="bar90">
+						<contentRight>
+							<Button icon="sap-icon://add"/>
+							<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>
+							<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>
+							<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" showBorder="true" class="margintop"/>
+							<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>
+							<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>
+						</contentRight>
+					</Bar>
+				</content>
+			</Toolbar>
+			<Wizard id="CreatePipeLine">
+				<WizardStep id="ProductTypeStep" title="Connect" validated="true">
+					<MessageStrip class="sapUiSmallMarginBottom" text="Where is the code?" showIcon="true"/>
+					<HBox alignItems="Center" justifyContent="Center" width="100%">
+						<!--<SegmentedButton width="320px" selectionChange="setProductTypeFromSegmented">-->
+						<!--	<items>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://iphone" text="Mobile"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://sys-monitor" text="Desktop"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://database" text="Other"/>-->
+						<!--	</items>-->
+						<!--</SegmentedButton>-->
+					</HBox>
+					<List noDataText="Drop list items here" id="list1">
+						<items>
+							<!--<StandardListItem type="Navigation" title="Azure Repos Git" description="Description text" icon="sap-icon://picture" id="item14"/>-->
+							<StandardListItem type="Navigation" title="Bitbucket Cloud" description="Description text" icon="sap-icon://picture" id="item15"/>
+							<StandardListItem type="Navigation" title="Github" description="Description text" icon="sap-icon://picture" id="item16" />
+					<!--		<StandardListItem type="Navigation" title="Github Enterprise Server" description="Description text" icon="sap-icon://picture" id="item17"/>
+							<StandardListItem type="Navigation" title="Other Git" description="Description text" icon="sap-icon://picture" id="item18"/>-->
+						</items>
+					</List>
+					<content/>
+				</WizardStep>
+				<WizardStep id="ProductInfoStep" validated="true" title="Select">
+					<MessageStrip class="sapUiSmallMarginBottom" text="Select Repository" showIcon="true"/>
+					<List noDataText="Drop list items here" id="list2">
+						<items>
+							<StandardListItem type="Navigation" title="Dev1/app1" description="Description text" icon="sap-icon://picture" id="item24"/>
+							<StandardListItem type="Navigation" title="Dev2/app2" description="Description text" icon="sap-icon://picture" id="item25"/>
+							<StandardListItem type="Navigation" title="Dev3/app3" description="Description text" icon="sap-icon://picture" id="item26"/>
+							<StandardListItem type="Navigation" title="Dev4/app4" description="Description text" icon="sap-icon://picture" id="item27"/>
+							<StandardListItem type="Navigation" title="Dev5/app5" description="Description text" icon="sap-icon://picture" id="item28"/>
+						</items>
+					</List>
+					<HBox alignItems="Center" justifyContent="Center" width="100%">
+						<!--<SegmentedButton width="320px" selectionChange="setProductTypeFromSegmented">-->
+						<!--	<items>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://iphone" text="Mobile"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://sys-monitor" text="Desktop"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://database" text="Other"/>-->
+						<!--	</items>-->
+						<!--</SegmentedButton>-->
+					</HBox>
+				</WizardStep>
+				<WizardStep id="OptionalInfoStep" validated="true" title="Configure">
+					<MessageStrip class="sapUiSmallMarginBottom" text="Configure your PipeLine" showIcon="true"/>
+					<List noDataText="Drop list items here" id="list3">
+						<items>
+							<StandardListItem type="Navigation" title="Starter PipeLine" description="Description text" icon="sap-icon://picture" id="item19"/>
+							<StandardListItem type="Navigation" title="Existing Azure Pipelines" description="Description text" icon="sap-icon://picture" id="item20"/>
+							<StandardListItem type="Navigation" title=".Net Desktop" description="Description text" icon="sap-icon://picture" id="item21"/>
+							<StandardListItem type="Navigation" title="Andriod" description="Description text" icon="sap-icon://picture" id="item22"/>
+							<StandardListItem type="Navigation" title="Ant" description="Description text" icon="sap-icon://picture" id="item23"/>
+						</items>
+					</List>
+					<HBox alignItems="Center" justifyContent="Center" width="100%">
+						<!--<SegmentedButton width="320px" selectionChange="setProductTypeFromSegmented">-->
+						<!--	<items>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://iphone" text="Mobile"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://sys-monitor" text="Desktop"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://database" text="Other"/>-->
+						<!--	</items>-->
+						<!--</SegmentedButton>-->
+					</HBox>
+				</WizardStep>
+				<WizardStep id="PricingStep" validated="true" title="Review">
+					<MessageStrip class="sapUiSmallMarginBottom" text="Review your YAML"/>
+					
+						<c:CodeEditor value="specVersion: '1.0'
+metadata:
+  name: com/saparate
+type: application
+builder:
+  customTasks:
+    - name: webide-extension-task-updateNeoApp
+      afterTask: generateVersionInfo
+      configuration:
+        destDir: dist
+        appFolder: webapp
+        nameSpace: scp
+    - name: webide-extension-task-updateManifestJson
+      afterTask: webide-extension-task-updateNeoApp
+      configuration:
+        appFolder: webapp
+        destDir: dist
+    - name: webide-extension-task-lint
+      afterTask: webide-extension-task-updateManifestJson
+      configuration:
+        destDir: dist
+        appFolder: webapp
+        nameSpace: scp 
+    - name: webide-extension-task-resources
+      afterTask: webide-extension-task-lint
+      configuration:
+        nameSpace: scp" height="300px" type="XML"/>
+					
+					<HBox alignItems="Center" justifyContent="Center" width="100%">
+						<!--<SegmentedButton width="320px" selectionChange="setProductTypeFromSegmented">-->
+						<!--	<items>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://iphone" text="Mobile"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://sys-monitor" text="Desktop"/>-->
+						<!--		<SegmentedButtonItem icon="sap-icon://database" text="Other"/>-->
+						<!--	</items>-->
+						<!--</SegmentedButton>-->
+					</HBox>
+				</WizardStep>
+			</Wizard>
+		</content>
+	</Page>
+</mvc:View>

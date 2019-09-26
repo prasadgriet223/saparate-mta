@@ -1,0 +1,3 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="scp.com.saparate.controller.Login" displayBlock="true">
+	<Button text="Prasad VSRK" type="Transparent"></Button>
+</mvc:View>

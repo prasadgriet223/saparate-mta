@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
+		<HBox width="100%" id="hbox0">
+			<items>
+				<VBox width="100%" direction="Column" id="vbox0">
+					<items>
+						<HeaderContainer id="container2" scrollStep="200" class="sapUiTinyMargin">
+							<TileContent footer="Total">
+								<content>
+									<NumericContent value="50" valueColor="Good" press="press"/>
+								</content>
+							</TileContent>
+							<TileContent footer="Completed">
+								<content>
+									<NumericContent value="20"/>
+								</content>
+							</TileContent>
+							<TileContent footer="In Progress">
+								<content>
+									<NumericContent value="20"/>
+								</content>
+							</TileContent>
+							<TileContent footer="To do">
+								<content>
+									<NumericContent value="20"/>
+								</content>
+							</TileContent>
+						</HeaderContainer>
+						<List noDataText="Drop list items here" id="list1" class="sapUiTinyMargin">
+							<items>
+								<StandardListItem type="Navigation" title="Updating References 1" description="Description text" icon="sap-icon://picture" id="item0"/>
+								<StandardListItem type="Navigation" title="Updating References 2" description="Description text" icon="sap-icon://picture" id="itemw1"/>
+								<StandardListItem type="Navigation" title="Updating References 3" description="Description text" icon="sap-icon://picture" id="itdem2"/>
+							</items>
+						</List>
+						<List noDataText="Drop list items here" id="lisst1" class="sapUiTinyMargin">
+							<items>
+								<StandardListItem type="Navigation" title="Updating References 1" description="Description text" icon="sap-icon://picture" id="itemr0"/>
+								<StandardListItem type="Navigation" title="Updating References 2" description="Description text" icon="sap-icon://picture" id="itemwr1"/>
+								<StandardListItem type="Navigation" title="Updating References 3" description="Description text" icon="sap-icon://picture" id="itrem2"/>
+							</items>
+						</List>
+					</items>
+				</VBox>
+				<VBox width="100%" direction="Column" id="vbox1" >
+					<items>
+					
+					
+					</items>
+				</VBox>
+			</items>
+		</HBox>
+	</ScrollContainer>
+</core:FragmentDefinition>

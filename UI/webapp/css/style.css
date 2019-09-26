@@ -1,0 +1,17 @@
+/* Enter your custom styles here */
+
+.sapTntNavLIGroup {
+    border-bottom: 0px solid #e5e5e5 !important;
+}
+
+.saparatebackground {
+    background: white;
+}
+
+.sapTntNavLIItem {
+    height: 2rem !important;
+}
+
+.margintop {
+    margin-top: 0.5rem !important;
+}

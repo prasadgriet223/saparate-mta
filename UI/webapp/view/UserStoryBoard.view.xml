@@ -1,0 +1,33 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="scp.com.saparate.controller.UserStoryBoard">
+	<Page xmlns="sap.m" id="pageId" title="Page Title" floatingFooter="true">
+		<headerContent>
+			<Button icon="sap-icon://action" tooltip="Share" id="button0"/>
+		</headerContent>
+		<content>
+			<u:SplitContainer id="mySplitContainer" showSecondaryContent="true">
+				<u:secondaryContent>
+					<SearchField xmlns="sap.m" placeholder="Search Board" id="field0"/>
+					<SelectList id="list0">
+						<items>
+							<core:ListItem text="Dev Story for Eagles" id="item0"/>
+							<core:ListItem text="Dev Story for Falcons" id="item1"/>
+						</items>
+					</SelectList>
+				</u:secondaryContent>
+				<u:content/>
+			</u:SplitContainer>
+		</content>
+		<footer/>
+		<customHeader>
+			<Bar id="bar1">
+				<contentLeft>
+					<!--<core:Icon src="sap-icon://menu" text="Boards" size="1em" id="icon0" press="openBoardSearch"/>-->
+					<Button xmlns="sap.m" text="Boards" id="button089" icon="sap-icon://menu2" press="openBoardSearch"/>
+				</contentLeft>
+			<contentMiddle>
+			    <Image width="140px" height="140px" id="image0"/>
+			</contentMiddle>
+			</Bar>
+		</customHeader>
+	</Page>
+</mvc:View>

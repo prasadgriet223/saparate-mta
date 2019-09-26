@@ -1,0 +1,47 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns="sap.m"
+	controllerName="scp.com.saparate.controller.App" displayBlock="true">
+	<tnt:ToolPage id="toolPage">
+		<tnt:header>
+			<OverflowToolbar design="Transparent" class="saparatebackground">
+				<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
+				<Image src="images/logo.png"></Image>
+				<ToolbarSpacer/>
+				<ToolbarSpacer/>
+				<ToolbarSpacer/>
+				<ToolbarSpacer/>
+				<ToolbarSpacer/>
+				<Select forceSelection="false" selectedKey="New">
+					<core:ListItem key="New" text="CreateNew" icon="sap-icon://paper-plane"/>
+				</Select>
+				<Button icon="sap-icon://group-2"/>
+				<Button icon="sap-icon://action-settings"/>
+				<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>
+				<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>
+			</OverflowToolbar>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation expanded="false" selectedKey="" itemSelect="onItemSelect">
+				<tnt:NavigationList>
+					<tnt:NavigationListItem text="Dashboard" icon="sap-icon://home" select="gotoDashboard"/>
+					<tnt:NavigationListItem text="Code" id="code" class="myText" select="gotoCode"/>
+					<tnt:NavigationListItem text="UserStory" id="user" icon="sap-icon://dimension" select="gotoUserStory"/>
+					<tnt:NavigationListItem text="Precommit" icon="sap-icon://disconnected" select="gotoPrecommit"/>
+					<tnt:NavigationListItem text="Browse Repo" icon="sap-icon://education" select="gotoPrecommit"/>
+					<tnt:NavigationListItem text="Devops Factory" select="gotoDevops"/>
+					<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>
+					<tnt:NavigationListItem text="Pipelines" icon="sap-icon://globe" select="gotoPipelines"/>
+					<tnt:NavigationListItem text="Builds" icon="sap-icon://grid" select="gotoBuilds"/>
+					<tnt:NavigationListItem text="DeployManager" icon="sap-icon://drill-down" select="gotoDeployManager"/>
+					<tnt:NavigationListItem text="Image Repo" icon="sap-icon://electrocardiogram" select="gotoImageRepo"/>
+					<tnt:NavigationListItem text="Collaboration" icon="" select="gotoCollaboration"/>
+					<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>
+					<tnt:NavigationListItem text="Integrations" icon="sap-icon://factory" select="gotoIntegrations"/>
+					<tnt:NavigationListItem text="Settings" icon="sap-icon://flight" select="gotoSettings"/>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<App id="appView"></App>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>
