@@ -19,21 +19,22 @@
 			<Wizard id="CreatePipeLine">
 				<WizardStep id="ProductTypeStep" title="Connect" validated="true">
 					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-					<List noDataText="Drop list items here" items="{ path: '/RepoType' }" id="list1" itemPress="selectRepo"	mode="SingleSelectLeft" >
+					<List noDataText="Drop list items here" items="{ path: 'RepoType>/RepoType' }" id="list1" itemPress="selectRepo" mode="SingleSelectLeft">
 						<items>
-							<StandardListItem title="{title}" description="{Description}" icon="{icon}" id="item15"/>
+							<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" id="item15"/>
 						</items>
 					</List>
 					<content/>
 				</WizardStep>
 				<WizardStep id="ProductInfoStep" validated="true" title="Select">
-					<List noDataText="Drop list items here" id="list2">
+					<List noDataText="Drop list items here" items="{ path: 'Repos>/repo' }" id="list2" mode="SingleSelectLeft">
 						<items>
-							<StandardListItem type="Navigation" title="Dev1/app1" description="Description text" icon="sap-icon://picture" id="item24"/>
-							<StandardListItem type="Navigation" title="Dev2/app2" description="Description text" icon="sap-icon://picture" id="item25"/>
-							<StandardListItem type="Navigation" title="Dev3/app3" description="Description text" icon="sap-icon://picture" id="item26"/>
-							<StandardListItem type="Navigation" title="Dev4/app4" description="Description text" icon="sap-icon://picture" id="item27"/>
-							<StandardListItem type="Navigation" title="Dev5/app5" description="Description text" icon="sap-icon://picture" id="item28"/>
+							<ObjectListItem title="{Repos>full_name}" type="Active" press="onListItemPress">
+								<attributes>
+									<ObjectAttribute text="{Repos>branches_url}"/>
+									<ObjectAttribute text="{Repos>clone_url}"/>
+								</attributes>
+							</ObjectListItem>
 						</items>
 					</List>
 					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>

@@ -48,7 +48,9 @@ sap.ui.define([
 
 		},
 		_onObjectMatched: function (oEvent) {
-			this.getView().setModel(this.getOwnerComponent().getModel("repoType"));
+			this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
+			this.getView().setModel(this.getOwnerComponent().getModel("Repos"), "Repos");
+			this.getView().setModel(this.getOwnerComponent().getModel("branch"), "branch");
 		}
 	});
 
