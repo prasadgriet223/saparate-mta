@@ -11,7 +11,8 @@ sap.ui.define([
 		 * @memberOf scp.com.saparate.view.Projects
 		 */
 		onInit: function () {
-
+			this._oRouter = this.getOwnerComponent().getRouter();
+			this._oRouter.getRoute("Projects").attachPatternMatched(this._onObjectMatched, this);
 		},
 
 		/**
@@ -39,6 +40,13 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
+		_onObjectMatched: function (oEvent) {
+			var oModel_jobs = new sap.ui.model.json.JSONModel();
+			oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
+			console.log(oModel_jobs);
+			this.getView().setModel(oModel_jobs,"Jobs");
+
+		},
 		navigatetoImportPipeline: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("NewPipeLine");

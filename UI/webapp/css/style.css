@@ -1,7 +1,9 @@
 /* Enter your custom styles here */
-.Height_CSS{
- overflow:hidden !important;
+
+.Height_CSS {
+    overflow: hidden !important;
 }
+
 .sapTntNavLIGroup {
     border-bottom: 0px solid #e5e5e5 !important;
 }
@@ -16,4 +18,12 @@
 
 .margintop {
     margin-top: 0.5rem !important;
+}
+
+.idJobdetailscss {
+    border: 0px !important;
+}
+
+.roundButton .sapMBtnInner {
+    border-radius: 2.5rem;
 }

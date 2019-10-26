@@ -1,0 +1,58 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	
+	
+<List noDataText="Drop list items here" id="list0">
+	
+	
+<items>
+	
+	
+    <ObjectListItem type="Active" title="Object list item" number="9999999999" numberUnit="eur" intro="On behalf of John Doe" id="item1">
+	
+	
+        <attributes>
+	
+	
+            <ObjectAttribute text="attribute text" id="attribute0">
+	
+	
+            <customContent>
+	
+	
+                <ObjectStatus xmlns="sap.m" text="Success State" state="Success" id="status2" icon="sap-icon://action"/>
+	
+	
+            </customContent>
+	
+	
+            </ObjectAttribute>
+	
+	
+        </attributes>
+	
+	
+        <firstStatus>
+	
+	
+            <ObjectStatus text="first status text" id="status0"/>
+	
+	
+        </firstStatus>
+	
+	
+        <secondStatus>
+	
+	
+            <ObjectStatus text="second status text" id="status1"/>
+	
+	
+        </secondStatus></ObjectListItem>
+	
+	
+</items>
+	
+	
+</List>
+	
+	
+</core:FragmentDefinition>

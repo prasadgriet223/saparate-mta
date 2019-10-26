@@ -1,0 +1,43 @@
+<core:FragmentDefinition height="100%" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Page id="wizardReviewPage" title="Create New PipeLine Review" showHeader="true">
+		<content>
+			<form:SimpleForm title="1. Credentials" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Credentials Used"/>
+					<Text id="idNewPipeLineCredentials"/>
+				</form:content>
+			</form:SimpleForm>
+			<form:SimpleForm title="2. Repo Type" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Repository Type"/>
+					<Text id="idNewPipeLineRepoType"/>
+				</form:content>
+			</form:SimpleForm>
+			<form:SimpleForm title="3. Repository" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Used Repository"/>
+					<Text id="idNewPipeLineRepository"/>
+				</form:content>
+			</form:SimpleForm>
+			<form:SimpleForm title="4. Branch" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Used Branch"/>
+					<Text id="idNewPipeLineBranch"/>
+				</form:content>
+			</form:SimpleForm>
+			<form:SimpleForm title="5. BuildType" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Build Type"/>
+					<Text id="idNewPipeLineBuildType"/>
+				</form:content>
+			</form:SimpleForm>
+			<Bar>
+				<contentMiddle>
+					<Button text="Submit" press="handleCreateNewPipeLineSubmit"></Button>
+					<Button text="Cancel" press="handleCreateNewPipeLineCancel"></Button>
+				</contentMiddle>
+			</Bar>
+		</content>
+		<footer></footer>
+	</Page>
+</core:FragmentDefinition>

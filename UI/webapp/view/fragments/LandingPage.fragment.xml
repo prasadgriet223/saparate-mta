@@ -1,52 +1,334 @@
-<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m"
-	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<ScrollContainer height="100%" width="100%" vertical="true" focusable="true">
-		<HBox width="100%" id="hbox0">
+<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ScrollContainer height="100%" width="100%" horizontal="true" vertical="true" focusable="true">
+		<HBox id="hbox0">
 			<items>
-				<VBox width="100%" direction="Column" id="vbox0">
+				<VBox width="70%" direction="Column" class="sapUiTinyMargin" id="vbox0">
 					<items>
-						<HeaderContainer id="container2" scrollStep="200" class="sapUiTinyMargin">
-							<TileContent footer="Total">
-								<content>
-									<NumericContent value="50" valueColor="Good" press="press"/>
-								</content>
-							</TileContent>
-							<TileContent footer="Completed">
-								<content>
-									<NumericContent value="20"/>
-								</content>
-							</TileContent>
-							<TileContent footer="In Progress">
-								<content>
-									<NumericContent value="20"/>
-								</content>
-							</TileContent>
-							<TileContent footer="To do">
-								<content>
-									<NumericContent value="20"/>
-								</content>
-							</TileContent>
-						</HeaderContainer>
-						<List noDataText="Drop list items here" id="list1" class="sapUiTinyMargin">
+						<List noDataText="Drop list items here" id="list0" items="{path: 'Projects>/Projects'}" growingThreshold="5" growing="true">
 							<items>
-								<StandardListItem type="Navigation" title="Updating References 1" description="Description text" icon="sap-icon://picture" id="item0"/>
-								<StandardListItem type="Navigation" title="Updating References 2" description="Description text" icon="sap-icon://picture" id="itemw1"/>
-								<StandardListItem type="Navigation" title="Updating References 3" description="Description text" icon="sap-icon://picture" id="itdem2"/>
+								<CustomListItem type="Active" id="item2">
+									<content>
+										<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin" id="hbox0_1569570716387_copy" justifyContent="SpaceBetween">
+											<items>
+												<VBox direction="Column" id="vbox0_1569570739077_copy">
+													<items>
+														<Text xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" text="{ parts : [ 'Projects>date', 'Projects&gt;name' ], formatter: '.formatter.projectbuild' }" class="sapUiTinyMarginTop" id="text2"/>
+														<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" id="hbox0_1569570851841_copy">
+															<items>
+																<Text xmlns="sap.m" text="HelloWorld" class="sapUiTinyMarginTop" id="text3_1569828818543"/>
+																<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="{ parts : [ 'Projects>duartion' ], formatter: '.formatter.minutes' }" id="status0_copy" icon="sap-icon://time-entry-request"/>
+															</items>
+														</HBox>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vbox0_1569570759396_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="{Projects>triggertype}" id="status1_copy" icon="sap-icon://source-code"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vbox1_1569570769418_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status" icon="sap-icon://message-information" id="status2_copy"/>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="{Projects>buildResult}" id="status3_copy" icon="sap-icon://restart"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vbox2_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM" id="status4_copy" icon="sap-icon://date-time"/>
+														<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="text3_1569571672413_copy"/>
+													</items>
+												</VBox>
+											</items>
+										</HBox>
+									</content>
+								</CustomListItem>
+								<!--<CustomListItem type="Active" id="item2dd">-->
+								<!--	<content>-->
+								<!--		<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin"-->
+								<!--			id="hbox0_15695dd70716387_copydd" justifyContent="SpaceBetween">-->
+								<!--			<items>-->
+								<!--				<VBox direction="Column" id="vbddox0_1569dd570739077_copy">-->
+								<!--					<items>-->
+								<!--						<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" id="linkdd0_copy" text="date_Reponame.BranchName-build#"-->
+								<!--							emphasized="false"/>-->
+								<!--						<HBox id="ddhbox0_1569570851841_copy">-->
+								<!--							<items>-->
+								<!--								<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" text="Pipeline-space2" id="liddnk1_copy" emphasized="false"/>-->
+								<!--								<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"-->
+								<!--									xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="1:30 mins"-->
+								<!--									 id="sddtatus0_copy" icon="sap-icon://time-entry-request"/>-->
+								<!--							</items>-->
+								<!--						</HBox>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvbox0_1569570759396_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="123 ABC"  id="ddstatus1_copy" icon="sap-icon://source-code"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvbox1_1569570769418_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status"  icon="sap-icon://message-information"-->
+								<!--							id="ddstatus2_copy"/>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Manual"  id="ddstatus3_copy" icon="sap-icon://restart"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvbox2_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM"  id="ddstatus4_copy"-->
+								<!--							icon="sap-icon://date-time"/>-->
+								<!--						<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="ddtext3_1569571672413_copy"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--			</items>-->
+								<!--		</HBox>-->
+								<!--	</content>-->
+								<!--</CustomListItem>-->
+								<!--<CustomListItem type="Active" id="item2kk">-->
+								<!--	<content>-->
+								<!--		<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin"-->
+								<!--			id="hbox0_15695dd70716387_copyod" justifyContent="SpaceBetween">-->
+								<!--			<items>-->
+								<!--				<VBox direction="Column" id="vbddoffx0_1569dd570739077_copy">-->
+								<!--					<items>-->
+								<!--						<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" id="linffkdd0_copy" text="date_Reponame.BranchName-build#"-->
+								<!--							emphasized="false"/>-->
+								<!--						<HBox id="dffdhbox0_1569570851841_copy">-->
+								<!--							<items>-->
+								<!--								<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" text="Pipeline-space2" id="liddnk1tt_copy" emphasized="false"/>-->
+								<!--								<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"-->
+								<!--									xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="1:30 mins"-->
+								<!--									 id="sddtttatus0_copy" icon="sap-icon://time-entry-request"/>-->
+								<!--							</items>-->
+								<!--						</HBox>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvbox0tt_1569570759396_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="123 ABC"  id="ddstatttus1_copy" icon="sap-icon://source-code"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvbottx1_1569570769418_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status"  icon="sap-icon://message-information"-->
+								<!--							id="ddstaeetus2_copy"/>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Manual"  id="ddstateeus3_copy" icon="sap-icon://restart"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--				<VBox direction="Column" id="ddvboxtt2_copy">-->
+								<!--					<items>-->
+								<!--						<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM"  id="ddstatytus4_copy"-->
+								<!--							icon="sap-icon://date-time"/>-->
+								<!--						<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="ddtexert3_1569571672413_copy"/>-->
+								<!--					</items>-->
+								<!--				</VBox>-->
+								<!--			</items>-->
+								<!--		</HBox>-->
+								<!--	</content>-->
+								<!--</CustomListItem>-->
 							</items>
+							<headerToolbar>
+								<Toolbar id="toolbar1">
+									<content>
+										<Bar id="bar0">
+											<contentLeft>
+												<Text xmlns="sap.m" text="Recent Builds" id="text3"/>
+											</contentLeft>
+										</Bar>
+									</content>
+								</Toolbar>
+							</headerToolbar>
 						</List>
-						<List noDataText="Drop list items here" id="lisst1" class="sapUiTinyMargin">
+						<!--	<List noDataText="Drop list items here" id="vsdlist0">
 							<items>
-								<StandardListItem type="Navigation" title="Updating References 1" description="Description text" icon="sap-icon://picture" id="itemr0"/>
-								<StandardListItem type="Navigation" title="Updating References 2" description="Description text" icon="sap-icon://picture" id="itemwr1"/>
-								<StandardListItem type="Navigation" title="Updating References 3" description="Description text" icon="sap-icon://picture" id="itrem2"/>
+								<CustomListItem type="Active" id="vsditem2">
+									<content>
+										<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin"
+											id="vsdhbox0_1569570716387_copy" justifyContent="SpaceBetween">
+											<items>
+												<VBox direction="Column" id="vsdvbox0_1569570739077_copy">
+													<items>
+														<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" id="vsdlink0_copy" text="date_Reponame.BranchName-build#"
+															emphasized="false"/>
+														<HBox id="vsdhbox0_1569570851841_copy">
+															<items>
+																<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" text="Pipeline-space2" id="vsdlink1_copy" emphasized="false"/>
+																<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+																	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="1:30 mins"
+																	 id="vsdstatus0_copy" icon="sap-icon://time-entry-request"/>
+															</items>
+														</HBox>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdvbox0_1569570759396_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="123 ABC"  id="vsdstatus1_copy" icon="sap-icon://source-code"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdvbox1_1569570769418_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status"  icon="sap-icon://message-information"
+															id="vsdstatus2_copy"/>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Manual"  id="vsdstatus3_copy" icon="sap-icon://restart"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdvbox2_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM"  id="vsdstatus4_copy"
+															icon="sap-icon://date-time"/>
+														<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="vsdtext3_1569571672413_copy"/>
+													</items>
+												</VBox>
+											</items>
+										</HBox>
+										<HBox id="hbox0_1569584829846" class="sapUiTinyMarginBegin">
+											<items>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" state="Success"  text="Stage 1"  id="status0"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" state="Success"  text="Stage 2"  id="status1"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" state="Success"  text="Custom Stagename"  id="status2"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" state="Success"  text="Stage 4"  id="status3"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://cancel"  text="Stage 5" state="Error" id="status4"/>
+											</items>
+										</HBox>
+									</content>
+								</CustomListItem>
+								<CustomListItem type="Active" id="vsditem2dd">
+									<content>
+										<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin"
+											id="vsdhbox0_15695dd70716387_copydd" justifyContent="SpaceBetween">
+											<items>
+												<VBox direction="Column" id="vsdvbddox0_1569dd570739077_copy">
+													<items>
+														<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" id="vsdlinkdd0_copy" text="date_Reponame.BranchName-build#"
+															emphasized="false"/>
+														<HBox id="vsdddhbox0_1569570851841_copy">
+															<items>
+																<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" text="Pipeline-space2" id="vsdliddnk1_copy" emphasized="false"/>
+																<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+																	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="1:30 mins"
+																	 id="vsdsddtatus0_copy" icon="sap-icon://time-entry-request"/>
+															</items>
+														</HBox>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvbox0_1569570759396_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="123 ABC"  id="vsdddstatus1_copy" icon="sap-icon://source-code"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvbox1_1569570769418_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status"  icon="sap-icon://message-information"
+															id="vsdddstatus2_copy"/>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Manual"  id="vsdddstatus3_copy" icon="sap-icon://restart"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvbox2_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM"  id="vsdddstatus4_copy"
+															icon="sap-icon://date-time"/>
+														<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="vsdddtext3_1569571672413_copy"/>
+													</items>
+												</VBox>
+											</items>
+										</HBox>
+										
+											<HBox id="hbox0_156958ss4829846" class="sapUiTinyMarginBegin">
+											<items>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 1"  state="Success"   id="statsus0"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 2" state="Success"   id="statuss1"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Custom Stagename" state="Success"   id="stsatus2"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 4" state="Success"   id="sstatus3"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://cancel"  text="Stage 5" state="Error" id="stasdtus4"/>
+											</items>
+										</HBox>
+										
+									</content>
+								</CustomListItem>
+								<CustomListItem type="Active" id="vsditem2kk">
+									<content>
+										<HBox xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.m" class="sapUiTinyMargin"
+											id="vsdhbox0_15695dd70716387_copyod" justifyContent="SpaceBetween">
+											<items>
+												<VBox direction="Column" id="vsdvbddoffx0_1569dd570739077_copy">
+													<items>
+														<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" id="vsdlinffkdd0_copy" text="date_Reponame.BranchName-build#"
+															emphasized="false"/>
+														<HBox id="vsddffdhbox0_1569570851841_copy">
+															<items>
+																<Link xmlns="sap.m" class="sapUiTinyMarginTop" href="https://ui5.sap.com" text="Pipeline-space2" id="vsdliddnk1tt_copy" emphasized="false"/>
+																<ObjectStatus xmlns:layout="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+																	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" class="sapUiTinyMargin" text="1:30 mins"
+																	 id="vsdsddtttatus0_copy" icon="sap-icon://time-entry-request"/>
+															</items>
+														</HBox>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvbox0tt_1569570759396_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="123 ABC"  id="vsdddstatttus1_copy" icon="sap-icon://source-code"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvbottx1_1569570769418_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Status"  icon="sap-icon://message-information"
+															id="vsdddstaeetus2_copy"/>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Manual"  id="vsdddstateeus3_copy" icon="sap-icon://restart"/>
+													</items>
+												</VBox>
+												<VBox direction="Column" id="vsdddvboxtt2_copy">
+													<items>
+														<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginTop" text="Fri Aug 09 11:56 PM"  id="vsdddstatytus4_copy"
+															icon="sap-icon://date-time"/>
+														<Text xmlns="sap.m" class="sapUiTinyMarginTop" text="Trigerred:User" id="vsdddtexert3_1569571672413_copy"/>
+													</items>
+												</VBox>
+											</items>
+										</HBox>
+											<HBox id="hbox0_1569ee58ss4829846" class="sapUiTinyMarginBegin">
+											<items>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 1" state="Success"  id="staeetsus0"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 2" state="Success"    id="statueess1"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Custom Stagename" state="Success"   id="stsateeus2"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://accept" text="Stage 4" state="Success"    id="sstaeetus3"/>
+												<ObjectStatus xmlns="sap.m" class="sapUiTinyMarginBegin sapUiTinyMarginBottom" icon="sap-icon://cancel"  text="Stage 5" state="Error" id="stasdeeetus4"/>
+											</items>
+										</HBox>
+									</content>
+								</CustomListItem>
 							</items>
-						</List>
+							<headerToolbar>
+								<Toolbar id="vsdtoolbar1rr">
+									<content>
+										<Bar id="vsdbar0rr">
+											<contentLeft>
+												<Text xmlns="sap.m" text="Recent Releases(5)" id="vsdtext3rr"/>
+											</contentLeft>
+										</Bar>
+									</content>
+								</Toolbar>
+							</headerToolbar>
+						</List>-->
 					</items>
 				</VBox>
-				<VBox width="100%" direction="Column" id="vbox1" >
+				<VBox width="30%" direction="Column" class="sapUiTinyMargin" id="vbox1">
 					<items>
-					
-					
+						<!--<List noDataText="Drop list items here" id="list0r">-->
+						<!--	<items>-->
+						<!--		<StandardListItem type="Navigation" title="Build Monitor" description="Builds" icon="sap-icon://picture" id="item0"/>-->
+						<!--	</items>-->
+						<!--	<headerToolbar>-->
+						<!--		<Toolbar id="toolbsar1">-->
+						<!--			<content>-->
+						<!--				<Bar id="bar0s">-->
+						<!--					<contentLeft>-->
+						<!--						<Text xmlns="sap.m" text="Build Monitor" id="texst3"/>-->
+						<!--					</contentLeft>-->
+						<!--				</Bar>-->
+						<!--			</content>-->
+						<!--		</Toolbar>-->
+						<!--	</headerToolbar>-->
+						<!--</List>-->
 					</items>
 				</VBox>
 			</items>

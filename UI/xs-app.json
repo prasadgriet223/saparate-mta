@@ -8,7 +8,8 @@
     {
       "source": "^/UI/(.*)$",
       "target": "$1",
-      "localDir": "webapp"
+      "localDir": "webapp",
+      "authenticationType": "xsuaa"
     }
   ]
 }

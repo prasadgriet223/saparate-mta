@@ -1,74 +1,78 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="scp.com.saparate.controller.NewPipeLine" xmlns:c="sap.ui.codeeditor">
-	<Page xmlns="sap.m" id="idPipeline" floatingFooter="true" class="Height_CSS">
-		<headerContent>
-			<OverflowToolbar id="otb1">
-				<Label text="Project New"/>
-				<ToolbarSpacer/>
-				<Button icon="sap-icon://favorite"/>
-				<Select forceSelection="false" selectedKey="New" change="navigatetoProjectPipeline">
-					<core:ListItem key="New" text="New PipeLine"/>
-					<core:ListItem key="Import" text="Import PipeLine"/>
-				</Select>
-			</OverflowToolbar>
-			<Toolbar width="100%" id="toolbar2">
-				<content></content>
-			</Toolbar>
-		</headerContent>
-		<content>
-			<Wizard id="CreatePipeLine">
-				<WizardStep id="RepoTypeStep" title="Connect" validated="false">
-					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-					<List noDataText="No Repo Types" items="{ path: 'RepoType>/RepoType' }" id="list1" selectionChange="selectRepoType"  mode="SingleSelectLeft">
-						<items>
-							<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" id="item15"/>
-						</items>
-					</List>
-					<content/>
-				</WizardStep>
-				<WizardStep id="RepoStep" validated="false" title="Select">
-					<List noDataText="No Repos" items="{ path: 'Repos>/repo' }" id="list2" selectionChange="selectRepo"  mode="SingleSelectLeft">
-						<items>
-							<ObjectListItem title="{Repos>full_name}" type="Active" press="onRepoItemPress">
-								<attributes>
-									<ObjectAttribute text="{Repos>branches_url}"/>
-									<ObjectAttribute text="{Repos>clone_url}"/>
-								</attributes>
-							</ObjectListItem>
-						</items>
-					</List>
-					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-				</WizardStep>
-				<WizardStep id="branchesStep" validated="false" title="Configure">
-						<List noDataText="No Repos" items="{ path: 'branch>/branches' }" id="list3" mode="SingleSelectLeft">
-						<items>
-							<ObjectListItem title="{branch>name}" type="Active" press="onListItemPress">
-								<attributes>
-									<ObjectAttribute text="{branch>commit/url}"/>
-									<ObjectAttribute text="{branch>commit/sha}"/>
-								</attributes>
-							</ObjectListItem>
-						</items>
-					</List>
-					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-				</WizardStep>
-				<WizardStep id="PricingStep" validated="false" title="Review">
-					<c:CodeEditor
-						value="specVersion: '1.0' metadata: name: com/saparate type: application builder: customTasks: - name: webide-extension-task-updateNeoApp afterTask: generateVersionInfo configuration: destDir: dist appFolder: webapp nameSpace: scp - name: webide-extension-task-updateManifestJson afterTask: webide-extension-task-updateNeoApp configuration: appFolder: webapp destDir: dist - name: webide-extension-task-lint afterTask: webide-extension-task-updateManifestJson configuration: destDir: dist appFolder: webapp nameSpace: scp - name: webide-extension-task-resources afterTask: webide-extension-task-lint configuration: nameSpace: scp"
-						height="300px" type="XML"/>
-					<HBox alignItems="Center" justifyContent="Center" width="100%"></HBox>
-				</WizardStep>
-			</Wizard>
-		</content>
-	</Page>
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:c="sap.ui.codeeditor" xmlns:form="sap.ui.layout.form"
+	controllerName="scp.com.saparate.controller.NewPipeLine">
+	<NavContainer id="idNewPipeLineNavContainer">
+		<Page xmlns="sap.m" id="idNewPipeline" floatingFooter="true" class="Height_CSS">
+			<!--<headerContent>-->
+			<!--	<OverflowToolbar id="otb1">-->
+			<!--		<Label text="New PipeLine"/>-->
+			<!--		<ToolbarSpacer/>-->
+			<!--		<Button icon="sap-icon://favorite"/>-->
+			<!--		<Select forceSelection="false" selectedKey="New" change="navigate">-->
+			<!--			<core:ListItem key="New" text="New"/>-->
+			<!--			<core:ListItem key="Import" text="Import"/>-->
+			<!--		</Select>-->
+			<!--	</OverflowToolbar>-->
+			<!--	<Toolbar width="100%" id="toolbar2">-->
+			<!--		<content/>-->
+			<!--	</Toolbar>-->
+			<!--</headerContent>-->
+			<content>
+				<Wizard id="CreatePipeLine" complete="NewPipeLineReviewHandler">
+					<WizardStep id="Authstep" validated="false" title="Select Credential">
+						<!--<Select id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType">-->
+						<!--	<core:ListItem key="{credentials>id}" text="{credentials>userName}" app:credkey="{credentials>credentialKey}"/>-->
+						<!--</Select>-->
+						<form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
+							<form:content>
+								<Label text="JobName" id="label1" required="true"/>
+								<Input width="30%" id="ip_JobName" liveChange="additionalInfoValidation"/>
+								<Label text="SCM Credentials" id="label2"/>
+								<Select width="30%" id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType">
+									<core:ListItem key="{credentials>id}" text="{credentials>userName}" app:credkey="{credentials>credentialKey}"/>
+								</Select>
+							</form:content>
+						</form:SimpleForm>
+						<content/>
+					</WizardStep>
+					<WizardStep id="RepoTypeStep" activate="afterloadRepoType" title="Select RepoType" validated="false">
+						<HBox alignItems="Center" justifyContent="Center" width="100%"/>
+						<List noDataText="No Repo Types" items="{ path: 'RepoType>/RepoType' }" selectionChange="loadRepos" id="idRepoTypeList"
+							mode="SingleSelectLeft">
+							<items>
+								<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" app:repokey="{RepoType>key}"/>
+							</items>
+						</List>
+						<content/>
+					</WizardStep>
+					<WizardStep id="idReposStep" activate="afterloadReposStep" validated="false" title="Select Repo">
+						<List noDataText="No Repos" items="{ path: 'Repos>/' }" id="idReposList" selectionChange="selectRepo" mode="SingleSelectLeft">
+							<items>
+								<ObjectListItem title="{Repos>name}" type="Active" app:repohttps="{Repos>httpsUrl}">
+									<attributes>
+										<ObjectAttribute text="{Repos>httpsUrl}"/>
+										<ObjectAttribute text="{Repos>sshUrl}"/>
+									</attributes>
+								</ObjectListItem>
+							</items>
+						</List>
+						<HBox alignItems="Center" justifyContent="Center" width="100%"/>
+					</WizardStep>
+					<WizardStep id="idbranchesStep" activate="afterLoadBranchesStep" validated="false" title="Select Branch">
+						<List noDataText="No Repos" items="{ path: 'branch>/' }" id="idBranchList" selectionChange="selectBranch" mode="SingleSelectLeft">
+							<items>
+								<StandardListItem title="{branch>branch}" app:branchkey="{branch>branch}"/>
+							</items>
+						</List>
+						<HBox alignItems="Center" justifyContent="Center" width="100%"/>
+					</WizardStep>
+					<WizardStep id="idBuildStep" validated="true" title="Builder">
+						<Select width="30%" id="idBuildSelect">
+							<core:ListItem key="MTA" text="MTA"/>
+						</Select>
+					</WizardStep>
+				</Wizard>
+			</content>
+		</Page>
+	</NavContainer>
 </mvc:View>
-<!--<Bar id="bar90">-->
-<!--	<contentRight>-->
-<!--		<Button icon="sap-icon://add"/>-->
-<!--		<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>-->
-<!--		<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>-->
-<!--		<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" showBorder="true" class="margintop"/>-->
-<!--		<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>-->
-<!--		<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_02.png" displaySize="XS" class="margintop" showBorder="true"/>-->
-<!--	</contentRight>-->
-<!--</Bar>-->

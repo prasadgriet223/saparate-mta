@@ -1,0 +1,152 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="scp.com.saparate.controller.buildStages">
+	<App>
+		<pages>
+			<Page id="idBuildStages" navButtonPress="navigatetoPrevious" showHeader="false">
+				<!--<headerContent>-->
+				<!--	<OverflowToolbar id="idoftbBuildStages">-->
+				<!--<Button icon="sap-icon://checklist" id="idbtn_respectivebuild" press="navigatetobuildpipelines"/>-->
+				<!--		<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://physical-activity" text="Trigger Job" press="initiateTriggerJob"/>-->
+				<!--	</OverflowToolbar>-->
+				<!--</headerContent>-->
+				<content>
+					<!--<List noDataText="No Data" id="idBuildStageResults" items="{Jobstatusdetails>/0/stageResult/stages}">-->
+					<!--	<items>-->
+					<!--		<CustomListItem id="idBuildResultscustomList">-->
+					<!--			<content>-->
+					<!--				<HBox justifyContent="SpaceBetween" visible="false">-->
+					<!--					<items>-->
+					<!--						<VBox direction="Column">-->
+					<!--							<items>-->
+					<!--								<ObjectStatus xmlns="sap.m" class="sapUiTinyMargin"-->
+					<!--									text="{ parts : [ 'Jobdetails>timeStamp', 'Jobdetails>name' ], formatter: '.formatter.projectbuild' }" state="Information"-->
+					<!--									icon="sap-icon://code"/>-->
+					<!--								<HBox>-->
+					<!--									<items>-->
+					<!--										<Text text="{Jobstatusdetails>name}" class="sapUiTinyMargin"/>-->
+					<!--										<ObjectStatus state="Information" title="id" class="sapUiTinyMargin" text="{Jobstatusdetails>id}" icon="sap-icon://badge"/>-->
+					<!--									</items>-->
+					<!--								</HBox>-->
+					<!--								<GenericTag text="{Jobstatusdetails>status}" design="StatusIconHidden"-->
+					<!--									status="{ parts : [ 'Jobstatusdetails>status' ], formatter: '.formatter.buildStagesStatus' }" class="sapUiTinyMargin"/>-->
+					<!--							</items>-->
+					<!--						</VBox>-->
+					<!--						<VBox direction="Column">-->
+					<!--							<items>-->
+					<!--								<GenericTag text="{Jobstatusdetails>status}" design="StatusIconHidden"/>-->
+					<!--							</items>-->
+					<!--						</VBox>-->
+					<!--						<VBox direction="Column">-->
+					<!--							<items>-->
+					<!--								<ObjectStatus xmlns="sap.m" state="Information" class="sapUiSmallMarginTop" text="{Jobstatusdetails>startTime}" icon="sap-icon://date-time"/>-->
+					<!--								<ObjectStatus xmlns="sap.m" state="Information" class="sapUiSmallMargin" title="Duration in sec" text="{Jobstatusdetails>duration}"-->
+					<!--									icon="sap-icon://lateness"/>-->
+					<!--							</items>-->
+					<!--						</VBox>-->
+					<!--					</items>-->
+					<!--				</HBox>-->
+					<!--				<ObjectListItem type="Active" title="Object list item" number="9999999999" numberUnit="eur" intro="On behalf of John Doe" id="item1">-->
+					<!--					<attributes>-->
+					<!--						<ObjectAttribute text="attribute text" id="attribute0"/>-->
+					<!--					</attributes>-->
+					<!--					<firstStatus>-->
+					<!--						<ObjectStatus text="first status text" id="status7"/>-->
+					<!--					</firstStatus>-->
+					<!--					<secondStatus>-->
+					<!--						<ObjectStatus text="second status text" id="status8"/>-->
+					<!--					</secondStatus>-->
+					<!--				</ObjectListItem>-->
+					<!--				<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel0">-->
+					<!--					<headerToolbar>-->
+					<!--						<Toolbar id="toolbar1">-->
+					<!--							<Title text="Header"/>-->
+					<!--							<ToolbarSpacer/>-->
+					<!--							<Button icon="sap-icon://settings"/>-->
+					<!--						</Toolbar>-->
+					<!--					</headerToolbar>-->
+					<!--					<content>-->
+					<!--						<Text text="Panel Content" id="text6"/>-->
+					<!--					</content>-->
+					<!--				</Panel>-->
+					<!--			</content>-->
+					<!--		</CustomListItem>-->
+					<!--	</items>-->
+					<!--</List>-->
+					<Table id="idPipeLineBuildStageResults" items="{Jobstatusdetails>/0/stageResult/stages}" alternateRowColors="true" mode="SingleSelectLeft"
+						selectionChange="ShowStageLog">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Stage"/>
+							</Column>
+							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+							<!--	<Text text="StageId"/>-->
+							<!--</Column>-->
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Status"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="TimeStamp"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Duration"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Inactive">
+								<cells>
+									<ObjectStatus state="Information" text="{Jobstatusdetails>name}" icon="sap-icon://badge"/>
+									<!--<ObjectStatus state="Information" text="{Jobstatusdetails>id}" icon="sap-icon://number-sign"/>-->
+									<GenericTag text="{Jobstatusdetails>status}" design="StatusIconHidden"
+										status="{ parts : [ 'Jobstatusdetails>status' ], formatter: '.formatter.buildStagesStatus' }"/>
+									<ObjectStatus state="Information" text="{Jobstatusdetails>startTime}" icon="sap-icon://date-time"/>
+									<ObjectStatus state="Information" text="{ parts : [ 'Jobstatusdetails>duration'], formatter: '.formatter.addSec' }"
+										icon="sap-icon://lateness"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<Panel xmlns="sap.m" width="auto" expandable="true" expanded="false" id="idlog_content">
+						<headerToolbar>
+							<Toolbar id="toolbar1">
+								<Title text="OverAll Build Logs"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://settings"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<Text text="Panel Content" id="text9"/>
+						</content>
+					</Panel>
+					<Panel xmlns="sap.m" width="auto" expandable="true" expanded="false" id="idpanel_Stage">
+						<headerToolbar>
+							<Toolbar id="idtoolbar_stagelog">
+								<Title id="idtoolbar_stagelog_title" text=""/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://settings"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<Text text="" id="idstagelog"/>
+						</content>
+					</Panel>
+				</content>
+				<subHeader>
+					<Bar xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="bar0112">
+						<contentLeft>
+							<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_buildStages">
+								<links>
+									<Link text="Project" emphasized="false" id="idlnk_Projects"/>
+									<Link text="Dashboard" emphasized="false" press="navigateTo"/>
+									<Link text="Build PipeLines" emphasized="false" press="navigateTo"/>
+									<Link id="idbc_build" emphasized="false" press="navigateTo"/>
+								</links>
+							</Breadcrumbs>
+						</contentLeft>
+						<contentMiddle/>
+					</Bar>
+				</subHeader>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

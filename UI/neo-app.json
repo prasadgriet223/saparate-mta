@@ -10,6 +10,17 @@
       },
       "description": "SAPUI5 Resources"
     },
+    
+    {
+		"path": "/saparate/",
+		"target": {
+			"type": "destination",
+			"name": "saparate"
+			
+		},
+		"description": "SAPARATE"
+	},
+    
     {
       "path": "/test-resources",
       "target": {
@@ -18,7 +29,19 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/apihub_sandbox",
+      "target": {
+        "type": "application",
+        "name": "webidecp",
+        "entryPath": "/destinations/apihub_sandbox"
+      },
+      "description": "SAP API Business Hub - Sandbox end point"
     }
   ],
-  "sendWelcomeFileRedirect": true
+  "sendWelcomeFileRedirect": true,
+  "headerWhiteList": [
+    "apiKey"
+  ]
 }

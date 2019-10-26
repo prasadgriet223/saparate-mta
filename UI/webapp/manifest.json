@@ -10,9 +10,10 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
-		}
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {}
 	},
 	"sap.ui": {
 		"technology": "UI5",
@@ -63,23 +64,36 @@
 				"preload": true,
 				"uri": "mockData/Repotype.json"
 			},
-			"Repos": {
-				"type": "sap.ui.model.json.JSONModel",
-				"settings": {},
-				"preload": true,
-				"uri": "mockData/Repos.json"
-			},
 			"branch": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
-				"preload": true,
+				"preload": false,
 				"uri": "mockData/branch.json"
+			},
+			"Projects": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false,
+				"uri": "mockData/projects.json"
+			},
+			"servers": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {},
+				"preload": false,
+				"uri": "i18n/Servers.properties"
+			},
+			"BreadCrumb": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -91,43 +105,94 @@
 				"controlId": "appView",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "Dashboard",
-				"pattern": "",
-				"target": [
-					"Dashboard"
-				]
-			}, {
-				"name": "App",
-				"pattern": "App",
-				"target": [
-					"App"
-				]
-			}, {
-				"name": "UserStoryBoard",
-				"pattern": "UserStoryBoard",
-				"titleTarget": "",
-				"greedy": false,
-				"target": [
-					"UserStoryBoard"
-				]
-			}, {
-				"name": "Projects",
-				"pattern": "Projects",
-				"titleTarget": "",
-				"greedy": false,
-				"target": [
-					"Projects"
-				]
-			}, {
-				"name": "NewPipeLine",
-				"pattern": "NewPipeLine",
-				"titleTarget": "",
-				"greedy": false,
-				"target": [
-					"NewPipeLine"
-				]
-			}],
+			"routes": [
+				{
+					"name": "Dashboard",
+					"pattern": "Dashboard",
+					"target": [
+						"Dashboard"
+					]
+				},
+				{
+					"name": "App",
+					"pattern": "App",
+					"target": [
+						"App"
+					]
+				},
+				{
+					"name": "UserStoryBoard",
+					"pattern": "UserStoryBoard",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"UserStoryBoard"
+					]
+				},
+				{
+					"name": "Projects",
+					"pattern": "Projects",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Projects"
+					]
+				},
+				{
+					"name": "NewPipeLine",
+					"pattern": "NewPipeLine",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"NewPipeLine"
+					]
+				},
+				{
+					"name": "jobs",
+					"pattern": "jobs",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"jobs"
+					]
+				},
+				{
+					"name": "jobdetails",
+					"pattern": "jobdetails/{jobId},{from}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"jobdetails"
+					]
+				},
+				{
+					"name": "buildStages",
+					"pattern": "buildStages/{jobId},{buildid}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"buildStages"
+					]
+				},
+				{
+					"name": "Builds",
+					"pattern": "builds/{jobId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Builds"
+					]
+				},
+				{
+					"name": "RegisterEnvironments",
+					"pattern": "RegisterEnv",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"RegisterEnvironments"
+					]
+				}
+			],
 			"targets": {
 				"TargetLogin": {
 					"viewType": "XML",
@@ -155,6 +220,26 @@
 				"NewPipeLine": {
 					"viewType": "XML",
 					"viewName": "NewPipeLine"
+				},
+				"jobs": {
+					"viewType": "XML",
+					"viewName": "jobs"
+				},
+				"jobdetails": {
+					"viewType": "XML",
+					"viewName": "jobdetails"
+				},
+				"buildStages": {
+					"viewType": "XML",
+					"viewName": "buildStages"
+				},
+				"Builds": {
+					"viewType": "XML",
+					"viewName": "Builds"
+				},
+				"RegisterEnvironments": {
+					"viewType": "XML",
+					"viewName": "RegisterEnvironments"
 				}
 			}
 		}

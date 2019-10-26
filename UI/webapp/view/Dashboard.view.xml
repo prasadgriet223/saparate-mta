@@ -1,18 +1,20 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="scp.com.saparate.controller.Dashboard">
-	<Page xmlns="sap.m"  id="pageId" title="Dash board" floatingFooter="true" showHeader="false">
-		<headerContent>
-			<Bar id="bar1">
+	<Page xmlns="sap.m" id="pageId" title="Dash board" floatingFooter="true" showHeader="false">
+		<content>
+			<core:Fragment fragmentName="scp.com.saparate.view.fragments.Builds" type="XML"/>
+		</content>
+		<subHeader>
+			<Bar xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="bar0112">
 				<contentLeft>
-					<Breadcrumbs xmlns="sap.m" currentLocationText="Location" id="breadcrumbs0">
-						<Link text="Level 1"/>
-						<Link text="Level 2"/>
+					<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_dashboard">
+						<links>
+							<Link text="Project" emphasized="false" id="idlnk_Projects"/>
+						</links>
 					</Breadcrumbs>
 				</contentLeft>
+				<contentMiddle/>
 			</Bar>
-		</headerContent>
-		<content>
-			<core:Fragment fragmentName="scp.com.saparate.view.fragments.LandingPage" type="XML"/>
-		</content>
+		</subHeader>
 	</Page>
 </mvc:View>

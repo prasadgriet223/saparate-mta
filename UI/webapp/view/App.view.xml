@@ -2,22 +2,36 @@
 	controllerName="scp.com.saparate.controller.App" displayBlock="true">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
-			<OverflowToolbar design="Transparent" class="saparatebackground">
-				<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
-				<Image src="images/logo.png"></Image>
-				<ToolbarSpacer/>
-				<ToolbarSpacer/>
-				<ToolbarSpacer/>
-				<ToolbarSpacer/>
-				<ToolbarSpacer/>
-				<Select forceSelection="false" selectedKey="New">
-					<core:ListItem key="New" text="CreateNew" icon="sap-icon://paper-plane"/>
-				</Select>
-				<Button icon="sap-icon://group-2"/>
-				<Button icon="sap-icon://action-settings"/>
-				<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>
-				<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>
-			</OverflowToolbar>
+			<!--<OverflowToolbar design="Transparent" class="saparatebackground">-->
+			<!--	<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>-->
+			<!--	<Image src="images/logo.png"></Image>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--	<ToolbarSpacer/>-->
+			<!--<Select forceSelection="false" selectedKey="New">-->
+			<!--	<core:ListItem key="New" text="CreateNew" icon="sap-icon://paper-plane"/>-->
+			<!--</Select>-->
+			<!--	<Button icon="sap-icon://group-2"/>-->
+			<!--	<Button icon="sap-icon://action-settings"/>-->
+			<!--	<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>-->
+			<!--	<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>-->
+			<!--</OverflowToolbar>-->
+			<Bar id="bar0" class="saparatebackground">
+				<contentLeft>
+					<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
+					<Image src="images/logo.png"></Image>
+					
+					<!--<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>-->
+					<core:Fragment xmlns:core="sap.ui.core" fragmentName="scp.com.saparate.view.fragments.breadCrumb" type="XML"/>
+				</contentLeft>
+				<contentMiddle></contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://action-settings"/>
+					<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>
+				</contentRight>
+			</Bar>
 		</tnt:header>
 		<tnt:sideContent>
 			<tnt:SideNavigation expanded="false" selectedKey="" itemSelect="onItemSelect">
@@ -29,10 +43,10 @@
 					<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>
 					<tnt:NavigationListItem text="Build Pipelines" icon="sap-icon://globe" select="gotoPipelines"/>
 					<tnt:NavigationListItem text="Release Piplelines" icon="sap-icon://grid" select="gotoBuilds"/>
-					<tnt:NavigationListItem text="Environments" icon="sap-icon://drill-down" select="gotoDeployManager"/>
-					<tnt:NavigationListItem text="Image Artifact" icon="sap-icon://electrocardiogram" select="gotoImageRepo"/>
-					<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>
-					<tnt:NavigationListItem text="Integrations" icon="sap-icon://factory" select="gotoIntegrations"/>
+					<tnt:NavigationListItem text="Environments" icon="sap-icon://drill-down" select="gotoEnviroments"/>
+					<!--<tnt:NavigationListItem text="Image Artifact" icon="sap-icon://electrocardiogram" select="gotoImageRepo"/>-->
+					<!--<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>-->
+					<tnt:NavigationListItem text="Credentials" icon="sap-icon://factory" select="gotoCredentials"/>
 					<tnt:NavigationListItem text="Settings" icon="sap-icon://flight" select="gotoSettings"/>
 				</tnt:NavigationList>
 			</tnt:SideNavigation>

@@ -1,0 +1,8 @@
+{
+	"RepoType": [{
+		"title": "MTA",
+		"icon": "sap-icon://home-share",
+		"key": "MTA",
+		"Description": "MTA Build"
+	}]
+}

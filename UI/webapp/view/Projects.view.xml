@@ -14,25 +14,22 @@
 			</OverflowToolbar>
 		</headerContent>
 		<content>
-			<Table>
+			<Table  items="{path: 'Jobs>/'}">
 				<columns>
 					<Column demandPopin="true" minScreenWidth="Tablet">
-						<Text text="Pipeline"/>
+						<Text text="Jobs"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Tablet">
-						<Text text=""/>
-					</Column>
-					<Column demandPopin="true" minScreenWidth="Tablet">
-						<Text text="Duration"/>
-					</Column>
-					<Column demandPopin="true" minScreenWidth="Tablet">
-						<Text text="Sucess%"/>
-					</Column>
+					<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+					<!--	<Text text=""/>-->
+					<!--</Column>-->
+					<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+					<!--	<Text text="Duration"/>-->
+					<!--</Column>-->
+					<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+					<!--	<Text text="Sucess%"/>-->
+					<!--</Column>-->
 					<Column demandPopin="true" minScreenWidth="Tablet">
 						<Text text="Last Executed on"/>
-					</Column>
-					<Column demandPopin="true" minScreenWidth="Tablet">
-						<Text text=""/>
 					</Column>
 					<!--	<Column demandPopin="true" minScreenWidth="Tablet">-->
 					<!--	<Text text=""/>-->
@@ -70,30 +67,29 @@
 				<items>
 					<ColumnListItem>
 						<cells>
-							<Text text="SAP App-PipleLine"/>
-							<FlexBox height="70px" renderType="Bare">
-								<micro:ColumnMicroChart size="Responsive">
-									<micro:columns>
-										<micro:ColumnMicroChartData value="5" color="Neutral"/>
-										<micro:ColumnMicroChartData value="13" color="Error"/>
-										<micro:ColumnMicroChartData value="9"/>
-										<micro:ColumnMicroChartData value="5" color="Error"/>
-										<micro:ColumnMicroChartData value="13" color="Error"/>
-										<micro:ColumnMicroChartData value="9"/>
-										<micro:ColumnMicroChartData value="5" color="Error"/>
-										<micro:ColumnMicroChartData value="13" color="Error"/>
-										<micro:ColumnMicroChartData value="9"/>
-										<micro:ColumnMicroChartData value="5" color="Error"/>
-										<micro:ColumnMicroChartData value="13" color="Error"/>
-										<micro:ColumnMicroChartData value="9"/>
-									</micro:columns>
-								</micro:ColumnMicroChart>
-							</FlexBox>
-							<Text text="00m:31s"/>
-							<Text text="10%"/>
-							<Text text="13th Sep 2019"/>
+							<Text text="{Jobs>name}" />
+							<!--<FlexBox height="70px" renderType="Bare">-->
+							<!--	<micro:ColumnMicroChart size="Responsive">-->
+							<!--		<micro:columns>-->
+							<!--			<micro:ColumnMicroChartData value="5" color="Neutral"/>-->
+							<!--			<micro:ColumnMicroChartData value="13" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="9"/>-->
+							<!--			<micro:ColumnMicroChartData value="5" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="13" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="9"/>-->
+							<!--			<micro:ColumnMicroChartData value="5" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="13" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="9"/>-->
+							<!--			<micro:ColumnMicroChartData value="5" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="13" color="Error"/>-->
+							<!--			<micro:ColumnMicroChartData value="9"/>-->
+							<!--		</micro:columns>-->
+							<!--	</micro:ColumnMicroChart>-->
+							<!--</FlexBox>-->
+							<!--<Text text="00m:31s"/>-->
+							<!--<Text text="10%"/>-->
+							<!--<Text text="{Jobs>url}"/>-->
 							<Button type="Accept" text="Run" press="onPress"/>
-							<Button icon="sap-icon://action-settings" type="Transparent" press="onPress" ariaLabelledBy="editButtonLabel"/>
 						</cells>
 					</ColumnListItem>
 					<!--<ColumnListItem>-->

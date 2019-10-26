@@ -1,15 +1,30 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/utils/formatter"
+], function (Controller, formatter) {
 	"use strict";
 	return Controller.extend("scp.com.saparate.controller.App", {
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf scp.com.saparate.view.App
 		 */
 		onInit: function () {
-
+			
+				$.ajax({
+				url: '/getuserinfo',
+				type: 'GET',
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (data) {
+					console.log(data);
+				}
+			});
+			
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("Dashboard");
 		},
 
 		/**
@@ -55,8 +70,15 @@ sap.ui.define([
 		},
 		gotoPipelines: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("NewPipeLine");
+			oRouter.navTo("jobs", {
+				from: "tonewpipeline"
+			});
+		},
+		gotoEnviroments: function () {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("RegisterEnvironments");
 
 		}
+
 	});
 });

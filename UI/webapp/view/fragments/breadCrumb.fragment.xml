@@ -1,0 +1,4 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%">
+	<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" currentLocationText="Location">
+	</Breadcrumbs>
+</core:FragmentDefinition>
