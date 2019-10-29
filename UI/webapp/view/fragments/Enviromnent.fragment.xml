@@ -5,17 +5,17 @@
 				id="idEnvironmentform">
 				<sap.ui.layout.form:content>
 					<Label text="Name" id="label0"/>
-					<Input width="auto" id="input0" value="{Edit>/name}"/>
+					<Input width="auto" id="input0" value="{Data>/name}"/>
 					<Label text="CloudFoundry URL" id="label1"/>
-					<Input width="auto" id="input2" value="{Edit>/url}"/>
+					<Input width="auto" id="input2" value="{Data>/url}"/>
 					<Label text="Space" width="100%" id="label0_1571681561027"/>
-					<Input xmlns="sap.m" id="input0_1571681569206" width="auto" value="{Edit>/space}"/>
+					<Input xmlns="sap.m" id="input0_1571681569206" width="auto" value="{Data>/space}"/>
 					<Label text="Org" width="100%" id="label1_1571681624463"/>
-					<Input xmlns="sap.m" id="input1" fieldWidth="10%" width="auto" value="{Edit>/org}"/>
+					<Input xmlns="sap.m" id="input1" fieldWidth="10%" width="auto" value="{Data>/org}"/>
 					<Label text="API EndPoint" width="100%" id="label2"/>
-					<Input xmlns="sap.m" id="input2_1571681711203" width="auto" value="{Edit>/apiendpoint}"/>
+					<Input xmlns="sap.m" id="input2_1571681711203" width="auto" value="{Data>/apiendpoint}"/>
 					<Label text="Credential Key" width="100%" id="label3"/>
-					<Select id="idCredSelect_Env" selectedKey="{Edit>/credentialKey}" items="{path: 'credentials>/'}">
+					<Select id="idCredSelect_Env" selectedKey="{Data>/credentialKey}" items="{path: 'credentials>/'}">
 						<core:ListItem key="{credentials>credentialKey}" text="{credentials>userName}"/>
 					</Select>
 					<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"

@@ -49,7 +49,7 @@ sap.ui.define([
 			// if (from === "recentpipeline")
 			// 	oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
 			// else if (from === "tonewpipeline")
-			oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
+		//	oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
 			this.byId("idtblAllPipelines").setBusy(false);
 			this.getView().setModel(oModel_jobs, "Jobs");
 			this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");

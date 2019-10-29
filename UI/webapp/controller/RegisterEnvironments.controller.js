@@ -14,6 +14,7 @@ sap.ui.define([
 		onInit: function () {
 			this._oRouter = this.getOwnerComponent().getRouter();
 			this._oRouter.getRoute("RegisterEnvironments").attachPatternMatched(this._onObjectMatched, this);
+			this._operation = "";
 		},
 
 		/**
@@ -57,7 +58,8 @@ sap.ui.define([
 				"org": "",
 				"apiendpoint": ""
 			});
-			this._getDialog().setModel(oModel_empty, "Edit");
+			this._getDialog().setModel(oModel_empty, "Data");
+			this._operation = "add";
 			this._getDialog().open();
 		},
 		_getDialog: function () {
@@ -71,16 +73,19 @@ sap.ui.define([
 			oEvent.getSource().getParent().close();
 		},
 		editEnvironmentFragment: function (oEvent) {
+			this._operation = "edit";
 			var oCtx = oEvent.getSource().getBindingContext("Environments").getObject();
 			var oModel = new JSONModel(oCtx);
-			this._getDialog().setModel(oModel, "Edit");
+			this._getDialog().setModel(oModel, "Data");
 			this._getDialog().open();
 		},
 		onSaveEditEnvironment: function (oEvent) {
 			var oModle_saveEnv = new JSONModel();
-			var oDialogModel_data = oEvent.getSource().getParent().getModel("Edit").getData();
-			oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
-			oModle_saveEnv.loadData(this.getOwnerComponent().getModel("servers").getProperty("addcfc"),JSON.stringify(oDialogModel_data) , true,
+			var oDialogModel_data = oEvent.getSource().getParent().getModel("Data").getData();
+			if (this._operation === "add") {
+				oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
+			}
+			oModle_saveEnv.loadData(this.getOwnerComponent().getModel("servers").getProperty("addcfc"), JSON.stringify(oDialogModel_data), true,
 				"POST", false, false, {
 					"Content-Type": "application/json"
 				});
