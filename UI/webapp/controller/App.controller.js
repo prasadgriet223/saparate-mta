@@ -39,7 +39,7 @@ sap.ui.define([
 		//	}
 		_onObjectMatched: function (oEvent) {
 			var oModel = this.authModel();
-			var authorized = true;
+			var authorized = false;
 			if (authorized) {
 				this.byId("toolPage").destroyHeader();
 				this.byId("toolPage").destroySideContent();

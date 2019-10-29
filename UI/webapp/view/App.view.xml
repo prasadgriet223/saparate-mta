@@ -2,27 +2,68 @@
 	controllerName="scp.com.saparate.controller.App" displayBlock="true">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
-			<!--<OverflowToolbar design="Transparent" class="saparatebackground">-->
-			<!--	<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>-->
-			<!--	<Image src="images/logo.png"></Image>-->
-			<!--	<ToolbarSpacer/>-->
-			<!--	<ToolbarSpacer/>-->
-			<!--	<ToolbarSpacer/>-->
-			<!--	<ToolbarSpacer/>-->
-			<!--	<ToolbarSpacer/>-->
-			<!--<Select forceSelection="false" selectedKey="New">-->
-			<!--	<core:ListItem key="New" text="CreateNew" icon="sap-icon://paper-plane"/>-->
-			<!--</Select>-->
-			<!--	<Button icon="sap-icon://group-2"/>-->
-			<!--	<Button icon="sap-icon://action-settings"/>-->
-			<!--	<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>-->
-			<!--	<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>-->
-			<!--</OverflowToolbar>-->
+			<!--<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press="onPressExpand">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="NeverOverflow"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<ToolbarSpacer width="20px"/>-->
+			<!--<Button text="File" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Edit" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="View" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Navigate" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Code" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Refactor" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Run" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<Button text="Tools" type="Transparent">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
+			<!--<tnt:ToolHeaderUtilitySeparator/>-->
+			<!--<ToolbarSpacer>-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>-->
+			<!--	</layoutData>-->
+			<!--</ToolbarSpacer>-->
+			<!--<Button text="Alan Smith" type="Transparent" press="handleUserNamePress">-->
+			<!--	<layoutData>-->
+			<!--		<OverflowToolbarLayoutData priority="NeverOverflow"/>-->
+			<!--	</layoutData>-->
+			<!--</Button>-->
 			<Bar id="bar0" class="saparatebackground">
 				<contentLeft>
 					<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
 					<Image src="images/logo.png"></Image>
-					<!--<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>-->
+					<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>
 					<core:Fragment xmlns:core="sap.ui.core" fragmentName="scp.com.saparate.view.fragments.breadCrumb" type="XML"/>
 				</contentLeft>
 				<contentMiddle></contentMiddle>
