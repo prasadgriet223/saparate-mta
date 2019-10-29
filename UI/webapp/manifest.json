@@ -92,6 +92,11 @@
 				"settings": {},
 				"uri": "/getuserinfo",
 				"preload": true
+			},
+			"loadsKey_Async": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
 			}
 		},
 		"resources": {

@@ -22,7 +22,7 @@ sap.ui.define([
 			return this.getOwnerComponent().getModel("servers").getProperty(sProperty);
 		},
 		authModel: function () {
-			return this.getOwnerComponent().getModel();
+			//return this.getOwnerComponent().getModel();
 		},
 		randomCalculations: function (fValue1, fValue2) {
 			return fValue1 + fValue2;
@@ -37,6 +37,26 @@ sap.ui.define([
 			oModel.attachRequestCompleted(function () {
 				return this.getView().setModel(oModel, sModelName);
 			}).bind(this);
+		},
+		getSkey: function () {
+			this.getOwnerCompent.getModel("loadsKey_Async").loadData("/getuserinfo").
+			then(function (data) {
+					data = JSON.parse(data);
+					var sHeaders = {
+						"Authorization": "Bearer" + data.token.accessToken
+					};
+					return this.getOwnerCompent.getModel("loadsKey_Async").loadData(data.token.oauthOptions.url + "/getuserinfo", null, true, "GET",
+							null, false, sHeaders)
+						.then(function (response) {
+							data["userUUID"] = response.user_id;
+							var oModel = new JSONModel();
+							return oModel(this.getApiCall("apitoken"), JSON.stringify(data), true, "POST", false, false, {
+								"Content-Type": "application/json"
+							}).then(function (sKey) {
+								return sKey;
+							});
+						}).bind(this);
+				});
 		}
 	});
 
