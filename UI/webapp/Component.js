@@ -21,11 +21,13 @@ sap.ui.define([
 			this.getRouter().initialize();
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
-			var oKeyModel = {
+			var oKeyModel_data = {
 				"saparate": {
 					"key": ""
 				}
 			};
+			var oKeyModel = new sap.ui.model.json.JSONModel(oKeyModel_data);
+			sap.ui.getCore().setModel(oKeyModel, "oKeyModel");
 
 		}
 	});

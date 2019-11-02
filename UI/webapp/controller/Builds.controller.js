@@ -1,10 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/controller/BaseController",
 	"scp/com/saparate/utils/formatter"
-], function (Controller, formatter) {
+], function (BaseController, formatter) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.Builds", {
+	return BaseController.extend("scp.com.saparate.controller.Builds", {
 		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -47,10 +47,12 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var jobId = oEvent.getParameter("arguments").jobId;
 			this._jobid = jobId;
-			var oModel_jobdetails = new sap.ui.model.json.JSONModel();
-			oModel_jobdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobresults") + "?jobName=" + jobId);
+			this.loadDatatoViewwithKey_GET_filter("jobresults","?jobName=" + jobId,"Jobdetails", 
+			sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+			// var oModel_jobdetails = new sap.ui.model.json.JSONModel();
+			// oModel_jobdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobresults") + "?jobName=" + jobId);
+			// this.getView().setModel(oModel_jobdetails, "Jobdetails");
 			this.byId("idBreadcrum_builds").setCurrentLocationText(jobId);
-			this.getView().setModel(oModel_jobdetails, "Jobdetails");
 		},
 		handleSelectionChange: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -77,4 +79,3 @@ sap.ui.define([
 	});
 
 });
-

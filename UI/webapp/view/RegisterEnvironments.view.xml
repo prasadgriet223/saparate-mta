@@ -1,20 +1,21 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="scp.com.saparate.controller.RegisterEnvironments">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="scp.com.saparate.controller.RegisterEnvironments">
 	<App>
 		<pages>
-			<Page title="List of  Enviroments">
+			<Page title="List of Enviroments">
 				<headerContent>
 					<OverflowToolbar id="idoftbBuildStages">
-						<!--<Button icon="sap-icon://checklist" id="idbtn_respectivebuild" press="navigatetobuildpipelines"/>-->
 						<ToolbarSpacer/>
 						<Button icon="sap-icon://journey-arrive" text="Register Enviroment" press="onregisterEnviroment"/>
 					</OverflowToolbar>
 				</headerContent>
 				<content>
-				<List noDataText="Drop list items here" id="idEnviroments" items="{Environments>/}">
-				    <items>
-				        <StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment" icon="sap-icon://map" id="item0"/>
-				    </items>
-				</List>
+					<List noDataText="Drop list items here" id="idEnviroments" items="{Environments>/}">
+						<items>
+							<StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment"
+								icon="sap-icon://map" id="item0"/>
+						</items>
+					</List>
 				</content>
 			</Page>
 		</pages>

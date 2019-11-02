@@ -176,6 +176,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["Authorize"]
+			}, {
+				"name": "Credentials",
+				"pattern": "Credentials",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Credentials"]
 			}],
 			"targets": {
 				"TargetLogin": {
@@ -228,6 +234,10 @@
 				"Authorize": {
 					"viewType": "XML",
 					"viewName": "Authorize"
+				},
+				"Credentials": {
+					"viewType": "XML",
+					"viewName": "Credentials"
 				}
 			}
 		}

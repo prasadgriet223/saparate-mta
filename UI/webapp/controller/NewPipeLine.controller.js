@@ -1,221 +1,237 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/controller/BaseController",
 	"sap/ui/core/Fragment",
 	"sap/m/MessageBox"
-], function (Controller, Fragment, MessageBox) {
+], function (BaseController, Fragment, MessageBox) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.NewPipeLine", {
+	return BaseController.extend("scp.com.saparate.controller.NewPipeLine", {
 
-		/**
-		 * Called when a controller is instantiated and its View controls (if available) are already created.
-		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf scp.com.saparate.view.NewPipeLine
-		 */
-		onInit: function () {
-			this._wizard = this.byId("CreatePipeLine");
-			this._oNavContainer = this.byId("idNewPipeLineNavContainer");
-			this._oWizardContentPage = this.byId("idNewPipeline");
-			this._oRouter = this.getOwnerComponent().getRouter();
-			this._oRouter.getRoute("NewPipeLine").attachPatternMatched(this._onObjectMatched, this);
-		},
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf scp.com.saparate.view.NewPipeLine
-		 */
-		onBeforeRendering: function () {
+			/**
+			 * Called when a controller is instantiated and its View controls (if available) are already created.
+			 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
+			 * @memberOf scp.com.saparate.view.NewPipeLine
+			 */
+			onInit: function () {
+				this._wizard = this.byId("CreatePipeLine");
+				this._oNavContainer = this.byId("idNewPipeLineNavContainer");
+				this._oWizardContentPage = this.byId("idNewPipeline");
+				this._oRouter = this.getOwnerComponent().getRouter();
+				this._oRouter.getRoute("NewPipeLine").attachPatternMatched(this._onObjectMatched, this);
+			},
+			/**
+			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+			 * (NOT before the first rendering! onInit() is used for that one!).
+			 * @memberOf scp.com.saparate.view.NewPipeLine
+			 */
+			onBeforeRendering: function () {
 
-		},
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf scp.com.saparate.view.NewPipeLine
-		 */
-		// onAfterRendering: function() {
+			},
+			/**
+			 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
+			 * This hook is the same one that SAPUI5 controls get after being rendered.
+			 * @memberOf scp.com.saparate.view.NewPipeLine
+			 */
+			// onAfterRendering: function() {
 
-		// },
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf scp.com.saparate.view.NewPipeLine
-		 */
-		onExit: function () {
+			// },
+			/**
+			 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+			 * @memberOf scp.com.saparate.view.NewPipeLine
+			 */
+			onExit: function () {
 
-		},
-		navigatetoProjectPipeline: function () {
-			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			oRouter.navTo("Projects");
-		},
-		selectRepoType: function (oEvent) {
-			this._wizard.validateStep(this.byId("Authstep"));
-		},
-		_onObjectMatched: function (oEvent) {
-			this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
-			var oModel_auth = new sap.ui.model.json.JSONModel();
-			//		this._oNavContainer = this.byId("idNewPipeLineNavContainer");
-			this._oNavContainer.to(this._oWizardContentPage);
-			oModel_auth.loadData(this.getOwnerComponent().getModel("servers").getProperty("credentials"));
-			this.getView().setModel(oModel_auth, "credentials");
-			this._wizard.discardProgress(this.byId("Authstep"));
-			this._wizard.discardProgress(this.byId("idReposStep"));
-			this._wizard.discardProgress(this.byId("branchesStep"));
-		},
-		selectRepo: function (oEvent) {
-			if (this.byId("idReposStep").getValidated())
-				this._wizard.discardProgress(this.byId("idReposStep"));
-			else
-				this._wizard.validateStep(this.byId("idReposStep"));
-		},
-		loadRepos: function (oEvent) {
-			if (this.byId("RepoTypeStep").getValidated())
-				this._wizard.discardProgress(this.byId("RepoTypeStep"));
-			else
-				this._wizard.validateStep(this.byId("RepoTypeStep"));
-		},
-		selectBranch: function (oEvent) {
-			if (this.byId("idbranchesStep").getValidated())
-				this._wizard.discardProgress(this.byId("idbranchesStep"));
-			else
-				this._wizard.validateStep(this.byId("idbranchesStep"));
-		},
-		afterloadRepoType: function (oEvent) {
-			this.getView().byId("idRepoTypeList").removeSelections(true);
-		},
-		afterloadReposStep: function (oEvent) {
-			var oModel_repos = new sap.ui.model.json.JSONModel();
-			var credentials = {
-				"credentialId": this.getView().byId("idCredSelect").getSelectedKey(),
-				"repoType": this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey")
-			};
-			oModel_repos.loadData(this.getOwnerComponent().getModel("servers").getProperty("repos"), JSON.stringify(credentials), true,
-				"POST", false, false, {
-					"Content-Type": "application/json"
-				});
-			oModel_repos.attachRequestCompleted(function () {
-
-			});
-			this.getView().setModel(oModel_repos, "Repos");
-		},
-		NewPipeLineReviewHandler: function (oEvent) {
-			if (!this.oNewPipeLinereviewPageFragment) {
-				this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
-					"scp.com.saparate.view.fragments.NewPipeLineReviewPage", this);
-				this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
-				this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
-				this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
-			}
-
-			//this.getView().byId("idCredSelect").getSelectedItem().getText()
-			this.getView().byId("idNewPipeLineCredentials").setText(this.getView().byId("idCredSelect").getSelectedItem().getText());
-			this.getView().byId("idNewPipeLineRepoType").setText(this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey"));
-			this.getView().byId("idNewPipeLineRepository").setText(this.getView().byId("idReposList").getSelectedItem().data("repohttps"));
-			this.getView().byId("idNewPipeLineBranch").setText(this.getView().byId("idBranchList").getSelectedItem().data("branchkey"));
-			this.getView().byId("idNewPipeLineBuildType").setText(this.getView().byId("idBuildSelect").getSelectedItem().getText());
-		},
-		afterLoadBranchesStep: function (oEvent) {
-			var oModel_branches = new sap.ui.model.json.JSONModel();
-			var oinput = {
-				"credentialId": this.getView().byId("idCredSelect").getSelectedKey(),
-				"url": this.getView().byId("idReposList").getSelectedItem().data("repohttps")
-			};
-			oModel_branches.loadData(this.getOwnerComponent().getModel("servers").getProperty("branches"), JSON.stringify(oinput), true,
-				"POST", false, false, {
-					"Content-Type": "application/json"
-				});
-			this.getView().setModel(oModel_branches, "branch");
-		},
-		handleCreateNewPipeLineSubmit: function (oEvent) {
-			this._handleMessageBoxOpen("Are you sure you want to create a NewPipe Line?", "confirm");
-		},
-		handleCreateNewPipeLineCancel: function () {
-			this._handleMessageBoxOpenforcancel("Are you sure you want to cancel your New PipeLineCreation?", "warning");
-		},
-
-		additionalInfoValidation: function () {
-			var jobName = this.byId("ip_JobName").getValue();
-			if (jobName.length > 5)
+			},
+			navigatetoProjectPipeline: function () {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("Projects");
+			},
+			selectRepoType: function (oEvent) {
 				this._wizard.validateStep(this.byId("Authstep"));
+			},
+			_onObjectMatched: function (oEvent) {
+				this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
+				//var oModel_auth = new sap.ui.model.json.JSONModel();
+				//		this._oNavContainer = this.byId("idNewPipeLineNavContainer");
+				this._oNavContainer.to(this._oWizardContentPage);
+				this.loadDatatoViewwithKey_GET("credentials", "credentials",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
-			else
-				this._wizard.invalidateStep(this.byId("Authstep"));
+				// oModel_auth.loadData(this.getOwnerComponent().getModel("servers").getProperty("credentials"));
+				// this.getView().setModel(oModel_auth, "credentials");
 
-		},
-		_handleMessageBoxOpenforcancel: function (sMessage, sMessageBoxType) {
-			var that = this;
-			MessageBox[sMessageBoxType](sMessage, {
-				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-				onClose: function (oAction) {
-					if (oAction === MessageBox.Action.YES) {
-						that._oRouter.navTo("jobs", {
-							from: "tonewpipeline"
-						});
-					}
+				this._wizard.discardProgress(this.byId("Authstep"));
+				this._wizard.discardProgress(this.byId("idReposStep"));
+				this._wizard.discardProgress(this.byId("branchesStep"));
+			},
+			selectRepo: function (oEvent) {
+				if (this.byId("idReposStep").getValidated())
+					this._wizard.discardProgress(this.byId("idReposStep"));
+				else
+					this._wizard.validateStep(this.byId("idReposStep"));
+			},
+			loadRepos: function (oEvent) {
+				if (this.byId("RepoTypeStep").getValidated())
+					this._wizard.discardProgress(this.byId("RepoTypeStep"));
+				else
+					this._wizard.validateStep(this.byId("RepoTypeStep"));
+			},
+			selectBranch: function (oEvent) {
+				if (this.byId("idbranchesStep").getValidated())
+					this._wizard.discardProgress(this.byId("idbranchesStep"));
+				else
+					this._wizard.validateStep(this.byId("idbranchesStep"));
+			},
+			afterloadRepoType: function (oEvent) {
+				this.getView().byId("idRepoTypeList").removeSelections(true);
+			},
+			afterloadReposStep: function (oEvent) {
+				var oModel_repos = new sap.ui.model.json.JSONModel();
+				var credentials = {
+					"credentialId": this.getView().byId("idCredSelect").getSelectedKey(),
+					"repoType": this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey")
+				};
+
+				this.loadDatatoViewwithKey_POST("repos", credentials, "Repos",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
+				// oModel_repos.loadData(this.getOwnerComponent().getModel("servers").getProperty("repos"), JSON.stringify(credentials), true,
+				// 	"POST", false, false, {
+				// 		"Content-Type": "application/json"
+				// 	});
+
+				// oModel_repos.attachRequestCompleted(function () {
+
+				// });
+				this.getView().setModel(oModel_repos, "Repos");
+			},
+			NewPipeLineReviewHandler: function (oEvent) {
+				if (!this.oNewPipeLinereviewPageFragment) {
+					this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
+						"scp.com.saparate.view.fragments.NewPipeLineReviewPage", this);
+					this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
+					this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
+					this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
 				}
-			});
-		},
-		_handleMessageBoxOpen: function (sMessage, sMessageBoxType) {
-			MessageBox[sMessageBoxType](sMessage, {
-				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-				onClose: function (oAction) {
-					if (oAction === MessageBox.Action.YES) {
-						var oNewPipeLineInput = {
-							"jobName": this.byId("ip_JobName").getValue(),
-							"piperPipeline": {
-								"stages": [{
-									"name": "prepare",
-									"statementList": [{
-										"type": "scm",
-										"branchName": "*/" + this.getView().byId("idBranchList").getSelectedItem().data("branchkey"),
-										"credsID": this.getView().byId("idCredSelect").getSelectedItem().data("credkey"),
-										"scmURL": this.getView().byId("idReposList").getSelectedItem().data("repohttps")
-									}]
-								}, {
-									"name": "prepareConfigYaml",
-									"statementList": [{
-										"type": "gst",
-										"statment": "writeFile file:\".pipeline/config.yaml\", text: \"${params.configyaml}\""
-									}]
-								}, {
-									"name": "prepareBuild",
-									"statementList": [{
-										"type": "gst",
-										"statment": "setupCommonPipelineEnvironment script:this"
-									}]
-								}, {
-									"name": "Build",
-									"statementList": [{
-										"type": "gst",
-										"statment": "mtaBuild script: this"
-									}]
-								}
-								
-								]
-							},
-							"clodfoundryId": "1"
-						};
-						var oModel_CreatePipeLine = new sap.ui.model.json.JSONModel();
-						oModel_CreatePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("addjob"), JSON.stringify(
-								oNewPipeLineInput), true,
-							"POST", false, false, {
-								"Content-Type": "application/json"
+
+				//this.getView().byId("idCredSelect").getSelectedItem().getText()
+				this.getView().byId("idNewPipeLineCredentials").setText(this.getView().byId("idCredSelect").getSelectedItem().getText());
+				this.getView().byId("idNewPipeLineRepoType").setText(this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey"));
+				this.getView().byId("idNewPipeLineRepository").setText(this.getView().byId("idReposList").getSelectedItem().data("repohttps"));
+				this.getView().byId("idNewPipeLineBranch").setText(this.getView().byId("idBranchList").getSelectedItem().data("branchkey"));
+				this.getView().byId("idNewPipeLineBuildType").setText(this.getView().byId("idBuildSelect").getSelectedItem().getText());
+			},
+			afterLoadBranchesStep: function (oEvent) {
+				var oModel_branches = new sap.ui.model.json.JSONModel();
+				var oinput = {
+					"credentialId": this.getView().byId("idCredSelect").getSelectedKey(),
+					"url": this.getView().byId("idReposList").getSelectedItem().data("repohttps")
+				};
+				// oModel_branches.loadData(this.getOwnerComponent().getModel("servers").getProperty("branches"), JSON.stringify(oinput), true,
+				// 	"POST", false, false, {
+				// 		"Content-Type": "application/json"
+				// 	});
+				// this.getView().setModel(oModel_branches, "branch");
+
+				this.loadDatatoViewwithKey_POST("branches", oinput, "branch",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
+			},
+			handleCreateNewPipeLineSubmit: function (oEvent) {
+				this._handleMessageBoxOpen("Are you sure you want to create a NewPipe Line?", "confirm");
+			},
+			handleCreateNewPipeLineCancel: function () {
+				this._handleMessageBoxOpenforcancel("Are you sure you want to cancel your New PipeLineCreation?", "warning");
+			},
+
+			additionalInfoValidation: function () {
+				var jobName = this.byId("ip_JobName").getValue();
+				if (jobName.length > 5)
+					this._wizard.validateStep(this.byId("Authstep"));
+
+				else
+					this._wizard.invalidateStep(this.byId("Authstep"));
+
+			},
+			_handleMessageBoxOpenforcancel: function (sMessage, sMessageBoxType) {
+				var that = this;
+				MessageBox[sMessageBoxType](sMessage, {
+					actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+					onClose: function (oAction) {
+						if (oAction === MessageBox.Action.YES) {
+							that._oRouter.navTo("jobs", {
+								from: "tonewpipeline"
 							});
-						oModel_CreatePipeLine.attachRequestCompleted(function () {
-							MessageBox.show((oModel_CreatePipeLine.getData().response), {
-								title: "Result",
-								actions: [sap.m.MessageBox.Action.OK],
-								onClose: function (oActions) {
-									if (oActions === "OK") {
-										var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-										oRouter.navTo("jobs", {
-											from: "tonewpipeline"
-										});
-									}
-								}.bind(this)
-							});
-						}.bind(this));
+						}
 					}
-				}.bind(this)
-			});
+				});
+			},
+			_handleMessageBoxOpen: function (sMessage, sMessageBoxType) {
+				MessageBox[sMessageBoxType](sMessage, {
+						actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+						onClose: function (oAction) {
+							if (oAction === MessageBox.Action.YES) {
+								var oNewPipeLineInput = {
+									"jobName": this.byId("ip_JobName").getValue(),
+									"piperPipeline": {
+										"stages": [{
+												"name": "prepare",
+												"statementList": [{
+													"type": "scm",
+													"branchName": "*/" + this.getView().byId("idBranchList").getSelectedItem().data("branchkey"),
+													"credsID": this.getView().byId("idCredSelect").getSelectedItem().data("credkey"),
+													"scmURL": this.getView().byId("idReposList").getSelectedItem().data("repohttps")
+												}]
+											}, {
+												"name": "prepareConfigYaml",
+												"statementList": [{
+													"type": "gst",
+													"statment": "writeFile file:\".pipeline/config.yaml\", text: \"${params.configyaml}\""
+												}]
+											}, {
+												"name": "prepareBuild",
+												"statementList": [{
+													"type": "gst",
+													"statment": "setupCommonPipelineEnvironment script:this"
+												}]
+											}, {
+												"name": "Build",
+												"statementList": [{
+													"type": "gst",
+													"statment": "mtaBuild script: this"
+												}]
+											}
+
+										]
+									},
+									"clodfoundryId": "1"
+								};
+
+								var sHeaders = {
+									"Content-Type": "application/json",
+									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+							};
+							var oModel_CreatePipeLine = new sap.ui.model.json.JSONModel();
+							oModel_CreatePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("addjob"), JSON.stringify(
+									oNewPipeLineInput), true,
+								"POST", false, false, sHeaders);
+							oModel_CreatePipeLine.attachRequestCompleted(function () {
+								MessageBox.show((oModel_CreatePipeLine.getData().response), {
+									title: "Result",
+									actions: [sap.m.MessageBox.Action.OK],
+									onClose: function (oActions) {
+										if (oActions === "OK") {
+											var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+											oRouter.navTo("jobs", {
+												from: "tonewpipeline"
+											});
+										}
+									}.bind(this)
+								});
+							}.bind(this));
+						}
+					}.bind(this)
+				});
 		}
 	});
 
@@ -413,7 +429,7 @@ sap.ui.define([
 // 	this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
 // }
 // , 
-								
+
 // 								{
 // 									"name": "Deploy",
 // 									"statementList": [{
@@ -421,7 +437,6 @@ sap.ui.define([
 // 										"statment": "cloudFoundryDeploy script: this"
 // 									}]
 // 								}
-
 
 // alljobs=https://na1.saparate.com/saparate/jenkins/getAllJobs
 // log=https://na1.saparate.com/saparate/jenkins/getLog

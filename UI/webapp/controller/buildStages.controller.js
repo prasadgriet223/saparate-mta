@@ -1,9 +1,9 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/controller/BaseController",
 	"scp/com/saparate/utils/formatter"
-], function (Controller, formatter) {
+], function (BaseController, formatter) {
 	"use strict";
-	return Controller.extend("scp.com.saparate.controller.buildStages", {
+	return BaseController.extend("scp.com.saparate.controller.buildStages", {
 		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -45,14 +45,25 @@ sap.ui.define([
 			this._jobid = jobId;
 			this._buildid = buildId;
 			this.byId("idbc_build").setText(jobId);
-			var oModel_buildstatusdetails = new sap.ui.model.json.JSONModel();
-			oModel_buildstatusdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("JobStageResults") + "?jobName=" +
-				jobId + "&buildNumber=" + buildId);
-			this.getView().setModel(oModel_buildstatusdetails, "Jobstatusdetails");
+
+			// var oModel_buildstatusdetails = new sap.ui.model.json.JSONModel();
+			// oModel_buildstatusdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("JobStageResults") + "?jobName=" +
+			// 	jobId + "&buildNumber=" + buildId);
+			// this.getView().setModel(oModel_buildstatusdetails, "Jobstatusdetails");
+			this.loadDatatoViewwithKey_GET_filter("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+			};
+
 			this.byId("idBreadcrum_buildStages").setCurrentLocationText(buildId);
 			var oModel_buildstageslog = new sap.ui.model.json.JSONModel();
+
 			oModel_buildstageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
-				"&buildNumber=" + buildId);
+				"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
+
 			oModel_buildstageslog.attachRequestCompleted(function () {
 				var p = this.byId("idlog_content");
 				p.removeAllContent();

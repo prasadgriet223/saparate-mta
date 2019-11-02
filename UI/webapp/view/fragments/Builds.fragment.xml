@@ -46,7 +46,7 @@
 					<ObjectStatus xmlns="sap.m" text="{ parts : [ 'Jobdetails>duartion'], formatter: '.formatter.addSec' }" state="Information"
 						icon="sap-icon://lateness"/>
 					<GenericTag text="{Jobdetails>buildResult}" design="StatusIconHidden"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.formatDate'}"
+					<ObjectStatus xmlns="sap.m" state="Information" text="{Jobdetails>timeStamp}"
 						icon="sap-icon://date-time"/>
 				</cells>
 			</ColumnListItem>

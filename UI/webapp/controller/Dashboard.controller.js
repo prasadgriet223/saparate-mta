@@ -18,9 +18,8 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 
 		},
 		_onObjectMatched: function (oEvent) {
-			var oModel_jobdetails = new sap.ui.model.json.JSONModel();
-			//	oModel_jobdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
-			this.getView().setModel(oModel_jobdetails, "Jobdetails");
+			this.loadDatatoViewwithKey_GET("latestBuildResults","Jobdetails", 
+			sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 			this.byId("idBuildstblHdr").setText("Recent Builds");
 			this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
 		},
@@ -30,7 +29,6 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 				jobId: oEvent.getParameter("listItem").getCells()[0].getText(),
 				buildid: oEvent.getParameter("listItem").getCells()[1].getText()
 			});
-
 		},
 		refreshData: function (oEvent) {
 			//	this.getView().getModel("Jobdetails").loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));

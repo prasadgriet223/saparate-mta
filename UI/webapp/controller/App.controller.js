@@ -38,11 +38,9 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
-			var oModel = this.authModel();
+			var oModel = this.getSkey();
 			var authorized = false;
 			if (authorized) {
-				this.byId("toolPage").destroyHeader();
-				this.byId("toolPage").destroySideContent();
 				this.getRouter().navTo("Authorize");
 			} else {
 				this.getRouter().navTo("Dashboard");
@@ -77,8 +75,9 @@ sap.ui.define([
 		},
 		gotoEnviroments: function () {
 			this.getRouter().navTo("RegisterEnvironments");
-			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// oRouter.navTo("RegisterEnvironments");
+		},
+		gotoCredentials: function () {
+			this.getRouter().navTo("Credentials");
 		}
 	});
 });

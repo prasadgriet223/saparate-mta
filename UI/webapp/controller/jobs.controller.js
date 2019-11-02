@@ -1,10 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/controller/BaseController",
 	"sap/m/MessageToast", "sap/m/MessageBox"
-], function (Controller, MessageToast, MessageBox) {
+], function (BaseController, MessageToast, MessageBox) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.jobs", {
+	return BaseController.extend("scp.com.saparate.controller.jobs", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -45,13 +45,15 @@ sap.ui.define([
 			// var from = oEvent.getParameter("arguments").from;
 			// //console.log(from);
 			// this.byId("idtblAllPipelines").setBusy(true);
-			 var oModel_jobs = new sap.ui.model.json.JSONModel();
+			//var oModel_jobs = new sap.ui.model.json.JSONModel();
 			// if (from === "recentpipeline")
 			// 	oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
 			// else if (from === "tonewpipeline")
-		//	oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
+			// oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
+			// this.getView().setModel(oModel_jobs, "Jobs");
+			this.loadDatatoViewwithKey_GET("jobs", "Jobs",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 			this.byId("idtblAllPipelines").setBusy(false);
-			this.getView().setModel(oModel_jobs, "Jobs");
 			this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");
 
 		},
@@ -103,12 +105,20 @@ sap.ui.define([
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
+						
+						
+						
 						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
+							var sHeaders = {
+									"Content-Type": "application/json",
+									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+							};
 						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
 							true,
-							"POST", false, false, {
-								"Content-Type": "application/json"
-							});
+							"POST", false, false, sHeaders);
+							
+							
+							
 						oModel_triggerJob.attachRequestCompleted(function () {
 							this._navigatetoBuilds(oModel_triggerJob.getData()["response"], sjobId);
 						}.bind(this));
@@ -122,7 +132,7 @@ sap.ui.define([
 		},
 		_navigatetoBuilds: function (result, ijobId) {
 			MessageBox.information(result, {
-				actions: ["Navigate to Builds", MessageBox.Action.CLOSE],
+				actions: ["OK", MessageBox.Action.CLOSE],
 				onClose: function (sAction) {
 					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 					oRouter.navTo("Builds", {

@@ -63,8 +63,6 @@
 				<contentLeft>
 					<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
 					<Image src="images/logo.png"></Image>
-					<f:Avatar src="./test-resources/sap/f/images/Woman_avatar_01.png" displaySize="XS" showBorder="true"></f:Avatar>
-					<core:Fragment xmlns:core="sap.ui.core" fragmentName="scp.com.saparate.view.fragments.breadCrumb" type="XML"/>
 				</contentLeft>
 				<contentMiddle></contentMiddle>
 				<contentRight>

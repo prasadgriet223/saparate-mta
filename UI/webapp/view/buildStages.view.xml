@@ -97,11 +97,9 @@
 								<cells>
 									<ObjectStatus state="Information" text="{Jobstatusdetails>name}" icon="sap-icon://badge"/>
 									<!--<ObjectStatus state="Information" text="{Jobstatusdetails>id}" icon="sap-icon://number-sign"/>-->
-									<GenericTag text="{Jobstatusdetails>status}" design="StatusIconHidden"
-										status="{ parts : [ 'Jobstatusdetails>status' ], formatter: '.formatter.buildStagesStatus' }"/>
+									<GenericTag text="{Jobstatusdetails>status}" design="StatusIconHidden"/>
 									<ObjectStatus state="Information" text="{Jobstatusdetails>startTime}" icon="sap-icon://date-time"/>
-									<ObjectStatus state="Information" text="{ parts : [ 'Jobstatusdetails>duration'], formatter: '.formatter.addSec' }"
-										icon="sap-icon://lateness"/>
+									<ObjectStatus state="Information" text="{Jobstatusdetails>duration}" icon="sap-icon://lateness"/>
 								</cells>
 							</ColumnListItem>
 						</items>

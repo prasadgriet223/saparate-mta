@@ -1,10 +1,10 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"scp/com/saparate/controller/BaseController",
 	"sap/ui/model/json/JSONModel", "sap/m/MessageBox"
-], function (Controller, JSONModel, MessageBox) {
+], function (BaseController, JSONModel, MessageBox) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.RegisterEnvironments", {
+	return BaseController.extend("scp.com.saparate.controller.RegisterEnvironments", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -43,12 +43,10 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
-			var oModel_Enviromnents = new sap.ui.model.json.JSONModel();
-			var oModel_Credential = new sap.ui.model.json.JSONModel();
-			oModel_Enviromnents.loadData(this.getOwnerComponent().getModel("servers").getProperty("getcfc"));
-			this.getView().setModel(oModel_Enviromnents, "Environments");
-			oModel_Credential.loadData(this.getOwnerComponent().getModel("servers").getProperty("credentials"));
-			this.getView().setModel(oModel_Credential, "credentials");
+			this.loadDatatoViewwithKey_GET("getcfc", "Environments",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+			this.loadDatatoViewwithKey_GET("credentials", "credentials",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 		},
 		onregisterEnviroment: function (oEvent) {
 			var oModel_empty = new JSONModel({
@@ -85,18 +83,21 @@ sap.ui.define([
 			if (this._operation === "add") {
 				oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
 			}
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+			};
 			oModle_saveEnv.loadData(this.getOwnerComponent().getModel("servers").getProperty("addcfc"), JSON.stringify(oDialogModel_data), true,
-				"POST", false, false, {
-					"Content-Type": "application/json"
-				});
+				"POST", false, false, sHeaders);
 			oModle_saveEnv.attachRequestCompleted(function () {
-				MessageBox.show((oModle_saveEnv.getData().response), {
+				this._getDialog().close();
+				MessageBox.show( (oModle_saveEnv.getData().name ), {
 					title: "Result",
 					actions: [sap.m.MessageBox.Action.OK],
 					onClose: function (oActions) {
 						if (oActions === "OK") {
-							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-							oRouter.navTo("RegisterEnvironments");
+							this.loadDatatoViewwithKey_GET("getcfc", "Environments",
+								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 						}
 					}.bind(this)
 				});
