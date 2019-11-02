@@ -111,7 +111,7 @@ sap.ui.define([
 						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
 							var sHeaders = {
 									"Content-Type": "application/json",
-									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 							};
 						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
 							true,

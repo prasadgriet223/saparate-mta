@@ -13,6 +13,7 @@ sap.ui.define([
 		onInit: function () {
 			this._oRouter = this.getRouter();
 			this._oRouter.getRoute("App").attachPatternMatched(this._onObjectMatched, this);
+			
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -38,15 +39,7 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
-			var oModel = this.getSkey();
-			var authorized = false;
-			if (authorized) {
-				this.getRouter().navTo("Authorize");
-			} else {
-				this.getRouter().navTo("Dashboard");
-			}
-			// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// oRouter.navTo("Dashboard");}
+			
 		},
 		onPressExpand: function () {
 			var toolPage = this.byId("toolPage");

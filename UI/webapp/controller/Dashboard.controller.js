@@ -18,10 +18,15 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 
 		},
 		_onObjectMatched: function (oEvent) {
-			this.loadDatatoViewwithKey_GET("latestBuildResults","Jobdetails", 
-			sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-			this.byId("idBuildstblHdr").setText("Recent Builds");
-			this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			
+			if (typeof skey === "undefined" || skey === "" || skey === null) {
+				this.getRouter().navTo("Authorize");
+			} else {
+				this.loadDatatoViewwithKey_GET("latestBuildResults", "Jobdetails", skey);
+				this.byId("idBuildstblHdr").setText("Recent Builds");
+				this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
+			}
 		},
 		handleSelectionChange: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

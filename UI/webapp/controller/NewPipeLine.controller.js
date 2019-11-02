@@ -209,7 +209,7 @@ sap.ui.define([
 
 								var sHeaders = {
 									"Content-Type": "application/json",
-									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 							};
 							var oModel_CreatePipeLine = new sap.ui.model.json.JSONModel();
 							oModel_CreatePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("addjob"), JSON.stringify(

@@ -1,5 +1,5 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
 	controllerName="scp.com.saparate.controller.Authorize">
 	<MessagePage title="User not Authorized" text="User not Authorized"
-		description="May be you encountered 404 error, That means you are trying to access the page which is not available right now."/>
+		description="404"/>
 </mvc:View>

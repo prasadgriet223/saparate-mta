@@ -33,8 +33,9 @@ sap.ui.define([], function () {
 		addSec: function (sec) {
 			return sec + "-Secs";
 		},
-		formatDate: function (date) {
-			return date.substring(0, 19);
+		getDate: function (date) {
+			var d = new Date(date);
+			return (d.getFullYear() + "/" + d.getMonth() + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		}
 	};
 });

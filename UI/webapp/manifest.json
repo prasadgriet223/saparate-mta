@@ -87,12 +87,6 @@
 				"settings": {},
 				"preload": true
 			},
-			"": {
-				"type": "sap.ui.model.json.JSONModel",
-				"settings": {},
-				"uri": "/getuserinfo",
-				"preload": true
-			},
 			"loadsKey_Async": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},

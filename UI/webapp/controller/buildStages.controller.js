@@ -55,7 +55,7 @@ sap.ui.define([
 
 			var sHeaders = {
 				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key")
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
 
 			this.byId("idBreadcrum_buildStages").setCurrentLocationText(buildId);
@@ -103,7 +103,7 @@ sap.ui.define([
 			oModel_buildstageslog_Stage.loadData(this.getOwnerComponent().getModel("servers").getProperty("stagelog") + "?jobName=" + this._jobid +
 				"&buildNumber=" + this._buildid + "&stageId=" + id);
 			oModel_buildstageslog_Stage.attachRequestCompleted(function () {
-				var response = oModel_buildstageslog_Stage.getData().text;;
+				var response = oModel_buildstageslog_Stage.getData().text;
 				this.byId("idstagelog").setText(response);
 				this.byId("idpanel_Stage").setExpanded(true);
 			}.bind(this));

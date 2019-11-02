@@ -31,7 +31,7 @@ sap.ui.define([
 		loadDatatoViewwithKey_GET: function (sProperty, sView, sKey) {
 			var sHeaders = {
 				"Content-Type": "application/json",
-				"Authorization": sKey
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
 			var oModel = new JSONModel();
 			oModel.loadData(this.getApiCall(sProperty), null, true, "GET", null, false, sHeaders);
@@ -39,24 +39,24 @@ sap.ui.define([
 				this.getView().setModel(oModel, sView);
 			}.bind(this));
 		},
-		
-		loadDatatoViewwithKey_GET_filter: function (sProperty,sfilter, sView, sKey) {
+
+		loadDatatoViewwithKey_GET_filter: function (sProperty, sfilter, sView, sKey) {
 			var sHeaders = {
 				"Content-Type": "application/json",
-				"Authorization": sKey
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
 			var oModel = new JSONModel();
-			oModel.loadData(this.getApiCall(sProperty)+sfilter, null, true, "GET", null, false, sHeaders);
+			oModel.loadData(this.getApiCall(sProperty) + sfilter, null, true, "GET", null, false, sHeaders);
 			oModel.attachRequestCompleted(function () {
 				this.getView().setModel(oModel, sView);
 			}.bind(this));
 		},
-		
+
 		loadDatatoViewwithKey_POST: function (sProperty, oInput, sView, sKey) {
 			var oModel = new JSONModel();
 			var sHeaders = {
 				"Content-Type": "application/json",
-				"Authorization": sKey
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
 			oModel.loadData(this.getApiCall(sProperty), JSON.stringify(oInput), true,
 				"POST", false, false, sHeaders);
@@ -64,54 +64,6 @@ sap.ui.define([
 			oModel.attachRequestCompleted(function () {
 				this.getView().setModel(oModel, sView);
 			}.bind(this));
-		},
-
-		getSkey: function () {
-			var oModel = new JSONModel();
-			oModel.loadData("/getuserinfo");
-			var that = this;
-			oModel.attachRequestCompleted(function () {
-				var data = oModel.getData();
-				var sHeaders = {
-					"Authorization": "Bearer " + data.token.accessToken
-				};
-				var oModel_2 = new JSONModel();
-				oModel_2.loadData(data.token.oauthOptions.url + "/userinfo", null, true,
-					"GET",
-					null, false, sHeaders);
-				oModel_2.attachRequestCompleted(function () {
-					data["userUUID"] = oModel_2.getData().user_id;
-					var oModel_3 = new JSONModel();
-					oModel_3.loadData(that.getApiCall("apitoken"), JSON.stringify(data), true, "POST", false, false, {
-						"Content-Type": "application/json"
-					});
-					oModel_3.attachRequestCompleted(function () {
-						//console.log(oModel_3.getData());
-					});
-				});
-			});
-
-			// then(function (data) {
-			// 	console.log(data);
-			// 	data = JSON.parse(data);
-			// 	var sHeaders = {
-			// 		"Authorization": "Bearer" + data.token.accessToken
-			// 	};
-			// 	return this.getOwnerComponent().getModel("loadsKey_Async").loadData(data.token.oauthOptions.url + "/userinfo", null, true,
-			// 			"GET",
-			// 			null, false, sHeaders)
-			// 		.then(function (response) {
-			// 			data["userUUID"] = response.user_id;
-			// 			var oModel = new JSONModel();
-			// 			return oModel(this.getApiCall("apitoken"), JSON.stringify(data), true, "POST", false, false, {
-			// 				"Content-Type": "application/json"
-			// 			}).then(function (sKey) {
-			// 				return sKey;
-			// 			});
-			// 		}).bind(this);
-			// });
-			sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", "7a2265bb-2ef7-414e-bce7-a7e9b7669732");
-			return "7a2265bb-2ef7-414e-bce7-a7e9b7669732";
 		}
 	});
 
