@@ -4,7 +4,7 @@
 			<Button icon="sap-icon://action" tooltip="Share" id="button0"/>
 		</headerContent>
 		<content>
-			<u:SplitContainer id="mySplitContainer" showSecondaryContent="true">
+			<u:SplitContainer id="mySplitContainer-1" showSecondaryContent="true">
 				<u:secondaryContent>
 					<SearchField xmlns="sap.m" placeholder="Search Board" id="field0"/>
 					<SelectList id="list0">

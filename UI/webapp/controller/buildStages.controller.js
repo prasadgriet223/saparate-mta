@@ -40,16 +40,19 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
+		
+				var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			if (typeof skey === "undefined" || skey === "" || skey === null) {
+				this.getRouter().navTo("Authorize");
+			} else {
+		
+		
 			var jobId = oEvent.getParameter("arguments").jobId;
 			var buildId = oEvent.getParameter("arguments").buildid;
 			this._jobid = jobId;
 			this._buildid = buildId;
 			this.byId("idbc_build").setText(jobId);
 
-			// var oModel_buildstatusdetails = new sap.ui.model.json.JSONModel();
-			// oModel_buildstatusdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("JobStageResults") + "?jobName=" +
-			// 	jobId + "&buildNumber=" + buildId);
-			// this.getView().setModel(oModel_buildstatusdetails, "Jobstatusdetails");
 			this.loadDatatoViewwithKey_GET_filter("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
@@ -74,6 +77,10 @@ sap.ui.define([
 				oText2.placeAt(this.byId("idlog_content"));
 				this.getView().setBusy(false);
 			}.bind(this));
+	
+	
+			}
+	
 		},
 		navigateTo: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

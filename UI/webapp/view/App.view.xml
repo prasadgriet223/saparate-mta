@@ -2,63 +2,6 @@
 	controllerName="scp.com.saparate.controller.App" displayBlock="true">
 	<tnt:ToolPage id="toolPage">
 		<tnt:header>
-			<!--<Button id="sideNavigationToggleButton" icon="sap-icon://menu2" type="Transparent" press="onPressExpand">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="NeverOverflow"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<ToolbarSpacer width="20px"/>-->
-			<!--<Button text="File" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Edit" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="View" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Navigate" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Code" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Refactor" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Run" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<Button text="Tools" type="Transparent">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="Low"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
-			<!--<tnt:ToolHeaderUtilitySeparator/>-->
-			<!--<ToolbarSpacer>-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>-->
-			<!--	</layoutData>-->
-			<!--</ToolbarSpacer>-->
-			<!--<Button text="Alan Smith" type="Transparent" press="handleUserNamePress">-->
-			<!--	<layoutData>-->
-			<!--		<OverflowToolbarLayoutData priority="NeverOverflow"/>-->
-			<!--	</layoutData>-->
-			<!--</Button>-->
 			<Bar id="bar0" class="saparatebackground">
 				<contentLeft>
 					<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
@@ -80,7 +23,7 @@
 					<tnt:NavigationListItem text="Browse Repo" icon="sap-icon://education" select="gotoPrecommit"/>
 					<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>
 					<tnt:NavigationListItem text="Build Pipelines" icon="sap-icon://globe" select="gotoPipelines"/>
-					<tnt:NavigationListItem text="Release Piplelines" icon="sap-icon://grid" select="gotoBuilds"/>
+					<tnt:NavigationListItem text="Release Piplelines" icon="sap-icon://grid" select="gotoReleasePipeline"/>
 					<tnt:NavigationListItem text="Environments" icon="sap-icon://drill-down" select="gotoEnviroments"/>
 					<!--<tnt:NavigationListItem text="Image Artifact" icon="sap-icon://electrocardiogram" select="gotoImageRepo"/>-->
 					<!--<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>-->

@@ -1,0 +1,33 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m"
+	controllerName="scp.com.saparate.controller.NewReleasePipeLine" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page>
+				<content>
+					<u:SplitContainer id="idReleasePipelineContainer" showSecondaryContent="true">
+						<u:secondaryContent>
+							<SearchField xmlns="sap.m" placeholder="Search Board" id="field0"/>
+							<List noDataText=" list items here" id="idBuildsList" items="{AddBuilds>/}">
+								<items>
+									<StandardListItem type="Active" title="{AddBuilds>projectname}" icon="sap-icon://primary-key"/>
+								</items>
+							</List>
+						</u:secondaryContent>
+						<u:content/>
+					</u:SplitContainer>
+				</content>
+				<customHeader>
+					<Bar id="idReleasePipelinebar">
+						<contentLeft>
+							<!--<core:Icon src="sap-icon://menu" text="Boards" size="1em" id="icon0" press="openBoardSearch"/>-->
+							<Button xmlns="sap.m" text="BuilPipelines" icon="sap-icon://menu2" press="openBuildPipeLineSearch"/>
+						</contentLeft>
+						<contentMiddle>
+							<Button xmlns="sap.m" text="AddStage" icon="sap-icon://add-process" press="openBuildPipeLineSearch"/>
+						</contentMiddle>
+					</Bar>
+				</customHeader>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

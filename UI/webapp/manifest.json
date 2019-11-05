@@ -176,6 +176,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["Credentials"]
+			}, {
+				"name": "NewReleasePipeLine",
+				"pattern": "NewReleasePipeline",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["NewReleasePipeLine"]
 			}],
 			"targets": {
 				"TargetLogin": {
@@ -232,6 +238,10 @@
 				"Credentials": {
 					"viewType": "XML",
 					"viewName": "Credentials"
+				},
+				"NewReleasePipeLine": {
+					"viewType": "XML",
+					"viewName": "NewReleasePipeLine"
 				}
 			}
 		}

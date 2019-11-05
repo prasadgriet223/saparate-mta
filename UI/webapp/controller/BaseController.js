@@ -34,9 +34,11 @@ sap.ui.define([
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
 			var oModel = new JSONModel();
+			this.getView().setBusy(true);
 			oModel.loadData(this.getApiCall(sProperty), null, true, "GET", null, false, sHeaders);
 			oModel.attachRequestCompleted(function () {
 				this.getView().setModel(oModel, sView);
+				this.getView().setBusy(false);
 			}.bind(this));
 		},
 

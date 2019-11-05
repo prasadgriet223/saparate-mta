@@ -11,7 +11,10 @@ sap.ui.define([
 		 * @memberOf scp.com.saparate.view.Authorize
 		 */
 		onInit: function () {
-				},
+
+			this._oRouter = this.getOwnerComponent().getRouter();
+			this._oRouter.getRoute("Authorize").attachPatternMatched(this._onObjectMatched, this);
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -38,8 +41,9 @@ sap.ui.define([
 		//	onExit: function() {
 		//
 		//	}
-		_authorizeSaparate: function (channel, event, data) {
-			console.log("Hello");
+		_onObjectMatched: function (oEvent) {
+			this.getView().getParent().getParent().destroyHeader();
+			this.getView().getParent().getParent().destroySideContent();
 		}
 	});
 

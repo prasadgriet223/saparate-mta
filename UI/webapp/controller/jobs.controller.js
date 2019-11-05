@@ -1,11 +1,12 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
-	"sap/m/MessageToast", "sap/m/MessageBox"
-], function (BaseController, MessageToast, MessageBox) {
+	"sap/m/MessageToast", "sap/m/MessageBox",
+	"scp/com/saparate/utils/formatter"
+], function (BaseController, MessageToast, MessageBox,formatter) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.jobs", {
-
+	formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -42,20 +43,15 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
-			// var from = oEvent.getParameter("arguments").from;
-			// //console.log(from);
-			// this.byId("idtblAllPipelines").setBusy(true);
-			//var oModel_jobs = new sap.ui.model.json.JSONModel();
-			// if (from === "recentpipeline")
-			// 	oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
-			// else if (from === "tonewpipeline")
-			// oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
-			// this.getView().setModel(oModel_jobs, "Jobs");
-			this.loadDatatoViewwithKey_GET("jobs", "Jobs",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-			this.byId("idtblAllPipelines").setBusy(false);
-			this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");
-
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			if (typeof skey === "undefined" || skey === "" || skey === null) {
+				this.getRouter().navTo("Authorize");
+			} else {
+				this.loadDatatoViewwithKey_GET("jobs", "Jobs",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.byId("idtblAllPipelines").setBusy(false);
+				this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");
+			}
 		},
 		handleshowBuilddetails: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -105,20 +101,16 @@ sap.ui.define([
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
-						
-						
-						
+
 						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
-							var sHeaders = {
-									"Content-Type": "application/json",
-									"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-							};
+						var sHeaders = {
+							"Content-Type": "application/json",
+							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+						};
 						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
 							true,
 							"POST", false, false, sHeaders);
-							
-							
-							
+
 						oModel_triggerJob.attachRequestCompleted(function () {
 							this._navigatetoBuilds(oModel_triggerJob.getData()["response"], sjobId);
 						}.bind(this));

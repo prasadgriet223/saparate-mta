@@ -47,12 +47,18 @@ sap.ui.define([
 		_onObjectMatched: function (oEvent) {
 			var jobId = oEvent.getParameter("arguments").jobId;
 			this._jobid = jobId;
-			this.loadDatatoViewwithKey_GET_filter("jobresults","?jobName=" + jobId,"Jobdetails", 
-			sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-			// var oModel_jobdetails = new sap.ui.model.json.JSONModel();
-			// oModel_jobdetails.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobresults") + "?jobName=" + jobId);
-			// this.getView().setModel(oModel_jobdetails, "Jobdetails");
-			this.byId("idBreadcrum_builds").setCurrentLocationText(jobId);
+
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			if (typeof skey === "undefined" || skey === "" || skey === null) {
+				this.getRouter().navTo("Authorize");
+			} else {
+
+				this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + jobId, "Jobdetails",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.byId("idBreadcrum_builds").setCurrentLocationText(jobId);
+
+			}
+
 		},
 		handleSelectionChange: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

@@ -18,8 +18,8 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 
 		},
 		_onObjectMatched: function (oEvent) {
-			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
@@ -36,8 +36,10 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 			});
 		},
 		refreshData: function (oEvent) {
+				sap.ui.core.BusyIndicator.show();
 			//	this.getView().getModel("Jobdetails").loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
 			this.getView().getModel("Jobdetails").refresh();
+				sap.ui.core.BusyIndicator.hide();
 		}
 	});
 });
