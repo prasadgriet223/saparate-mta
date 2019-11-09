@@ -12,8 +12,20 @@
 				<content>
 					<List noDataText="Drop list items here" id="idEnviroments" items="{Environments>/}">
 						<items>
-							<StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment"
-								icon="sap-icon://map" id="item0"/>
+							<!--<StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment"-->
+							<!--	/>-->
+							<ObjectListItem title="{Environments>name}" type="Active" press="editEnvironmentFragment">
+								<secondStatus>
+									<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Environments>creationDate'], formatter: '.formatter.getDate' }"/>
+								</secondStatus>
+								<firstStatus>
+									<ObjectStatus xmlns="sap.m" state="Information" text="{Environments>createdBy}"/>
+								</firstStatus>
+								<attributes>
+									<ObjectAttribute text="{Environments>url}"/>
+									<ObjectAttribute text="{Environments>apiendpoint}"/>
+								</attributes>
+							</ObjectListItem>
 						</items>
 					</List>
 				</content>
@@ -21,3 +33,15 @@
 		</pages>
 	</App>
 </mvc:View>
+<!--"createdBy":"ashok.thota9@gmail.com",-->
+<!--"creationDate":1572574246000,-->
+<!--"lastModifiedBy":"ashok.thota9@gmail.com",-->
+<!--"lastModifiedDate":1572574246000,-->
+<!--"id":8,-->
+<!--"name":"Environment",-->
+<!--"url":"Cloud URL 2",-->
+<!--"credentialKey":"2b00d881-e9a5-45f7-9fbb-bed89c2194a1",-->
+<!--"mtaPath":null,-->
+<!--"space":"space",-->
+<!--"org":"Org",-->
+<!--"apiendpoint":"api.com"-->

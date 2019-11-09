@@ -45,6 +45,7 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
+			sap.ui.core.BusyIndicator.show();
 			var jobId = oEvent.getParameter("arguments").jobId;
 			this._jobid = jobId;
 
@@ -58,13 +59,14 @@ sap.ui.define([
 				this.byId("idBreadcrum_builds").setCurrentLocationText(jobId);
 
 			}
-
+			sap.ui.core.BusyIndicator.hide();
 		},
 		handleSelectionChange: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("buildStages", {
-				jobId: oEvent.getParameter("listItem").getCells()[0].getText(),
-				buildid: oEvent.getParameter("listItem").getCells()[1].getText()
+				jobId: oEvent.getSource().getBindingContext("Jobdetails").getObject().name,
+				buildid: oEvent.getSource().getBindingContext("Jobdetails").getObject().number
+
 			});
 		},
 		navigateTo: function (oEvent) {
@@ -78,8 +80,9 @@ sap.ui.define([
 			}
 		},
 		refreshData: function (oEvent) {
-			this.getView().getModel("Jobdetails").loadData(this.getOwnerComponent().getModel("servers").getProperty("jobresults") + "?jobName=" +
-				this._jobid);
+			this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + this._jobid, "Jobdetails",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
 			this.getView().getModel("Jobdetails").refresh();
 		}
 	});

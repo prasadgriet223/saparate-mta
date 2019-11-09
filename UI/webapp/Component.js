@@ -67,25 +67,6 @@ sap.ui.define([
 					});
 				});
 			});
-	   /////////test code
-	 //  		sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
-		// 	"authorizationToken": "236c6452-b1da-4e0f-a96d-3f8b7d249529"
-		// });
-		// this.getRouter().initialize();
-		// var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-		// sap.ui.core.BusyIndicator.hide();
-		// if (typeof skey === "undefined" || skey === "" || skey === null) {
-		// 	this.getRouter().navTo("Authorize");
-		// } else {
-		// 	this.getRouter().navTo("Dashboard");
-		// }
-		/////test code
-	   
-	   
-	   	}
-
-
-	
-
+		}
 	});
 });

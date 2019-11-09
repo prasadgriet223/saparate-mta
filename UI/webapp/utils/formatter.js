@@ -23,8 +23,10 @@ sap.ui.define([], function () {
 			var result = "";
 			if (status === 'FAILED')
 				result = "Error";
-			if (status === 'SUCCESS')
+			else if (status === 'SUCCESS')
 				result = "Success";
+			else
+				result = "Warning";
 			return result;
 		},
 		addBuild: function (build) {

@@ -1,10 +1,12 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
-	"sap/ui/model/json/JSONModel", "sap/m/MessageBox"
-], function (BaseController, JSONModel, MessageBox) {
+	"sap/ui/model/json/JSONModel", "sap/m/MessageBox",
+	"scp/com/saparate/utils/formatter"
+], function (BaseController, JSONModel, MessageBox,formatter) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.RegisterEnvironments", {
+		formatter: formatter,
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.

@@ -97,7 +97,7 @@ sap.ui.define([
 		//	}
 
 		_onObjectMatched: function (oEvent) {
-			this.loadDatatoViewwithKey_GET("jobs", "AddBuilds",
+			this.loadDatatoViewwithKey_GET("credentials", "Credentials",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 		},
 		onCancel: function (oEvent) {

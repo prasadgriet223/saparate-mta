@@ -1,27 +1,9 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
-	<!--	<pages>-->
-	<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
-	<!--			<customHeader>-->
-	<!--				<Bar id="bar0">-->
-	<!--					<contentLeft>-->
-	<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
-	<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
-	<!--						</Breadcrumbs>-->
-	<!--					</contentLeft>-->
-	<!--					<contentMiddle>-->
-	<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
-	<!--					</contentMiddle>-->
-	<!--				</Bar>-->
-	<!--			</customHeader>-->
-	<!--			<content>-->
-	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}" alternateRowColors="true" itemPress="handleSelectionChange">
+
+	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}" alternateRowColors="true" >
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="Pipeline"/>
-			</Column>
-			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Build"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="Estimated Duration"/>
@@ -37,15 +19,14 @@
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation">
+			<ColumnListItem type="Navigation" press="handleSelectionChange" highlight="{parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.buildStatus'}"  >
 				<cells>
-					<ObjectStatus xmlns="sap.m" text="{Jobdetails>name}" state="Information"/>
-					<ObjectStatus xmlns="sap.m" text="{Jobdetails>number}" state="Information" title="Build #"/>
-					<ObjectStatus xmlns="sap.m" text="{ parts : [ 'Jobdetails>estimatedDuration'], formatter: '.formatter.addSec' }" state="Information"
-						icon="sap-icon://lateness"/>
-					<ObjectStatus xmlns="sap.m" text="{ parts : [ 'Jobdetails>duartion'], formatter: '.formatter.addSec' }" state="Information"
-						icon="sap-icon://lateness"/>
-					<GenericTag text="{Jobdetails>buildResult}" design="StatusIconHidden"/>
+					<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"
+						class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+					<ObjectNumber number="{Jobdetails>estimatedDuration}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
+					<ObjectNumber number="{Jobdetails>duartion}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
+					<GenericTag text="{Jobdetails>buildResult}" status="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.buildStatus' }"
+						design="StatusIconHidden"/>
 					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"
 						icon="sap-icon://date-time"/>
 				</cells>
@@ -67,8 +48,20 @@
 			</Toolbar>
 		</headerToolbar>
 	</Table>
-	<!--		</content>-->
-	<!--	</Page>-->
-	<!--</pages>-->
-	<!--</App>-->
 </core:FragmentDefinition>
+	<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
+	<!--	<pages>-->
+	<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
+	<!--			<customHeader>-->
+	<!--				<Bar id="bar0">-->
+	<!--					<contentLeft>-->
+	<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
+	<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
+	<!--						</Breadcrumbs>-->
+	<!--					</contentLeft>-->
+	<!--					<contentMiddle>-->
+	<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
+	<!--					</contentMiddle>-->
+	<!--				</Bar>-->
+	<!--			</customHeader>-->
+	<!--			<content>-->

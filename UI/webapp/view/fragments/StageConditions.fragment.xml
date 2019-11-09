@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%">
+	<IconTabBar id="bar0">
+		<items>
+			<IconTabFilter text="PreCondition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter0">
+				<content>
+					<List noDataText="No data" id="list0">
+						<items>
+							<StandardListItem title="List Item 1" id="item1"/>
+							<StandardListItem title="List Item 2" id="item2"/>
+							<StandardListItem title="List Item 3" id="item3"/></items>
+					</List>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter text="Deployement" icon="sap-icon://task" iconColor="Critical" id="filter1"/>
+			<IconTabFilter text="Post Condition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter2"/></items>
+	</IconTabBar>
+</core:FragmentDefinition>

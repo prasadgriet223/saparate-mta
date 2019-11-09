@@ -5,7 +5,7 @@
 			<Bar id="bar0" class="saparatebackground">
 				<contentLeft>
 					<core:Icon src="sap-icon://menu" press="onPressExpand"></core:Icon>
-					<Image src="images/logo.png"></Image>
+					<Image src="images/logo.jpeg" class="sapUiTinyMarginBottom" height="2.5rem"></Image>
 				</contentLeft>
 				<contentMiddle></contentMiddle>
 				<contentRight>
@@ -20,8 +20,8 @@
 					<tnt:NavigationListItem text="Dashboard" icon="sap-icon://home" select="gotoDashboard"/>
 					<!--<tnt:NavigationListItem text="UserStory" id="user" icon="sap-icon://dimension" select="gotoUserStory"/>-->
 					<!--<tnt:NavigationListItem text="Precommit" icon="sap-icon://disconnected" select="gotoPrecommit"/>-->
-					<tnt:NavigationListItem text="Browse Repo" icon="sap-icon://education" select="gotoPrecommit"/>
-					<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>
+					<!--<tnt:NavigationListItem text="Browse Repo" icon="sap-icon://education" select="gotoPrecommit"/>-->
+					<!--<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>-->
 					<tnt:NavigationListItem text="Build Pipelines" icon="sap-icon://globe" select="gotoPipelines"/>
 					<tnt:NavigationListItem text="Release Piplelines" icon="sap-icon://grid" select="gotoReleasePipeline"/>
 					<tnt:NavigationListItem text="Environments" icon="sap-icon://drill-down" select="gotoEnviroments"/>

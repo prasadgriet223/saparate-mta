@@ -40,47 +40,46 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
-		
-				var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
-		
-		
-			var jobId = oEvent.getParameter("arguments").jobId;
-			var buildId = oEvent.getParameter("arguments").buildid;
-			this._jobid = jobId;
-			this._buildid = buildId;
-			this.byId("idbc_build").setText(jobId);
+				var jobId = oEvent.getParameter("arguments").jobId;
+				var buildId = oEvent.getParameter("arguments").buildid;
+				this._jobid = jobId;
+				this._buildid = buildId;
+				this.byId("idbc_build").setText(jobId);
 
-			this.loadDatatoViewwithKey_GET_filter("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				sap.ui.core.BusyIndicator.show();
 
-			var sHeaders = {
-				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			};
+				this.loadDatatoViewwithKey_GET_filter("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
-			this.byId("idBreadcrum_buildStages").setCurrentLocationText(buildId);
-			var oModel_buildstageslog = new sap.ui.model.json.JSONModel();
+				var sHeaders = {
+					"Content-Type": "application/json",
+					"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+				};
 
-			oModel_buildstageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
-				"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
+				this.byId("idBreadcrum_buildStages").setCurrentLocationText(buildId);
+				var oModel_buildstageslog = new sap.ui.model.json.JSONModel();
 
-			oModel_buildstageslog.attachRequestCompleted(function () {
-				var p = this.byId("idlog_content");
-				p.removeAllContent();
-				var sResponse = oModel_buildstageslog.getData()["response"];
-				var r = JSON.stringify(sResponse).replace(/\\r\\n/g, "<br />");
-				var oText2 = new sap.ui.core.HTML();
-				oText2.setContent("<div>" + r + " </div>");
-				oText2.placeAt(this.byId("idlog_content"));
-				this.getView().setBusy(false);
-			}.bind(this));
-	
-	
+				oModel_buildstageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
+					"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
+
+				oModel_buildstageslog.attachRequestCompleted(function () {
+					var p = this.byId("idlog_content");
+					p.removeAllContent();
+					var sResponse = oModel_buildstageslog.getData()["response"];
+					var r = JSON.stringify(sResponse).replace(/\\r\\n/g, "<br />");
+					var oText2 = new sap.ui.core.HTML();
+					oText2.setContent("<div>" + r + " </div>");
+					oText2.placeAt(this.byId("idlog_content"));
+					this.getView().setBusy(false);
+				}.bind(this));
+
+				sap.ui.core.BusyIndicator.hide();
+
 			}
-	
 		},
 		navigateTo: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -107,8 +106,13 @@ sap.ui.define([
 			var stage = otblRow.name;
 			this.byId("idtoolbar_stagelog_title").setText(stage + "-Logs");
 			var oModel_buildstageslog_Stage = new sap.ui.model.json.JSONModel();
+
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
 			oModel_buildstageslog_Stage.loadData(this.getOwnerComponent().getModel("servers").getProperty("stagelog") + "?jobName=" + this._jobid +
-				"&buildNumber=" + this._buildid + "&stageId=" + id);
+				"&buildNumber=" + this._buildid + "&stageId=" + id, null, true, "GET", null, false, sHeaders);
 			oModel_buildstageslog_Stage.attachRequestCompleted(function () {
 				var response = oModel_buildstageslog_Stage.getData().text;
 				this.byId("idstagelog").setText(response);
@@ -121,7 +125,6 @@ sap.ui.define([
 		}
 	});
 });
-
 // var oModel_buildstatusdetails_cpp = new sap.ui.model.json.JSONModel();
 // oModel_buildstatusdetails_cpp.setData([{
 // 	"name": "#1",

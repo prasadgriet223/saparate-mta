@@ -1,19 +1,48 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m"
-	controllerName="scp.com.saparate.controller.NewReleasePipeLine" xmlns:html="http://www.w3.org/1999/xhtml">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:p="sap.suite.ui.commons" xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml" controllerName="scp.com.saparate.controller.NewReleasePipeLine">
 	<App>
 		<pages>
 			<Page>
 				<content>
 					<u:SplitContainer id="idReleasePipelineContainer" showSecondaryContent="true">
 						<u:secondaryContent>
-							<SearchField xmlns="sap.m" placeholder="Search Board" id="field0"/>
+							<SearchField xmlns="sap.m" placeholder="Search Builds" id="field0"/>
 							<List noDataText=" list items here" id="idBuildsList" items="{AddBuilds>/}">
 								<items>
 									<StandardListItem type="Active" title="{AddBuilds>projectname}" icon="sap-icon://primary-key"/>
 								</items>
 							</List>
 						</u:secondaryContent>
-						<u:content/>
+						<u:content>
+							<sap.ui.layout:VerticalLayout width="100%" xmlns:sap.ui.layout="sap.ui.layout" id="layout0">
+								<sap.ui.layout:content>
+									<p:ProcessFlow id="idReleasePipelineProcessFlow" scrollable="false" nodePress="onStagePress" lanes="{js>/lanes}">
+										<p:lanes>
+											<p:ProcessFlowLaneHeader laneId="{js>id}" iconSrc="{js>icon}" text="{js>label}" position="{js>position}"/>
+										</p:lanes>
+										<p:nodes>
+											<!--<p:ProcessFlowNode nodeId="1" laneId="id0" title="Sales Order 1" titleAbbreviation="SO 1" isTitleClickable="false" children="2,11,12"-->
+											<!--	state="Positive" stateText="Positive Status" texts=""/>-->
+										</p:nodes>
+									</p:ProcessFlow>
+									<IconTabBar id="bar0">
+										<items>
+											<IconTabFilter text="PreCondition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter0">
+												<content>
+													<List noDataText="No data" id="list0">
+														<items>
+															<StandardListItem title="List Item 1" id="item1"/>
+															<StandardListItem title="List Item 2" id="item2"/>
+															<StandardListItem title="List Item 3" id="item3"/></items>
+													</List>
+												</content>
+											</IconTabFilter>
+											<IconTabFilter text="Deployement" icon="sap-icon://task" iconColor="Critical" id="filter1"/>
+											<IconTabFilter text="Post Condition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter2"/></items>
+									</IconTabBar>
+								</sap.ui.layout:content>
+							</sap.ui.layout:VerticalLayout>
+						</u:content>
 					</u:SplitContainer>
 				</content>
 				<customHeader>
@@ -23,7 +52,8 @@
 							<Button xmlns="sap.m" text="BuilPipelines" icon="sap-icon://menu2" press="openBuildPipeLineSearch"/>
 						</contentLeft>
 						<contentMiddle>
-							<Button xmlns="sap.m" text="AddStage" icon="sap-icon://add-process" press="openBuildPipeLineSearch"/>
+							<Text xmlns="sap.m" text="Create New Release PipeLine"/>
+							<Button xmlns="sap.m" text="AddStage" icon="sap-icon://add-process" press="onAddStageName"/>
 						</contentMiddle>
 					</Bar>
 				</customHeader>

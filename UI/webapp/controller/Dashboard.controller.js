@@ -18,7 +18,7 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 
 		},
 		_onObjectMatched: function (oEvent) {
-			
+
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
@@ -31,15 +31,16 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 		handleSelectionChange: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("buildStages", {
-				jobId: oEvent.getParameter("listItem").getCells()[0].getText(),
-				buildid: oEvent.getParameter("listItem").getCells()[1].getText()
+				jobId: oEvent.getSource().getBindingContext("Jobdetails").getObject().name,
+				buildid: oEvent.getSource().getBindingContext("Jobdetails").getObject().number
 			});
 		},
 		refreshData: function (oEvent) {
-				sap.ui.core.BusyIndicator.show();
-			//	this.getView().getModel("Jobdetails").loadData(this.getOwnerComponent().getModel("servers").getProperty("latestBuildResults"));
+			sap.ui.core.BusyIndicator.show();
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			this.loadDatatoViewwithKey_GET("latestBuildResults", "Jobdetails", skey);
 			this.getView().getModel("Jobdetails").refresh();
-				sap.ui.core.BusyIndicator.hide();
+			sap.ui.core.BusyIndicator.hide();
 		}
 	});
 });
