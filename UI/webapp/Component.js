@@ -81,7 +81,7 @@ sap.ui.define([
 					});
 				});
 			});
-			// /////test code
+			/////test code
 			// sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
 			// 	"authorizationToken": "55a17f5e-8bb8-4f91-8feb-4b76bc8475a1"
 			// });

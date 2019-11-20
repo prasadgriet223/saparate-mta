@@ -19,6 +19,16 @@ sap.ui.define([], function () {
 				result = "Warning";
 			return result;
 		},
+		CycleStatus: function (status) {
+			var result = "";
+			if (status === 'FAILED')
+				result = "Error";
+			else if (status === 'COMPLETED')
+				result = "Success";
+			else
+				result = "Warning";
+			return result;
+		},
 		buildStagesStatus: function (status) {
 			var result = "";
 			if (status === 'FAILED')

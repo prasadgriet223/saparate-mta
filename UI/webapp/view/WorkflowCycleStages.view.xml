@@ -36,7 +36,7 @@
 									<Text text="{Stages>stageName}"/>
 									<Text text="{Stages>assignedTo}"/>
 									<Text text="{Stages>message}"/>
-									<GenericTag text="{Stages>status}" design="StatusIconHidden"/>
+									<GenericTag text="{Stages>status}" design="StatusIconHidden" status="{ parts : [ 'Stages>status'], formatter: '.formatter.CycleStatus' }"   />
 									<Button class="roundButton" icon="sap-icon://accept" text="" press="initiateAction"/>
 								</cells>
 							</ColumnListItem>

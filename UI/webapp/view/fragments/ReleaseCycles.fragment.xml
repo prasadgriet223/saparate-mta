@@ -34,15 +34,15 @@
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press = "handleSelectionChange_releaseCycle">
+			<ColumnListItem type="Navigation" press = "handleSelectionChange_releaseCycle"  highlight="{parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus'}" >
 				<cells>
 					<ObjectStatus xmlns="sap.m" text="{Cycledetails>label}" state="Information"/>
 					<ObjectStatus xmlns="sap.m" text="{Cycledetails>instantiatedBy}" state="Information"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDateFromGivenDate' }"
+					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"
 						icon="sap-icon://date-time"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDateFromGivenDate' }"
+					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"
 						icon="sap-icon://date-time"/>
-					<GenericTag text="{Cycledetails>status}" design="StatusIconHidden"/>
+					<GenericTag text="{Cycledetails>status}" design="StatusIconHidden" status="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus' }"/>
 				</cells>
 			</ColumnListItem>
 		</items>
