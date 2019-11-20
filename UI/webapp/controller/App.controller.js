@@ -55,7 +55,7 @@ sap.ui.define([
 			this.getRouter().navTo("UserStoryBoard");
 		},
 		gotoReleasePipeline: function () {
-			this.getRouter().navTo("NewReleasePipeLine");
+			this.getRouter().navTo("RLpipelines");
 		},
 		gotoPipelines: function () {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);

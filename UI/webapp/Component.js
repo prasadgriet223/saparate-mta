@@ -29,6 +29,20 @@ sap.ui.define([
 					"key": ""
 				}
 			};
+
+			var oReleasePipeLine = {
+				"workflowId": "",
+				"label": "",
+				"releasePipelineBuildInput": {
+					"buildPipelineJobName": "",
+					"buildPipelineBuildID": ""
+				},
+				"tasks": []
+			};
+
+			var oModelSaveReleasePipeline = new sap.ui.model.json.JSONModel(oReleasePipeLine);
+			sap.ui.getCore().setModel(oModelSaveReleasePipeline, "oModelSaveReleasePipeline");
+
 			var oKeyModel = new sap.ui.model.json.JSONModel(oKeyModel_data);
 			sap.ui.getCore().setModel(oKeyModel, "oKeyModel");
 
@@ -67,6 +81,19 @@ sap.ui.define([
 					});
 				});
 			});
+			///////test code
+			// sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
+			// 	"authorizationToken": "b81d98a6-a293-45e1-9fb4-13b23e45ab1f"
+			// });
+			// this.getRouter().initialize();
+			// var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			// sap.ui.core.BusyIndicator.hide();
+			// if (typeof skey === "undefined" || skey === "" || skey === null) {
+			// 	this.getRouter().navTo("Authorize");
+			// } else {
+			// 	this.getRouter().navTo("Dashboard");
+			// }
+			///test code
 		}
 	});
 });

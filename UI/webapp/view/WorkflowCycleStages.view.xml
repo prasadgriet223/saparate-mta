@@ -1,0 +1,49 @@
+	<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="scp.com.saparate.controller.WorkflowCycleStages" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Release Stages">
+				<content>
+					<Table items="{path: 'Stages>/execution'}" id="idtblAllStages" alternateRowColors="true">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Name"/>
+							</Column>
+							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+							<!--	<Text text="Created On"/>-->
+							<!--</Column>-->
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="StageName"/>
+							</Column>
+							
+							<Column demandPopin="true" width="14rem">
+								<Text text="Assign To"/>
+							</Column>
+							<Column demandPopin="true" width="14rem" >
+								<Text text="Message"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Status"/>
+							</Column>
+							<Column demandPopin="true" >
+								<Text text="Action"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active">
+								<cells>
+									<Text text="{Stages>label}"/>
+									<Text text="{Stages>stageName}"/>
+									<Text text="{Stages>assignedTo}"/>
+									<Text text="{Stages>message}"/>
+									<GenericTag text="{Stages>status}" design="StatusIconHidden"/>
+									<Button class="roundButton" icon="sap-icon://accept" text="" press="initiateAction"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,69 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+	<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
+	<!--	<pages>-->
+	<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
+	<!--			<customHeader>-->
+	<!--				<Bar id="bar0">-->
+	<!--					<contentLeft>-->
+	<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
+	<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
+	<!--						</Breadcrumbs>-->
+	<!--					</contentLeft>-->
+	<!--					<contentMiddle>-->
+	<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
+	<!--					</contentMiddle>-->
+	<!--				</Bar>-->
+	<!--			</customHeader>-->
+	<!--			<content>-->
+	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}" alternateRowColors="true" >
+		<columns>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="Cycles"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="Triggered By"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="Start Time"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="End Time"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="Status"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press = "handleSelectionChange_releaseCycle">
+				<cells>
+					<ObjectStatus xmlns="sap.m" text="{Cycledetails>pipelineId}" state="Information"/>
+					<ObjectStatus xmlns="sap.m" text="{Cycledetails>instantiatedBy}" state="Information"/>
+					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDateFromGivenDate' }"
+						icon="sap-icon://date-time"/>
+					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDateFromGivenDate' }"
+						icon="sap-icon://date-time"/>
+					<GenericTag text="{Cycledetails>status}" design="StatusIconHidden"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+		<headerToolbar>
+			<Toolbar width="100%" id="toolbar2">
+				<content>
+					<Bar id="bar1">
+						<contentLeft>
+							<Text xmlns="sap.m" id="idReleasePipelinesHdr"/>
+						</contentLeft>
+						<contentMiddle></contentMiddle>
+						<contentRight>
+							<Button xmlns="sap.m" text="Refresh" press="refreshData" icon="sap-icon://refresh"/>
+						</contentRight>
+					</Bar>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+	</Table>
+	<!--		</content>-->
+	<!--	</Page>-->
+	<!--</pages>-->
+	<!--</App>-->
+</core:FragmentDefinition>

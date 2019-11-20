@@ -1,0 +1,46 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="scp.com.saparate.controller.RLpipelines">
+	<App>
+		<pages>
+			<Page title="List of Release Pipelines" showHeader="false">
+				<content>
+					<Table items="{path: 'workflows>/'}" id="idtrlAllPipelines" alternateRowColors="true">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Release Pipelines"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Created By"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Created Time"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Run"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="navigatetoBuilds">
+								<cells>
+									<Text text="{workflows>name}"/>
+									<Text text="{workflows>createdBy}"/>
+									<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'workflows>createdTime'], formatter: '.formatter.getDateFromGivenDate' }"/>
+									<Button class="roundButton" icon="sap-icon://physical-activity" text="" press="initiateTriggerReleasePipeline"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<subHeader>
+					<Bar xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="bar0">
+						<contentLeft></contentLeft>
+						<contentMiddle/>
+						<contentRight>
+							<Button icon="sap-icon://create" text="Create New Release PipeLine" press="navigatetoCreateReleasePipeline" id="button6"/>
+						</contentRight>
+					</Bar>
+				</subHeader>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

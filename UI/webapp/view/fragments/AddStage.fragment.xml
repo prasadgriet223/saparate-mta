@@ -6,6 +6,10 @@
 				<sap.ui.layout.form:content>
 					<Label text="Stage Name"/>
 					<Input id="ip_Stage" width="auto" value=""/>
+					<Label  text="Conditons"/>
+					<CheckBox id="idReqPrecondition" selected="true" enabled="true" text="PreCondition"/>
+					<CheckBox id="idReqDeploy" selected="true" enabled="true" text="Deploy"/>
+					<CheckBox id="idReqPostCondition" selected="true" enabled="true"  text="PostCondition"/>
 				</sap.ui.layout.form:content>
 			</sap.ui.layout.form:SimpleForm>
 		</content>

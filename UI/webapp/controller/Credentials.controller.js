@@ -27,6 +27,7 @@ sap.ui.define([
 
 		onregisterCredential: function () {
 			var oModel_empty = new JSONModel({
+				"name": "",
 				"userName": "",
 				"password": "",
 				"scope": "GLOBAL"

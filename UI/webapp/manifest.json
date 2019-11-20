@@ -178,10 +178,22 @@
 				"target": ["Credentials"]
 			}, {
 				"name": "NewReleasePipeLine",
-				"pattern": "NewReleasePipeline",
+				"pattern": "NewReleasePipeLine",
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["NewReleasePipeLine"]
+			}, {
+				"name": "RLpipelines",
+				"pattern": "RLpipelines",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["RLpipelines"]
+			}, {
+				"name": "WorkflowCycleStages",
+				"pattern": "WorkflowCycleStages/{RjobId}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["WorkflowCycleStages"]
 			}],
 			"targets": {
 				"TargetLogin": {
@@ -194,6 +206,10 @@
 				"App": {
 					"viewType": "XML",
 					"viewName": "App"
+				},
+				"RLpipelines": {
+					"viewType": "XML",
+					"viewName": "RLpipelines"
 				},
 				"Dashboard": {
 					"viewType": "XML",
@@ -242,6 +258,14 @@
 				"NewReleasePipeLine": {
 					"viewType": "XML",
 					"viewName": "NewReleasePipeLine"
+				},
+				"ReleasePipelineCycles": {
+					"viewType": "XML",
+					"viewName": "ReleasePipelineCycles"
+				},
+				"WorkflowCycleStages": {
+					"viewType": "XML",
+					"viewName": "WorkflowCycleStages"
 				}
 			}
 		}

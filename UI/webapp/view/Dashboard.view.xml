@@ -2,21 +2,21 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" controllerName="scp.com.saparate.controller.Dashboard">
 	<Page xmlns="sap.m" id="pageId" title="Dash board" floatingFooter="true" showHeader="false">
 		<content>
-			
 			<l:VerticalLayout id="containerLayout" width="100%">
 				<l:BlockLayout id="BlockLayout" background="{/selectedBackground}">
 					<l:BlockLayoutRow accentCells="Accent1">
-						<l:BlockLayoutCell id="Accent1" width="3" >
-						<core:Fragment fragmentName="scp.com.saparate.view.fragments.Builds" type="XML"/>
+						<l:BlockLayoutCell id="Accent1" width="3">
+							<core:Fragment fragmentName="scp.com.saparate.view.fragments.Builds" type="XML"/>
 						</l:BlockLayoutCell>
 						<l:BlockLayoutCell title="">
-							<Text
-								text=""/>
+							
 						</l:BlockLayoutCell>
-						<!--<l:BlockLayoutCell titleAlignment="End" title="End aligned heading">-->
-						<!--	<Text-->
-						<!--		text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."/>-->
-						<!--</l:BlockLayoutCell>-->
+					</l:BlockLayoutRow>
+					<l:BlockLayoutRow accentCells="Accent2">
+						<l:BlockLayoutCell id="Accent2" width="3">
+							<core:Fragment fragmentName="scp.com.saparate.view.fragments.ReleaseCycles" type="XML"/>
+						</l:BlockLayoutCell>
+						<l:BlockLayoutCell title=""></l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 				</l:BlockLayout>
 			</l:VerticalLayout>

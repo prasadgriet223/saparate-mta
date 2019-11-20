@@ -24,7 +24,11 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 				this.getRouter().navTo("Authorize");
 			} else {
 				this.loadDatatoViewwithKey_GET("latestBuildResults", "Jobdetails", skey);
-				this.byId("idBuildstblHdr").setText("Recent Builds");
+				this.byId("idBuildstblHdr").setText("Recent Build Cycles");
+				this.loadDatatoViewwithKey_GET("recentcycles", "Cycledetails", skey);
+				this.byId("idReleasePipelinesHdr").setText("Recent Release Cycles");
+				
+				
 				this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
 			}
 		},
@@ -34,6 +38,13 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 				jobId: oEvent.getSource().getBindingContext("Jobdetails").getObject().name,
 				buildid: oEvent.getSource().getBindingContext("Jobdetails").getObject().number
 			});
+		},
+		handleSelectionChange_releaseCycle: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("WorkflowCycleStages", {
+				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id
+			});
+			
 		},
 		refreshData: function (oEvent) {
 			sap.ui.core.BusyIndicator.show();

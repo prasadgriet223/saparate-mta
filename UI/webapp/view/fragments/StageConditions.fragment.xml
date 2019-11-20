@@ -1,17 +1,80 @@
-<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%">
-	<IconTabBar id="bar0">
-		<items>
-			<IconTabFilter text="PreCondition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter0">
-				<content>
-					<List noDataText="No data" id="list0">
-						<items>
-							<StandardListItem title="List Item 1" id="item1"/>
-							<StandardListItem title="List Item 2" id="item2"/>
-							<StandardListItem title="List Item 3" id="item3"/></items>
-					</List>
-				</content>
-			</IconTabFilter>
-			<IconTabFilter text="Deployement" icon="sap-icon://task" iconColor="Critical" id="filter1"/>
-			<IconTabFilter text="Post Condition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter2"/></items>
-	</IconTabBar>
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%" xmlns:tnt="sap.tnt">
+	<sap.ui.layout:VerticalLayout xmlns:form="sap.ui.layout.form" id="idPanelStagesConditions" xmlns:core="sap.ui.core" xmlns="sap.m"
+		xmlns:sap.ui.layout="sap.ui.layout" width="100%">
+		<sap.ui.layout:content>
+			<IconTabBar id="bar0" expandable="false">
+				<items>
+					<IconTabFilter text="Pre deployment action" id="idPreConditionfilter">
+						<content>
+							<form:SimpleForm editable="true" id="idPreConditionStageForm" layout="ResponsiveGridLayout">
+								<form:content>
+									<Label text="Select User"/>
+									<Input width="30%" showValueHelp="true" id="idPreConditionSelectUser" value="{/0/assignedTo}"/>
+									<Label text="Message"/>
+									<Input width="30%" id="idPreConditionEnterMessage" value="{/0/Message}"/>
+								</form:content>
+							</form:SimpleForm>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="Deployment" id="idDeployfilter">
+						<content>
+							<form:SimpleForm editable="true" id="idDeployStageForm" layout="ResponsiveGridLayout">
+								<form:content>
+									<Label text="Select Environment"/>
+									<!--<Input  showValueHelp="true" id="idStageDeploycondition" />-->
+									<Select  width="30%" id="idEnvSelect_ReleasePipeline" selectedKey="{/1/cfCredentialsID}" items="{path: 'Environments>/'}">
+										<core:ListItem key="{Environments>credentialKey}" icon="sap-icon://action-settings" text="{Environments>name}"/>
+									</Select>
+								</form:content>
+							</form:SimpleForm>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter text="Post deployment action" id="idPostConditionfilter">
+						<content>
+							<form:SimpleForm editable="true" id="idPostConditionStageForm" layout="ResponsiveGridLayout">
+								<form:content>
+									<Label text="Select User"/>
+									<Input width="30%" showValueHelp="true" id="idPostConditionSelectUser" value="{/2/assignedTo}"/>
+									<Label text="Message"/>
+									<Input width="30%" id="idPostConditionEnterMessage" value="{/2/Message}"/>
+								</form:content>
+							</form:SimpleForm>
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</sap.ui.layout:content>
+	</sap.ui.layout:VerticalLayout>
 </core:FragmentDefinition>
+<!--<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true">-->
+<!--	<headerToolbar>-->
+<!--		<Toolbar >-->
+<!--			<content>-->
+<!--				<CheckBox xmlns="sap.m" text="Deployment" selected="false"/>-->
+<!--			</content>-->
+<!--		</Toolbar>-->
+<!--	</headerToolbar>-->
+<!--	<content>-->
+<!--		<form:SimpleForm editable="true" layout="ResponsiveGridLayout">-->
+<!--			<form:content>-->
+<!--				<Label text="Select Environment"/>-->
+<!--				<Input width="30%" showValueHelp="true"/></form:content>-->
+<!--		</form:SimpleForm>-->
+<!--	</content>-->
+<!--</Panel>-->
+<!--<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true">-->
+<!--	<headerToolbar>-->
+<!--		<Toolbar>-->
+<!--			<content>-->
+<!--				<CheckBox xmlns="sap.m" text="PostCondition" selected="false"/>-->
+<!--			</content>-->
+<!--		</Toolbar>-->
+<!--	</headerToolbar>-->
+<!--	<content>-->
+<!--		<form:SimpleForm editable="true" layout="ResponsiveGridLayout">-->
+<!--			<form:content>-->
+<!--				<Label text="Select User"/>-->
+<!--				<Input width="30%"/></form:content>-->
+<!--		</form:SimpleForm>-->
+<!--	</content>-->
+<!--</Panel>-->
