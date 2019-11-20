@@ -32,7 +32,6 @@ sap.ui.define([
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("NewReleasePipeLine");
 		},
-
 		_getDialog: function () {
 			if (!this._oDialog) {
 				this._oDialog = sap.ui.xmlfragment(this.getView().getId(), "scp.com.saparate.view.fragments.triggerReleasePipeline", this);
@@ -47,16 +46,19 @@ sap.ui.define([
 
 		initiateTriggerReleasePipeline: function (oEvent) {
 			this._getDialog().open();
-
 			var sBuildPipeLine = oEvent.getSource().getParent().getBindingContext("workflows").getObject().buildInput.buildPipelineJobName;
-
 			this.getView().byId("idBuildnameTrigger_ReleasePipeline").setText(sBuildPipeLine);
 			this.getView().byId("idReleasePipelineJobName").setText(oEvent.getSource().getParent().getBindingContext("workflows").getObject().name);
-
 			this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + sBuildPipeLine,
 				"Jobdetails",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+		},
 
+		navigatetoCycles: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("Cycles", {
+				cycleId: oEvent.getSource().getBindingContext("workflows").getProperty("id")
+			});
 		},
 
 		onTriggerReleasePipeline: function (oEvent) {
@@ -97,25 +99,3 @@ sap.ui.define([
 	});
 
 });
-
-// 			var workflows = [
-//     {
-//         "id": 10000,
-//         "customerId": "rate",
-//         "projectId": "proj2",
-//         "name": "flow1",
-//         "createdBy": "Ravi23",
-//         "createdTime": "2019-10-31T13:53:50.000+0000",
-//         "headRevision": 10001
-//     }, {
-//         "id": 10000,
-//         "customerId": "rate",
-//         "projectId": "proj2",
-//         "name": "flow2",
-//         "createdBy": "Ravi22",
-//         "createdTime": "2019-10-31T13:53:50.000+0000",
-//         "headRevision": 10001
-//     }
-// ];
-// 		var oModel = new JSONModel(workflows);
-// 		this.getView().setModel(oModel, "workflows");

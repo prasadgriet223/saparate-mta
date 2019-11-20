@@ -189,9 +189,7 @@ sap.ui.define([
 
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineJobName = this.byId(
 						"idBuildSelect_ReleasePipeline").getSelectedItem().getText();
-					sap.ui.getCore().getModel("oModelSaveReleasePipeline").label = this.byId("idWorkFlowName").getValue();
-					// sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineBuildID = this.byId(
-					// 	"idBuildnumberSelect_ReleasePipeline").getSelectedKey();
+					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").label = this.byId("idWorkFlowName").getValue();
 				}
 			}.bind(this));
 			

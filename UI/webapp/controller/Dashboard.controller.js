@@ -27,8 +27,6 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 				this.byId("idBuildstblHdr").setText("Recent Build Cycles");
 				this.loadDatatoViewwithKey_GET("recentcycles", "Cycledetails", skey);
 				this.byId("idReleasePipelinesHdr").setText("Recent Release Cycles");
-				
-				
 				this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
 			}
 		},

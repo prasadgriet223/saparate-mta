@@ -20,7 +20,7 @@
 							</Column>
 						</columns>
 						<items>
-							<ColumnListItem type="Active" press="navigatetoBuilds">
+							<ColumnListItem type="Active" press="navigatetoCycles">
 								<cells>
 									<Text text="{workflows>name}"/>
 									<Text text="{workflows>createdBy}"/>

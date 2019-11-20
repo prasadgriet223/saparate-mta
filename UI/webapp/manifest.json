@@ -194,6 +194,12 @@
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["WorkflowCycleStages"]
+			}, {
+				"name": "Cycles",
+				"pattern": "cycles/{cycleId}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Cycles"]
 			}],
 			"targets": {
 				"TargetLogin": {
@@ -266,6 +272,10 @@
 				"WorkflowCycleStages": {
 					"viewType": "XML",
 					"viewName": "WorkflowCycleStages"
+				},
+				"Cycles": {
+					"viewType": "XML",
+					"viewName": "Cycles"
 				}
 			}
 		}
