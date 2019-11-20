@@ -18,29 +18,36 @@ sap.ui.define([
 			this._cycleId = "";
 		},
 		_onObjectMatched: function (oEvent) {
-				sap.ui.core.BusyIndicator.show();
-				var cycleId = oEvent.getParameter("arguments").cycleId;
+			sap.ui.core.BusyIndicator.show();
+			var cycleId = oEvent.getParameter("arguments").cycleId;
 
-				var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-				if (typeof skey === "undefined" || skey === "" || skey === null) {
-					this.getRouter().navTo("Authorize");
-				} else {
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			if (typeof skey === "undefined" || skey === "" || skey === null) {
+				this.getRouter().navTo("Authorize");
+			} else {
 
-					this.loadDatatoViewwithKey_GET_filter("getCyclesforRelease", "/" + cycleId,
-						"Cycledetails",
-						sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.loadDatatoViewwithKey_GET_filter("getCyclesforRelease", "/" + cycleId,
+					"Cycledetails",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
-				}
-				sap.ui.core.BusyIndicator.hide();
 			}
-			/**
-			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-			 * (NOT before the first rendering! onInit() is used for that one!).
-			 * @memberOf scp.com.saparate.view.Cycles
-			 */
-			//	onBeforeRendering: function() {
-			//
-			//	},
+			sap.ui.core.BusyIndicator.hide();
+		},
+		handleSelectionChange_releaseCycle: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			oRouter.navTo("WorkflowCycleStages", {
+				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id
+			});
+		},
+
+		/**
+		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+		 * (NOT before the first rendering! onInit() is used for that one!).
+		 * @memberOf scp.com.saparate.view.Cycles
+		 */
+		//	onBeforeRendering: function() {
+		//
+		//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.

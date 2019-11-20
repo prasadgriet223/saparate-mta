@@ -50,6 +50,16 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 			this.loadDatatoViewwithKey_GET("latestBuildResults", "Jobdetails", skey);
 			this.getView().getModel("Jobdetails").refresh();
 			sap.ui.core.BusyIndicator.hide();
+		},
+		
+		refreshData_Cycles:function(oEvent){
+			sap.ui.core.BusyIndicator.show();
+			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			this.loadDatatoViewwithKey_GET("recentcycles", "Cycledetails", skey);
+			this.getView().getModel("Cycledetails").refresh();
+			sap.ui.core.BusyIndicator.hide();
 		}
+		
+		
 	});
 });

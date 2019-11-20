@@ -131,7 +131,7 @@ sap.ui.define([
 				"name": oSelectedKey,
 				"label": oSelectedKey,
 				"jenkinsJobStatus": null,
-				"cfCredentialsID": "",
+				"cfCredentialsID": oSelectedKey,
 				"waitForMessage": "",
 				"type": "deployTask",
 				"stageName": oSelectedKey

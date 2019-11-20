@@ -23,7 +23,7 @@
 									<Label text="Select Environment"/>
 									<!--<Input  showValueHelp="true" id="idStageDeploycondition" />-->
 									<Select  width="30%" id="idEnvSelect_ReleasePipeline" selectedKey="{/1/cfCredentialsID}" items="{path: 'Environments>/'}">
-										<core:ListItem key="{Environments>credentialKey}" icon="sap-icon://action-settings" text="{Environments>name}"/>
+										<core:ListItem key="{Environments>id}" icon="sap-icon://action-settings" text="{Environments>name}"/>
 									</Select>
 								</form:content>
 							</form:SimpleForm>
