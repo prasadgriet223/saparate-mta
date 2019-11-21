@@ -9,7 +9,7 @@
 					<Label  text="Conditons"/>
 					<CheckBox id="idReqPrecondition" selected="true" enabled="true" text="Pre deployment action"/>
 					<CheckBox id="idReqDeploy" selected="true" enabled="true" text="Deploy"/>
-					<CheckBox id="idReqPostCondition" selected="true" enabled="true"  text="PostCondition"/>
+					<CheckBox id="idReqPostCondition" selected="true" enabled="true"  text="Post deployment action"/>
 				</sap.ui.layout.form:content>
 			</sap.ui.layout.form:SimpleForm>
 		</content>

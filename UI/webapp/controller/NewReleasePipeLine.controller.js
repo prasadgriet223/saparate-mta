@@ -115,6 +115,7 @@ sap.ui.define([
 		},
 		onSaveJsontoCoreModel: function (oEvent) {
 			var oSelectedKey = this.byId("idTabNewReleasePipeline").getSelectedKey();
+			
 			var oModel_Stage = new JSONModel([{
 				"name": "preconditionfor"+oSelectedKey,
 				"label": "PreCondition for " + oSelectedKey,
@@ -126,7 +127,7 @@ sap.ui.define([
 				"assignType": "USER",
 				"waitUntil": "preConditionMsg",
 				"stageName": oSelectedKey,
-				"Message": ""
+				"Message": this.byId("idPreConditionEnterMessage").getValue()
 			}, {
 				"name": oSelectedKey,
 				"label": oSelectedKey,
@@ -146,7 +147,7 @@ sap.ui.define([
 				"assignType": "USER",
 				"waitUntil": "postConditionMsg",
 				"stageName": oSelectedKey,
-				"Message": ""
+				"Message": this.byId("idPostConditionEnterMessage").getValue()
 			}]);
 			this.getView().setModel(oModel_Stage, oSelectedKey);
 			this.byId("idPreConditionStageForm").setModel(this.getView().getModel(oSelectedKey));
