@@ -1,8 +1,8 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-		"scp/com/saparate/utils/formatter"
-], function (BaseController, JSONModel,formatter) {
+	"scp/com/saparate/utils/formatter"
+], function (BaseController, JSONModel, formatter) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.WorkflowCycleStages", {
@@ -28,15 +28,31 @@ sap.ui.define([
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 			}
 		},
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf scp.com.saparate.view.WorkflowCycleStages
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
+		initiateAction: function (oEvent) {
+				var oInput = {
+					"humanResponse": {
+						"msg": oEvent.getSource().getBindingContext("Stages").getProperty("waitUntil")
+					}
+				};
+				var sHeaders = {
+					"Content-Type": "application/json",
+					"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+				};
+				this.getView().setBusy(true);
+				var taskId = oEvent.getSource().getBindingContext("Stages").getProperty("id");
+				var oModel = new JSONModel();
+				oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=COMPLETE", JSON.stringify(oInput), true,
+					"PUT", false, false, sHeaders);
+				this.getView().setBusy(false);
+			}
+			/**
+			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+			 * (NOT before the first rendering! onInit() is used for that one!).
+			 * @memberOf scp.com.saparate.view.WorkflowCycleStages
+			 */
+			//	onBeforeRendering: function() {
+			//
+			//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
