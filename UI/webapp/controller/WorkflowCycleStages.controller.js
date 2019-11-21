@@ -1,8 +1,9 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
-	"scp/com/saparate/utils/formatter"
-], function (BaseController, JSONModel, formatter) {
+	"scp/com/saparate/utils/formatter",
+	"sap/m/MessageBox"
+], function (BaseController, JSONModel, formatter, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.WorkflowCycleStages", {
@@ -16,6 +17,7 @@ sap.ui.define([
 		onInit: function () {
 			this._oRouter = this.getOwnerComponent().getRouter();
 			this._oRouter.getRoute("WorkflowCycleStages").attachPatternMatched(this._onObjectMatched, this);
+			this._cycleId = "";
 		},
 		_onObjectMatched: function (oEvent) {
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
@@ -23,6 +25,7 @@ sap.ui.define([
 				this.getRouter().navTo("Authorize");
 			} else {
 				var ReleasejobId = oEvent.getParameter("arguments").RjobId;
+				this._cycleId = ReleasejobId;
 				this.loadDatatoViewwithKey_GET_filter("getReleaseStages", "/" + ReleasejobId,
 					"Stages",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
@@ -43,6 +46,26 @@ sap.ui.define([
 				var oModel = new JSONModel();
 				oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=COMPLETE", JSON.stringify(oInput), true,
 					"PUT", false, false, sHeaders);
+				oModel.attachRequestCompleted(function () {
+					MessageBox.show(("Release PipeLine Stage  " + oModel.getData().label + " Approved!  "), {
+						title: "Message",
+						actions: [sap.m.MessageBox.Action.OK],
+						onClose: function (oActions) {
+							//	oEvent.getSource().setEnabled(false) ;
+							if (oActions === "OK") {
+								// var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+								// oRouter.navTo("WorkflowCycleStages", {
+								// 	RjobId: this._cycleId 
+								// });
+								this.loadDatatoViewwithKey_GET_filter("getReleaseStages", "/" + this._cycleId ,
+									"Stages",
+									sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+								this.getView().getModel("Stages").refresh();
+							}
+						}.bind(this)
+					});
+				}.bind(this));
+
 				this.getView().setBusy(false);
 			}
 			/**
