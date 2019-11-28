@@ -71,8 +71,65 @@
 							<core:ListItem key="MTA" text="MTA"/>
 						</Select>
 					</WizardStep>
+					<WizardStep id="idschedulingStep" validated="true" title="Scheduler">
+						<VBox width="100%">
+							<items>
+								<List id="idSchedulinglist" items="{ path: 'schedule>/schedule' }" selectionChange="selectScheduler" mode="SingleSelectLeft">
+									<items>
+										<StandardListItem title="{schedule>title}" icon="{schedule>icon}" app:schedulekey="{schedule>key}"/>
+									</items>
+								</List>
+								<form:SimpleForm id="idfrmSchedule" visible="false" layout="ResponsiveGridLayout" title="Enter Time">
+									<form:content>
+										<Label text="Select Time" required="true"/>
+										<TimePicker id="idScheduler" width="30%" valueFormat="HH:mm" displayFormat="HH:mm" change="handleHrChange"/>
+									</form:content>
+								</form:SimpleForm>
+								<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">
+									<form:content>
+										<Label text="URL" />
+										<Text id="txtwebhookURL" text="https://na1.saparate.com/saparate/webhook/receive"></Text>
+									</form:content>
+								</form:SimpleForm>
+								<!--<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">-->
+								<!--	<form:content>-->
+								<!--		<Label text="URL">-->
+								<!--<Text width="100%" text="https://na1.saparate.com/saparate/webhook/receive"></Text>-->
+								<!--		</form:content>-->
+								<!--	</form:SimpleForm>-->
+							</items>
+						</VBox>
+					</WizardStep>
 				</Wizard>
 			</content>
 		</Page>
 	</NavContainer>
 </mvc:View>
+<!--<VBox class="sapUiSmallMargin">-->
+<!--	<RadioButton groupName="GroupA" text="Normal" selected="true"/>-->
+<!--	<RadioButton groupName="GroupA" text="Scheduling"/>-->
+<!--	<RadioButton groupName="GroupA" text="Webhook"/>-->
+<!--	<form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form1">-->
+<!--		<form:content>-->
+<!--			<Label text="N" required="true"/>-->
+<!--			<Input width="30%"/>-->
+<!--			<Label text="SCM Credentials"/>-->
+<!--		</form:content>-->
+<!--	</form:SimpleForm>-->
+<!--</VBox>-->
+<!--<VBox class="sapUiSmallMargin">-->
+<!--	<Label labelFor="rbg1" text="Select Scheduling"/>-->
+<!--	<RadioButtonGroup id="idrbhScheduler" columns="3" width="100%" class="sapUiMediumMarginBottom">-->
+<!--		<buttons>-->
+<!--			<RadioButton id="RB1-1" text="Normal"/>-->
+<!--			<RadioButton id="RB1-2" text="Scheduling" />-->
+<!--			<RadioButton id="RB1-3" text="Webhook" />-->
+<!--		</buttons>-->
+<!--	</RadioButtonGroup>-->
+<!--	</VBox>-->
+<!--<List noDataText="No Repo Types" items="{ path: 'RepoType>/RepoType' }" selectionChange="loadRepos" id="idRepoTypeList"-->
+<!--	mode="SingleSelectLeft">-->
+<!--	<items>-->
+<!--		<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" app:repokey="{RepoType>key}"/>-->
+<!--	</items>-->
+<!--</List>-->

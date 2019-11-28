@@ -1,0 +1,18 @@
+{
+	"schedule": [{
+			"title": "Manual",
+			"icon": "sap-icon://chevron-phase",
+			"key": "Normal"
+		}, {
+			"title": "Schedule",
+			"icon": "sap-icon://history",
+			"key": "schedule"
+
+		}, {
+			"title": "WebHook",
+			"icon": "sap-icon://globe",
+			"key": "webhook"
+		}
+
+	]
+}

@@ -31,6 +31,12 @@
 					<Text id="idNewPipeLineBuildType"/>
 				</form:content>
 			</form:SimpleForm>
+			<form:SimpleForm title="6. Scheduling" minWidth="1024" editable="false" layout="ResponsiveGridLayout">
+				<form:content>
+					<Label text="Scheduling Type"/>
+					<Text id="idNewPipeLineSchedulingType"/>
+				</form:content>
+			</form:SimpleForm>
 			<Bar>
 				<contentMiddle>
 					<Button text="Submit" press="handleCreateNewPipeLineSubmit"></Button>

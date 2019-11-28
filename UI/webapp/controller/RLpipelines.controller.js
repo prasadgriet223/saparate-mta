@@ -25,7 +25,7 @@ sap.ui.define([
 				this.loadDatatoViewwithKey_GET("releaseworkflows", "workflows",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 				//this.byId("idtblAllPipelines").setBusy(false);
-				//this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");
+				this.byId("idBreadcrum_RLpipelines").setCurrentLocationText("Release PipeLines");
 			}
 		},
 		navigatetoCreateReleasePipeline: function (oEvent) {
@@ -43,7 +43,16 @@ sap.ui.define([
 		onCancel: function () {
 			this._getDialog().close();
 		},
-
+		navigateTo: function (oEvent) {
+			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			var route = oEvent.getSource().getText();
+			if (route === "Dashboard") {
+				oRouter.navTo("Dashboard");
+			}
+			if (route === "Build PipeLines") {
+				oRouter.navTo("jobs");
+			}
+		},
 		initiateTriggerReleasePipeline: function (oEvent) {
 			this._getDialog().open();
 			var sBuildPipeLine = oEvent.getSource().getParent().getBindingContext("workflows").getObject().buildInput.buildPipelineJobName;

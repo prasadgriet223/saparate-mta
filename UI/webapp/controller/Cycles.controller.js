@@ -19,16 +19,17 @@ sap.ui.define([
 		},
 		_onObjectMatched: function (oEvent) {
 			sap.ui.core.BusyIndicator.show();
-			var cycleId = oEvent.getParameter("arguments").cycleId;
+			this._cycleId = oEvent.getParameter("arguments").cycleId;
 
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
 
-				this.loadDatatoViewwithKey_GET_filter("getCyclesforRelease", "/" + cycleId,
+				this.loadDatatoViewwithKey_GET_filter("getCyclesforRelease", "/" + this._cycleId,
 					"Cycledetails",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.byId("idBreadcrum_builds").setCurrentLocationText(	this._cycleId);
 
 			}
 			sap.ui.core.BusyIndicator.hide();
@@ -36,18 +37,28 @@ sap.ui.define([
 		handleSelectionChange_releaseCycle: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("WorkflowCycleStages", {
-				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id
+				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id,
+				CycleId: this._cycleId
 			});
 		},
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf scp.com.saparate.view.Cycles
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
+		navigateTo: function (oEvent) {
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				var route = oEvent.getSource().getText();
+				if (route === "Dashboard") {
+					oRouter.navTo("Dashboard");
+				}
+				if (route === "Release PipeLines") {
+					oRouter.navTo("RLpipelines");
+				}
+			}
+			/**
+			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
+			 * (NOT before the first rendering! onInit() is used for that one!).
+			 * @memberOf scp.com.saparate.view.Cycles
+			 */
+			//	onBeforeRendering: function() {
+			//
+			//	},
 
 		/**
 		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.

@@ -33,7 +33,15 @@
 				</content>
 				<subHeader>
 					<Bar xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="bar0">
-						<contentLeft></contentLeft>
+						<contentLeft>
+							<Breadcrumbs separatorStyle="GreaterThan" id="idBreadcrum_RLpipelines">
+								<links>
+									<Link text="Project" emphasized="false" id="idlnk_Projects"/>
+									<Link text="Dashboard" emphasized="false" press="navigateTo"/>
+								
+								</links>
+							</Breadcrumbs>
+						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
 							<Button icon="sap-icon://create" text="Create New Release PipeLine" press="navigatetoCreateReleasePipeline" id="button6"/>

@@ -54,8 +54,8 @@ sap.ui.define([
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
-
 				this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
+				this.getView().setModel(this.getOwnerComponent().getModel("schedule"), "schedule");
 				this._oNavContainer.to(this._oWizardContentPage);
 				this.loadDatatoViewwithKey_GET("credentials", "credentials",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
@@ -81,6 +81,26 @@ sap.ui.define([
 				this._wizard.discardProgress(this.byId("idbranchesStep"));
 			else
 				this._wizard.validateStep(this.byId("idbranchesStep"));
+		},
+		selectBuilder: function (oEvent) {
+			if (this.byId("idBuildStep").getValidated())
+				this._wizard.discardProgress(this.byId("idBuildStep"));
+			else
+				this._wizard.validateStep(this.byId("idBuildStep"));
+		},
+		selectScheduler: function (oEvent) {
+			var sSchedulerkey = this.getView().byId("idSchedulinglist").getSelectedItem().data("schedulekey");
+			if (sSchedulerkey === "schedule") {
+				this.getView().byId("idfrmSchedule").setVisible(true);
+			} else {
+				this.getView().byId("idfrmSchedule").setVisible(false);
+			}
+			if (sSchedulerkey === "webhook") {
+				this.getView().byId("idfrmWebHook").setVisible(true);
+			} else {
+				this.getView().byId("idfrmWebHook").setVisible(false);
+			}
+
 		},
 		afterloadRepoType: function (oEvent) {
 			this.getView().byId("idRepoTypeList").removeSelections(true);
@@ -120,6 +140,20 @@ sap.ui.define([
 			this.getView().byId("idNewPipeLineRepository").setText(this.getView().byId("idReposList").getSelectedItem().data("repohttps"));
 			this.getView().byId("idNewPipeLineBranch").setText(this.getView().byId("idBranchList").getSelectedItem().data("branchkey"));
 			this.getView().byId("idNewPipeLineBuildType").setText(this.getView().byId("idBuildSelect").getSelectedItem().getText());
+
+			var sSchedulerkey = this.getView().byId("idSchedulinglist").getSelectedItem().data("schedulekey");
+			var time = this.getView().byId("idScheduler").getValue().toString();
+
+			if (sSchedulerkey === "schedule") {
+				this.getView().byId("idNewPipeLineSchedulingType").setText(this.getView().byId("idSchedulinglist").getSelectedItem().data(
+					"schedulekey") + "  " + "Scheduled at " + time);
+
+			}
+			if (sSchedulerkey === "webhook") {
+				var txtHook = this.getView().byId("txtwebhookURL").getText();
+				this.getView().byId("idNewPipeLineSchedulingType").setText(this.getView().byId("idSchedulinglist").getSelectedItem().data(
+					"schedulekey") + "---web hook with URL  " + txtHook);
+			}
 		},
 		afterLoadBranchesStep: function (oEvent) {
 			var oModel_branches = new sap.ui.model.json.JSONModel();
@@ -204,8 +238,25 @@ sap.ui.define([
 
 								]
 							},
-							"clodfoundryId": "1"
+							"clodfoundryId": "1",
+
 						};
+						var sSchedulerkey = this.getView().byId("idSchedulinglist").getSelectedItem().data("schedulekey");
+
+						if (sSchedulerkey === "schedule") {
+							oNewPipeLineInput.scheduling = {
+								"schedulingType": "scheduling",
+								"hour": parseInt(this.getView().byId("idScheduler").getValue().toString().split(":")[0]),
+								"minute": parseInt(this.getView().byId("idScheduler").getValue().toString().split(":")[1])
+							};
+						}
+						if (sSchedulerkey === "webhook") {
+							oNewPipeLineInput.scheduling = {
+								"schedulingType": "webhook",
+								"hour": "",
+								"minute": ""
+							};
+						}
 
 						var sHeaders = {
 							"Content-Type": "application/json",

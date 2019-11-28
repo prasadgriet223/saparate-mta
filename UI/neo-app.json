@@ -10,17 +10,14 @@
       },
       "description": "SAPUI5 Resources"
     },
-    
     {
-		"path": "/saparate/",
-		"target": {
-			"type": "destination",
-			"name": "saparate"
-			
-		},
-		"description": "SAPARATE"
-	},
-    
+      "path": "/saparate/",
+      "target": {
+        "type": "destination",
+        "name": "saparate"
+      },
+      "description": "SAPARATE"
+    },
     {
       "path": "/test-resources",
       "target": {

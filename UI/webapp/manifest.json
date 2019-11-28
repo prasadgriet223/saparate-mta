@@ -42,9 +42,12 @@
 		"dependencies": {
 			"minUI5Version": "1.65.6",
 			"libs": {
-				"sap.ui.layout": {},
+				"sap.m": {},
+				"sap.suite.ui.commons": {
+					
+				},
 				"sap.ui.core": {},
-				"sap.m": {}
+				"sap.ui.layout": {}
 			}
 		},
 		"contentDensities": {
@@ -63,6 +66,12 @@
 				"settings": {},
 				"preload": true,
 				"uri": "mockData/Repotype.json"
+			},
+			"schedule": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true,
+				"uri": "mockData/schedule.json"
 			},
 			"branch": {
 				"type": "sap.ui.model.json.JSONModel",
@@ -94,9 +103,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -108,99 +119,148 @@
 				"controlId": "appView",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "Dashboard",
-				"pattern": "Dashboard",
-				"target": ["Dashboard"]
-			}, {
-				"name": "App",
-				"pattern": "",
-				"target": ["App"]
-			}, {
-				"name": "UserStoryBoard",
-				"pattern": "UserStoryBoard",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["UserStoryBoard"]
-			}, {
-				"name": "Projects",
-				"pattern": "Projects",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Projects"]
-			}, {
-				"name": "NewPipeLine",
-				"pattern": "NewPipeLine",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["NewPipeLine"]
-			}, {
-				"name": "jobs",
-				"pattern": "jobs",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["jobs"]
-			}, {
-				"name": "jobdetails",
-				"pattern": "jobdetails/{jobId},{from}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["jobdetails"]
-			}, {
-				"name": "buildStages",
-				"pattern": "buildStages/{jobId},{buildid}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["buildStages"]
-			}, {
-				"name": "Builds",
-				"pattern": "builds/{jobId}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Builds"]
-			}, {
-				"name": "RegisterEnvironments",
-				"pattern": "RegisterEnv",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["RegisterEnvironments"]
-			}, {
-				"name": "Authorize",
-				"pattern": "Authorize",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Authorize"]
-			}, {
-				"name": "Credentials",
-				"pattern": "Credentials",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Credentials"]
-			}, {
-				"name": "NewReleasePipeLine",
-				"pattern": "NewReleasePipeLine",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["NewReleasePipeLine"]
-			}, {
-				"name": "RLpipelines",
-				"pattern": "RLpipelines",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["RLpipelines"]
-			}, {
-				"name": "WorkflowCycleStages",
-				"pattern": "WorkflowCycleStages/{RjobId}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["WorkflowCycleStages"]
-			}, {
-				"name": "Cycles",
-				"pattern": "cycles/{cycleId}",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["Cycles"]
-			}],
+			"routes": [
+				{
+					"name": "Dashboard",
+					"pattern": "Dashboard",
+					"target": [
+						"Dashboard"
+					]
+				},
+				{
+					"name": "App",
+					"pattern": "",
+					"target": [
+						"App"
+					]
+				},
+				{
+					"name": "UserStoryBoard",
+					"pattern": "UserStoryBoard",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"UserStoryBoard"
+					]
+				},
+				{
+					"name": "Projects",
+					"pattern": "Projects",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Projects"
+					]
+				},
+				{
+					"name": "NewPipeLine",
+					"pattern": "NewPipeLine",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"NewPipeLine"
+					]
+				},
+				{
+					"name": "jobs",
+					"pattern": "jobs",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"jobs"
+					]
+				},
+				{
+					"name": "jobdetails",
+					"pattern": "jobdetails/{jobId},{from}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"jobdetails"
+					]
+				},
+				{
+					"name": "buildStages",
+					"pattern": "buildStages/{jobId},{buildid}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"buildStages"
+					]
+				},
+				{
+					"name": "Builds",
+					"pattern": "builds/{jobId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Builds"
+					]
+				},
+				{
+					"name": "RegisterEnvironments",
+					"pattern": "RegisterEnv",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"RegisterEnvironments"
+					]
+				},
+				{
+					"name": "Authorize",
+					"pattern": "Authorize",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Authorize"
+					]
+				},
+				{
+					"name": "Credentials",
+					"pattern": "Credentials",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Credentials"
+					]
+				},
+				{
+					"name": "NewReleasePipeLine",
+					"pattern": "NewReleasePipeLine",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"NewReleasePipeLine"
+					]
+				},
+				{
+					"name": "RLpipelines",
+					"pattern": "RLpipelines",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"RLpipelines"
+					]
+				},
+				{
+					"name": "WorkflowCycleStages",
+					"pattern": "WorkflowCycleStages/{RjobId},{CycleId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"WorkflowCycleStages"
+					]
+				},
+				{
+					"name": "Cycles",
+					"pattern": "cycles/{cycleId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"Cycles"
+					]
+				}
+			],
 			"targets": {
 				"TargetLogin": {
 					"viewType": "XML",
@@ -276,6 +336,10 @@
 				"Cycles": {
 					"viewType": "XML",
 					"viewName": "Cycles"
+				},
+				"timeline": {
+					"viewType": "XML",
+					"viewName": "timeline"
 				}
 			}
 		}

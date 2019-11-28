@@ -31,3 +31,11 @@
 .sapUiBlockCellContent {
     padding: 0.75rem !important;
 }
+.sapSuiteUiCommonsBorderBottomStateRegular {
+    border-bottom-color: #999999;
+    visibility: hidden;
+}
+.customtile{
+	margin-right: 1.5rem;
+    border-radius: 1.5rem;
+}
