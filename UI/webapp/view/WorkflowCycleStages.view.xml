@@ -4,35 +4,13 @@
 		<pages>
 			<Page showHeader="false">
 				<content>
-					<l:VerticalLayout class="sapUiContentPadding" id="lyt" content="{path: 'oModel_Stages>/'}">
-						<l:content>
-							<Panel width="auto" id="dpand" class="sapUiResponsiveMargin" accessibleRole="Region">
-								<headerToolbar>
-									<OverflowToolbar>
-										<Title text="{oModel_Stages>stageName}"/>
-									</OverflowToolbar>
-								</headerToolbar>
-								<content>
-									<HBox items="{path: 'oModel_Stages>InnerStages'}" width="100%" id="hbox0">
-										<items>
-											<GenericTile subheader="{oModel_Stages>label}" class="customtile" header="{oModel_Stages>type}">
-												<TileContent >
-													<VBox >
-														<items>
-															<Text text="{oModel_Stages>assignType}" class="sapUiTinyMarginBottom"/>
-															<Text text="{oModel_Stages>output/msg}" class="sapUiTinyMarginBottom"/>
-															<GenericTag text="{oModel_Stages>status}" design="StatusIconHidden"
-																status="{ parts : [ 'oModel_Stages>status'], formatter: '.formatter.CycleStatus' }"/>
-														</items>
-													</VBox>
-												</TileContent>
-											</GenericTile>
-										</items>
-									</HBox>
-								</content>
-							</Panel>
-						</l:content>
-					</l:VerticalLayout>
+					<List headerText=""
+						items="{ path: 'Stages>/execution', sorter: { path: 'Stages>stageName', descending: true, group: true }, factory: '.StageFactory' ,groupHeaderFactory: '.getGroupHeader' }">
+						<dependents>
+							<core:Fragment fragmentName="scp.com.saparate.view.fragments.workflowstages.deploytask" type="XML"/>
+							<core:Fragment fragmentName="scp.com.saparate.view.fragments.workflowstages.humantask" type="XML"/>
+						</dependents>
+					</List>
 				</content>
 				<subHeader>
 					<Bar xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m" id="bar0112">
@@ -109,3 +87,32 @@
 <!--		</GenericTile>-->
 <!--	</l:content>-->
 <!--</l:Grid>-->
+<!--<l:VerticalLayout class="sapUiContentPadding" id="lyt" content="{path: 'oModel_Stages>/'}">-->
+<!--	<l:content>-->
+<!--		<Panel width="auto" id="dpand" class="sapUiResponsiveMargin" accessibleRole="Region">-->
+<!--			<headerToolbar>-->
+<!--				<OverflowToolbar>-->
+<!--					<Title text="{oModel_Stages>stageName}"/>-->
+<!--				</OverflowToolbar>-->
+<!--			</headerToolbar>-->
+<!--			<content>-->
+<!--				<HBox items="{path: 'oModel_Stages>InnerStages'}" width="100%" id="hbox0">-->
+<!--					<items>-->
+<!--						<GenericTile subheader="{oModel_Stages>label}" class="customtile" header="{oModel_Stages>type}">-->
+<!--							<TileContent >-->
+<!--								<VBox >-->
+<!--									<items>-->
+<!--										<Text text="{oModel_Stages>assignType}" class="sapUiTinyMarginBottom"/>-->
+<!--										<Text text="{oModel_Stages>output/msg}" class="sapUiTinyMarginBottom"/>-->
+<!--										<GenericTag text="{oModel_Stages>status}" design="StatusIconHidden"-->
+<!--											status="{ parts : [ 'oModel_Stages>status'], formatter: '.formatter.CycleStatus' }"/>-->
+<!--									</items>-->
+<!--								</VBox>-->
+<!--							</TileContent>-->
+<!--						</GenericTile>-->
+<!--					</items>-->
+<!--				</HBox>-->
+<!--			</content>-->
+<!--		</Panel>-->
+<!--	</l:content>-->
+<!--</l:VerticalLayout>-->

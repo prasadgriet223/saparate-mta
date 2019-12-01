@@ -48,6 +48,22 @@ sap.ui.define([], function () {
 		getDate: function (date) {
 			var d = new Date(date);
 			return (d.getFullYear() + "/" + d.getMonth() + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+		},
+		CyclestageStatus: function (status) {
+			var result = "";
+			if (status === 'FAILED')
+				result = "Error";
+			else if (status === 'COMPLETED')
+				result = "Success";
+			else
+				result = "Warning";
+			return result;
+		},
+		deployTaskLabel: function (stageName, type) {
+			return stageName + " " + type;
+		},
+		Cyclestagetime:function(time){
+			return time.replace("+0000","").replace("T"," ");
 		}
 	};
 });

@@ -2,8 +2,9 @@ sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
 	"scp/com/saparate/utils/formatter",
-	"sap/m/MessageBox"
-], function (BaseController, JSONModel, formatter, MessageBox) {
+	"sap/m/MessageBox",
+	'sap/m/GroupHeaderListItem'
+], function (BaseController, JSONModel, formatter, MessageBox, GroupHeaderListItem) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.WorkflowCycleStages", {
@@ -29,30 +30,24 @@ sap.ui.define([
 				this.loadDatatoViewwithKey_GET_filter("getReleaseStages", "/" + ReleasejobId,
 					"Stages",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-				var oModel = new JSONModel();
-				var array = this.getView().getModel("Stages").getData();
-				oModel.setData(array);
-				var arrStages = [];
-				for (var i = 0, l = oModel.getData().execution.length; i < l; i++) {
-					if (oModel.getData().execution[i].type === "deployTask") {
-						arrStages.push(oModel.getData().execution[i]);
-					}
-				}
-				this.getView().setModel(oModel);
-				var arroModel = this.getView().getModel().getData().execution;
-				arrStages.forEach(function (oItem, iIndex, arr) {
-					var arrInnerStages = [];
-					arroModel.forEach(function (oValue, iIndex2) {
-						if (oValue.stageName === oItem.stageName) {
-							arrInnerStages.push(oValue);
-						}
-					});
-					oItem.InnerStages = arrInnerStages;
-				});
-				var oModel_Stages = new JSONModel();
-				oModel_Stages.setData(arrStages);
-				this.getView().setModel(oModel_Stages, "oModel_Stages");
 			}
+		},
+		getGroupHeader: function (oGroup) {
+			return new GroupHeaderListItem({
+				title: oGroup.key,
+				upperCase: true,
+				highlight: "Information",
+			});
+		},
+		StageFactory: function (sId, oContext) {
+			var oUIControl;
+			if (oContext.getProperty("type") === "humanTask") {
+				oUIControl = this.byId("humantask").clone(sId);
+			}
+			if (oContext.getProperty("type") === "deployTask") {
+				oUIControl = this.byId("deploytask").clone(sId);
+			}
+			return oUIControl;
 		},
 		initiateAction: function (oEvent) {
 			var oInput = {
@@ -133,6 +128,31 @@ sap.ui.define([
 	});
 
 });
+
+// var oModel = new JSONModel();
+// var array = this.getView().getModel("Stages").getData();
+// oModel.setData(array);
+// var arrStages = [];
+// for (var i = 0, l = oModel.getData().execution.length; i < l; i++) {
+// 	if (oModel.getData().execution[i].type === "deployTask") {
+// 		arrStages.push(oModel.getData().execution[i]);
+// 	}
+// }
+// this.getView().setModel(oModel);
+// var arroModel = this.getView().getModel().getData().execution;
+// arrStages.forEach(function (oItem, iIndex, arr) {
+// 	var arrInnerStages = [];
+// 	arroModel.forEach(function (oValue, iIndex2) {
+// 		if (oValue.stageName === oItem.stageName) {
+// 			arrInnerStages.push(oValue);
+// 		}
+// 	});
+// 	oItem.InnerStages = arrInnerStages;
+// });
+// var oModel_Stages = new JSONModel();
+// oModel_Stages.setData(arrStages);
+// this.getView().setModel(oModel_Stages, "oModel_Stages");
+
 /*	var oModel = new JSONModel({
 				"outputs": {},
 				"execution": [

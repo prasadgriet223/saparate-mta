@@ -81,9 +81,9 @@ sap.ui.define([
 					});
 				});
 			});
-			///test code
+			//test code
 			// sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
-			// 	"authorizationToken": "8f20e753-84aa-4a1b-87fc-030b60d551d3"
+			// 	"authorizationToken": "96d25673-c02f-412d-ba09-1be797280fd4"
 			// });
 			// this.getRouter().initialize();
 			// var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
@@ -93,7 +93,7 @@ sap.ui.define([
 			// } else {
 			// 	this.getRouter().navTo("Dashboard");
 			// }
-			//test code
+		//	test code
 		}
 	});
 });

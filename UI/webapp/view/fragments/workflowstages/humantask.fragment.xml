@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ObjectListItem id="humantask" icon="sap-icon://add-employee" type="Active" numberState="Error" title="{Stages>label}" number=""
+		numberUnit="{Stages>status}" press="initiateAction" highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
+		<attributes>
+			<ObjectAttribute title="User" text="{Stages>assignedTo}"></ObjectAttribute>
+			<ObjectAttribute title="UserMessage" text="{Stages>output/msg}"/>
+			<ObjectAttribute title="Status" text="{Stages>status}"/>
+		</attributes>
+		<!--<markers>-->
+		<!--	<ObjectMarker type="Favorite" press="Approve"/>-->
+		<!--</markers>-->
+		<firstStatus>
+			<ObjectStatus text="{Stages>startTime}" title="StartTime"/>
+		</firstStatus>
+		<secondStatus>
+			<ObjectStatus text="{Stages>endTime}" title="EndTime"/>
+		</secondStatus>
+	</ObjectListItem>
+</core:FragmentDefinition>
