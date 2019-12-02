@@ -10,10 +10,10 @@
 		<!--	<ObjectMarker type="Favorite" press="Approve"/>-->
 		<!--</markers>-->
 		<firstStatus>
-			<ObjectStatus text="{Stages>startTime}" title="StartTime"/>
+			<ObjectStatus text="{ parts : [ 'Stages>startTime'], formatter: '.formatter.Cyclestagetime' }" title="StartTime"/>
 		</firstStatus>
 		<secondStatus>
-			<ObjectStatus text="{Stages>endTime}" title="EndTime"/>
+			<ObjectStatus text="{ parts : [ 'Stages>endTime'], formatter: '.formatter.Cyclestagetime' }" title="EndTime"/>
 		</secondStatus>
 	</ObjectListItem>
 </core:FragmentDefinition>

@@ -5,6 +5,7 @@
 		<attributes>
 			<ObjectAttribute text="{Stages>buildJobName}" title="buildJobName"></ObjectAttribute>
 			<ObjectAttribute title="buildJobNumber" text="{Stages>buildJobNumber}"/>
+			<ObjectAttribute title="Status" text="{Stages>status}"/>
 		</attributes>
 	
 		<firstStatus>
