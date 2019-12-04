@@ -5,15 +5,18 @@
 			<ObjectAttribute title="User" text="{Stages>assignedTo}"></ObjectAttribute>
 			<ObjectAttribute title="UserMessage" text="{Stages>output/msg}"/>
 			<ObjectAttribute title="Status" text="{Stages>status}"/>
-		</attributes>
-		<!--<markers>-->
-		<!--	<ObjectMarker type="Favorite" press="Approve"/>-->
-		<!--</markers>-->
-		<firstStatus>
-			<ObjectStatus text="{ parts : [ 'Stages>startTime'], formatter: '.formatter.Cyclestagetime' }" title="StartTime"/>
-		</firstStatus>
-		<secondStatus>
-			<ObjectStatus text="{ parts : [ 'Stages>endTime'], formatter: '.formatter.Cyclestagetime' }" title="EndTime"/>
-		</secondStatus>
-	</ObjectListItem>
+			<ObjectAttribute text="Approve" visible = "{= ${Stages>status} === 'WAITING' }" active="true" press="initiateAction"/>
+			<ObjectAttribute text="Reject" visible = "{= ${Stages>status} === 'WAITING' }"  active="true" press="initiateAction"/>
+		
+	</attributes>
+	<!--<markers>-->
+	<!--	<ObjectMarker type="Favorite" press="Approve"/>-->
+	<!--</markers>-->
+	<firstStatus>
+		<ObjectStatus text="{ parts : [ 'Stages>startTime'], formatter: '.formatter.Cyclestagetime' }" title="StartTime"/>
+	</firstStatus>
+	<secondStatus>
+		<ObjectStatus text="{ parts : [ 'Stages>endTime'], formatter: '.formatter.Cyclestagetime' }" title="EndTime"/>
+	</secondStatus>
+</ObjectListItem>
 </core:FragmentDefinition>

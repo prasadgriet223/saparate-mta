@@ -39,6 +39,48 @@ sap.ui.define([
 				highlight: "Information",
 			});
 		},
+		showStageLogs: function (oEvent) {
+			this._getDialog().open();
+			var jobId = oEvent.getSource().getBindingContext("Stages").getObject().jenkinsJobName;
+			var buildId = oEvent.getSource().getBindingContext("Stages").getObject().jenkinsBuildNumber;
+			sap.ui.core.BusyIndicator.show();
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			var oModel_releasestageslog = new sap.ui.model.json.JSONModel();
+			oModel_releasestageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
+				"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
+			oModel_releasestageslog.attachRequestCompleted(function () {
+				var p = this.byId("idlog_RLcontent");
+				p.removeAllContent();
+				var sResponse = oModel_releasestageslog.getData()["response"];
+				var r = JSON.stringify(sResponse).replace(/\\r\\n/g, "<br />");
+				var oText2 = new sap.ui.core.HTML();
+				oText2.setContent("<div>" + r + " </div>");
+				oText2.placeAt(this.byId("idlog_RLcontent"));
+				this.getView().setBusy(false);
+			}.bind(this));
+			sap.ui.core.BusyIndicator.hide();
+
+		},
+		_getDialog: function () {
+			if (!this._oDialog) {
+				this._oDialog = sap.ui.xmlfragment(this.getView().getId(),
+					"scp.com.saparate.view.fragments.workflowstages.Releaspipelinedeploytasklogs", this);
+				this.getView().addDependent(this._oDialog);
+			}
+			return this._oDialog;
+
+		},
+		onCloselog: function () {
+			
+			var p = this.byId("idlog_RLcontent");
+			p.removeAllContent();
+			
+			this._getDialog().close();
+
+		},
 		StageFactory: function (sId, oContext) {
 			var oUIControl;
 			if (oContext.getProperty("type") === "humanTask") {
@@ -55,6 +97,14 @@ sap.ui.define([
 					"msg": oEvent.getSource().getBindingContext("Stages").getProperty("waitUntil")
 				}
 			};
+
+			var action = "";
+
+			if (oEvent.getSource().getText() === "Approve")
+				action = "COMPLETE";
+			if (oEvent.getSource().getText() === "Reject")
+				action = "REJECT";
+
 			var sHeaders = {
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
@@ -62,7 +112,7 @@ sap.ui.define([
 			this.getView().setBusy(true);
 			var taskId = oEvent.getSource().getBindingContext("Stages").getProperty("id");
 			var oModel = new JSONModel();
-			oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=COMPLETE", JSON.stringify(oInput), true,
+			oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
 				"PUT", false, false, sHeaders);
 			oModel.attachRequestCompleted(function () {
 				MessageBox.show(("Release PipeLine Stage  " + oModel.getData().label + " Approved!  "), {

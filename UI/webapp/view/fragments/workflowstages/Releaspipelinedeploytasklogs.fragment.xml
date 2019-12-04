@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%">
+	<Dialog title="Stage Logs">
+		<content>
+			<Panel width="auto" expanded="true" id="idlog_RLcontent">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Deploy task Build Logs"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+				</headerToolbar>
+				<content>
+					<Text text="Panel Content"/>
+				</content>
+			</Panel>
+		</content>
+		<beginButton>
+			<Button text="OK" press="onCloselog"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>
