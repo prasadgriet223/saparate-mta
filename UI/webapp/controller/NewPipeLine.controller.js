@@ -257,6 +257,10 @@ sap.ui.define([
 								"minute": ""
 							};
 						}
+						if (sSchedulerkey === "Normal") {
+							this.getView().byId("idNewPipeLineSchedulingType").setText(this.getView().byId("idSchedulinglist").getSelectedItem().data(
+								"schedulekey"));
+						}
 
 						var sHeaders = {
 							"Content-Type": "application/json",

@@ -19,12 +19,6 @@
 										<core:ListItem key="{Jobs>id}" icon="sap-icon://action-settings" text="{Jobs>projectname}"/>
 									</Select>
 									<Label text="Select BuildPipeLine"/>
-									<!--<RadioButton id="idRbSelectLatestBuild" groupName="GroupA" text="Select Latest Build" select="enableLatestBuild"/>-->
-									<!--<RadioButton id="idRbSelectBuild" groupName="GroupA" text="Select Build" selected="false" select="onGetBuild"/>-->
-									<!--<Label text="Select Build#"/>-->
-									<!--<Select id="idBuildnumberSelect_ReleasePipeline" items="{path: 'Jobdetails>/'}" change="onLoadBuildNumbers">-->
-									<!--	<core:ListItem key="{Jobdetails>number}" icon="sap-icon://action-settings" text="{Jobdetails>number}"/>-->
-									<!--</Select>-->
 								</form:content>
 							</form:SimpleForm>
 						</u:secondaryContent>
