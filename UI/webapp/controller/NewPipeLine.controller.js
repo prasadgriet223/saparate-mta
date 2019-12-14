@@ -62,6 +62,7 @@ sap.ui.define([
 				this._wizard.discardProgress(this.byId("Authstep"));
 				this._wizard.discardProgress(this.byId("idReposStep"));
 				this._wizard.discardProgress(this.byId("branchesStep"));
+
 			}
 		},
 		selectRepo: function (oEvent) {
@@ -126,21 +127,27 @@ sap.ui.define([
 			this.getView().setModel(oModel_repos, "Repos");
 		},
 		NewPipeLineReviewHandler: function (oEvent) {
-			if (!this.oNewPipeLinereviewPageFragment) {
+			if (this.oNewPipeLinereviewPageFragment) {
+				//	this.getView().removeDependent(this.oNewPipeLinereviewPageFragment);
+				//	this._oNavContainer.removePage(this.oNewPipeLinereviewPageFragment);
+				// this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
+				// 	"scp.com.saparate.view.fragments.NewPipeLineReviewPage", this);
+				// this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
+				// this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
+				this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
+			} else {
 				this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
 					"scp.com.saparate.view.fragments.NewPipeLineReviewPage", this);
 				this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
 				this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
 				this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
 			}
-
 			//this.getView().byId("idCredSelect").getSelectedItem().getText()
 			this.getView().byId("idNewPipeLineCredentials").setText(this.getView().byId("idCredSelect").getSelectedItem().getText());
 			this.getView().byId("idNewPipeLineRepoType").setText(this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey"));
 			this.getView().byId("idNewPipeLineRepository").setText(this.getView().byId("idReposList").getSelectedItem().data("repohttps"));
 			this.getView().byId("idNewPipeLineBranch").setText(this.getView().byId("idBranchList").getSelectedItem().data("branchkey"));
 			this.getView().byId("idNewPipeLineBuildType").setText(this.getView().byId("idBuildSelect").getSelectedItem().getText());
-
 			var sSchedulerkey = this.getView().byId("idSchedulinglist").getSelectedItem().data("schedulekey");
 			var time = this.getView().byId("idScheduler").getValue().toString();
 
@@ -153,6 +160,10 @@ sap.ui.define([
 				var txtHook = this.getView().byId("txtwebhookURL").getText();
 				this.getView().byId("idNewPipeLineSchedulingType").setText(this.getView().byId("idSchedulinglist").getSelectedItem().data(
 					"schedulekey") + "---web hook with URL  " + txtHook);
+			}
+			if (sSchedulerkey === "Normal") {
+				this.getView().byId("idNewPipeLineSchedulingType").setText(this.getView().byId("idSchedulinglist").getSelectedItem().data(
+					"schedulekey"));
 			}
 		},
 		afterLoadBranchesStep: function (oEvent) {
@@ -207,6 +218,7 @@ sap.ui.define([
 					if (oAction === MessageBox.Action.YES) {
 						var oNewPipeLineInput = {
 							"jobName": this.byId("ip_JobName").getValue(),
+							"jobType": "build",
 							"piperPipeline": {
 								"stages": [{
 										"name": "prepare",

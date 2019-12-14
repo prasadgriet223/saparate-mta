@@ -2,11 +2,11 @@ sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/m/MessageToast", "sap/m/MessageBox",
 	"scp/com/saparate/utils/formatter"
-], function (BaseController, MessageToast, MessageBox,formatter) {
+], function (BaseController, MessageToast, MessageBox, formatter) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.jobs", {
-	formatter: formatter,
+		formatter: formatter,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
@@ -144,10 +144,25 @@ sap.ui.define([
 		},
 		gotoDeleteJob: function (oEvent) {
 			var selectedJobId = oEvent.getSource().getBindingContext("Jobs").getProperty("projectname");
+
 			var oModel_deleteJob = new sap.ui.model.json.JSONModel();
-			oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId);
-			var msg = 'Job Deleted Successfully';
-			MessageToast.show(msg);
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId, null,
+				true,
+				"GET", null, false, sHeaders);
+
+			oModel_deleteJob.attachRequestCompleted(function () {
+				this.byId("idtblAllPipelines").getBinding("items").refresh();
+				var msg = 'Job Deleted Successfully';
+				MessageToast.show(msg);
+			}.bind(this));
+
+			//	var oModel_deleteJob = new sap.ui.model.json.JSONModel();
+			//	oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId);
+
 			//	this.getView().getModel().refresh();
 
 		},
