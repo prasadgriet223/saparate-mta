@@ -70,50 +70,48 @@ sap.ui.define([
 			oRouter.navTo("Dashboard");
 		},
 		initiateTriggerJob: function (oEvent) {
-			this.getView().setBusy(true);
+			//	this.getView().setBusy(true);
 			var selectedJobId = oEvent.getSource().getBindingContext("Jobs").getProperty("projectname");
+			//	oEvent.getSource().getParent().getParent().getItems()[1].setBusy(true);
+			oEvent.getSource().setBusy(true);
 
-			this._handleMessageBoxOpen("Are you sure you want to trigger Pipeline " + selectedJobId, selectedJobId, "confirm");
-
-			// oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids), true,
-			// 	"POST", false, false, {
-			// 		"Content-Type": "application/json"
-			// 	});
-			// oModel_triggerJob.attachRequestCompleted(function () {
-			// 	var sResponse = oModel_triggerJob.getData()["response"];
-			// 	console.log(sResponse);
-			// 	var msg = 'Job Invoked Successfully';
-			// 	MessageToast.show(msg);
-			// 	this.getView().setBusy(false);
-			// 	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// 	oRouter.navTo("Builds", {
-			// 		jobId: selectedJobId,
-			// 		from: "selectedjob"
-			// 	});
-			// }.bind(this));
-		},
-
-		_handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
+			var oButtonctrl = oEvent.getSource();
 			var jobids = {
-				"jobName": sjobId
+				"jobName": selectedJobId
 			};
+
+			var oModel_triggerJob = new sap.ui.model.json.JSONModel();
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
+				true,
+				"POST", false, false, sHeaders);
+			oModel_triggerJob.attachRequestCompleted(function () {
+			//	oButtonctrl.setText(selectedJobId + "  " + "Triggered");
+				var oModel_Jobbuild = new sap.ui.model.json.JSONModel();
+				oModel_Jobbuild.loadData(this.getApiCall("jobresults") + "?jobName=" + selectedJobId, null, true, "GET", null, false, sHeaders);
+				oModel_Jobbuild.attachRequestCompleted(function () {
+					var buildNumber = oModel_Jobbuild.getData()[0].number;
+					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+					oButtonctrl.setBusy(false);
+					oRouter.navTo("buildStages", {
+						jobId: selectedJobId,
+						buildid: buildNumber
+					});
+				}.bind(this));
+			}.bind(this));
+
+			//	this._handleMessageBoxOpen("Are you sure you want to trigger Pipeline " + selectedJobId, selectedJobId, "confirm");
+		},
+		_handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
+
 			MessageBox[sMessageBoxType](sMessage, {
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
 
-						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
-						var sHeaders = {
-							"Content-Type": "application/json",
-							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-						};
-						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
-							true,
-							"POST", false, false, sHeaders);
-
-						oModel_triggerJob.attachRequestCompleted(function () {
-							this._navigatetoBuilds(oModel_triggerJob.getData()["response"], sjobId);
-						}.bind(this));
 					}
 					//if (oAction === MessageBox.Action.NO) {
 					this.getView().setBusy(false);

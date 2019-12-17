@@ -113,27 +113,16 @@ sap.ui.define([
 				"repoType": this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey")
 			};
 
-			this.loadDatatoViewwithKey_POST("repos", credentials, "Repos",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+			var oCtrl = this.byId("idReposList");
+			oCtrl.setBusy(true);
 
-			// oModel_repos.loadData(this.getOwnerComponent().getModel("servers").getProperty("repos"), JSON.stringify(credentials), true,
-			// 	"POST", false, false, {
-			// 		"Content-Type": "application/json"
-			// 	});
+			this.loadDatatoViewwithKey_POST_2("repos", credentials, "Repos",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), oCtrl);
 
-			// oModel_repos.attachRequestCompleted(function () {
-
-			// });
-			this.getView().setModel(oModel_repos, "Repos");
+			//this.getView().setModel(oModel_repos, "Repos");
 		},
 		NewPipeLineReviewHandler: function (oEvent) {
 			if (this.oNewPipeLinereviewPageFragment) {
-				//	this.getView().removeDependent(this.oNewPipeLinereviewPageFragment);
-				//	this._oNavContainer.removePage(this.oNewPipeLinereviewPageFragment);
-				// this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
-				// 	"scp.com.saparate.view.fragments.NewPipeLineReviewPage", this);
-				// this.getView().addDependent(this.oNewPipeLinereviewPageFragment);
-				// this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
 				this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
 			} else {
 				this.oNewPipeLinereviewPageFragment = sap.ui.xmlfragment(this.getView().getId(),
@@ -142,7 +131,6 @@ sap.ui.define([
 				this._oNavContainer.addPage(this.oNewPipeLinereviewPageFragment);
 				this._oNavContainer.to(this.oNewPipeLinereviewPageFragment);
 			}
-			//this.getView().byId("idCredSelect").getSelectedItem().getText()
 			this.getView().byId("idNewPipeLineCredentials").setText(this.getView().byId("idCredSelect").getSelectedItem().getText());
 			this.getView().byId("idNewPipeLineRepoType").setText(this.getView().byId("idRepoTypeList").getSelectedItem().data("repokey"));
 			this.getView().byId("idNewPipeLineRepository").setText(this.getView().byId("idReposList").getSelectedItem().data("repohttps"));
@@ -167,19 +155,20 @@ sap.ui.define([
 			}
 		},
 		afterLoadBranchesStep: function (oEvent) {
-			var oModel_branches = new sap.ui.model.json.JSONModel();
+			var oCtrl = this.byId("idBranchList");
+			oCtrl.setBusy(true);
 			var oinput = {
 				"credentialId": this.getView().byId("idCredSelect").getSelectedKey(),
 				"url": this.getView().byId("idReposList").getSelectedItem().data("repohttps")
 			};
+			this.loadDatatoViewwithKey_POST_2("branches", oinput, "branch",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), oCtrl);
+
 			// oModel_branches.loadData(this.getOwnerComponent().getModel("servers").getProperty("branches"), JSON.stringify(oinput), true,
 			// 	"POST", false, false, {
 			// 		"Content-Type": "application/json"
 			// 	});
-			// this.getView().setModel(oModel_branches, "branch");
-
-			this.loadDatatoViewwithKey_POST("branches", oinput, "branch",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+		//	this.getView().setModel(oModel_branches, "branch");
 
 		},
 		handleCreateNewPipeLineSubmit: function (oEvent) {

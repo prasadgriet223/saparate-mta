@@ -62,8 +62,15 @@ sap.ui.define([], function () {
 		deployTaskLabel: function (stageName, type) {
 			return stageName + " " + type;
 		},
-		Cyclestagetime:function(time){
-			return time.replace("+0000","").replace("T"," ");
+		Cyclestagetime: function (time) {
+			return time.replace("+0000", "").replace("T", " ");
+		},
+		getRepoName: function (url) {
+			return url.substring(url.lastIndexOf("/")+1,url.length).split(".")[0];
+		},
+		getBranchName: function (branch) {
+			return branch.split("/")[1];
+			
 		}
 	};
 });

@@ -66,6 +66,21 @@ sap.ui.define([
 			oModel.attachRequestCompleted(function () {
 				this.getView().setModel(oModel, sView);
 			}.bind(this));
+		},
+		
+			loadDatatoViewwithKey_POST_2: function (sProperty, oInput, sView, sKey,oCtrl) {
+			var oModel = new JSONModel();
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			oModel.loadData(this.getApiCall(sProperty), JSON.stringify(oInput), true,
+				"POST", false, false, sHeaders);
+
+			oModel.attachRequestCompleted(function () {
+				this.getView().setModel(oModel, sView);
+				oCtrl.setBusy(false);
+			}.bind(this));
 		}
 	});
 

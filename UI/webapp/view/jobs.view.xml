@@ -12,25 +12,25 @@
 							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 							<!--	<Text text="Created On"/>-->
 							<!--</Column>-->
-							<Column demandPopin="true" >
+							<Column demandPopin="true">
 								<Text text="Modified on"/>
 							</Column>
 							<Column demandPopin="true" width="14rem">
-								<Text text="Created By"/>
+								<Text text="Repo"/>
 							</Column>
-							<Column demandPopin="true" width="14rem" >
-								<Text text="Modified By"/>
+							<Column demandPopin="true" width="14rem">
+								<Text text="Branch"/>
 							</Column>
-							<Column demandPopin="true" >
-								<Text text="Run"/>
+							<Column demandPopin="true">
+								<Text text="Build Now"/>
 							</Column>
-							<Column demandPopin="true" >
-								<Text text="Builds"/>
+							<Column demandPopin="true">
+								<Text text="Results"/>
 							</Column>
 							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 							<!--	<Text text="Edit"/>-->
 							<!--</Column>-->
-							<Column demandPopin="true" >
+							<Column demandPopin="true">
 								<Text text="Delete"/>
 							</Column>
 						</columns>
@@ -38,17 +38,12 @@
 							<ColumnListItem type="Active" press="navigatetoBuilds">
 								<cells>
 									<Text text="{Jobs>projectname}"/>
-									<!--<Text text="{Jobs>createdDate}"/>-->
 									<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Jobs>lastModifiedDate'], formatter: '.formatter.getDate'}"
 										icon="sap-icon://date-time"/>
-									<!--<ObjectStatus class="sapUiSmallMarginBottom" text="Product Damaged" icon="sap-icon://status-negative" state="Error"/>-->
-									<!--<ObjectStatus xmlns="sap.m" state="Information"  text="Fri Oct 09 11:56 PM" icon="sap-icon://date-time"/>-->
-									<!--<GenericTag text="text" design="StatusIconHidden" status="Error" valueState="Success" class="sapUiSmallMargin"/>-->
-									<Text text="{Jobs>createdBy}"/>
-									<Text text="{Jobs>lastModifiedBy}"/>
+									<Text text="{ parts : [ 'Jobs>scmUrl'], formatter: '.formatter.getRepoName'}"/>
+									<Text text="{ parts : [ 'Jobs>branchName'], formatter: '.formatter.getBranchName'}"/>
 									<Button class="roundButton" icon="sap-icon://physical-activity" text="" press="initiateTriggerJob"/>
 									<Button class="roundButton" icon="sap-icon://goalseek" text="" press="gotoBuilds"/>
-									<!--<Button class="roundButton" icon="sap-icon://edit" text=""/>-->
 									<Button class="roundButton" icon="sap-icon://delete" press="gotoDeleteJob"/>
 								</cells>
 							</ColumnListItem>
@@ -67,7 +62,7 @@
 						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
-							<Button icon="sap-icon://create" text="Creat New PipeLine" press="navigatetoCreatePipeline" id="button6"/>
+							<Button icon="sap-icon://create" text="{i18n>createNewPipeline}" press="navigatetoCreatePipeline" id="button6"/>
 						</contentRight>
 					</Bar>
 				</subHeader>
