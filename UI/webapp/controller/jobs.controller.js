@@ -89,7 +89,7 @@ sap.ui.define([
 				true,
 				"POST", false, false, sHeaders);
 			oModel_triggerJob.attachRequestCompleted(function () {
-			//	oButtonctrl.setText(selectedJobId + "  " + "Triggered");
+				//	oButtonctrl.setText(selectedJobId + "  " + "Triggered");
 				var oModel_Jobbuild = new sap.ui.model.json.JSONModel();
 				oModel_Jobbuild.loadData(this.getApiCall("jobresults") + "?jobName=" + selectedJobId, null, true, "GET", null, false, sHeaders);
 				oModel_Jobbuild.attachRequestCompleted(function () {
@@ -105,21 +105,21 @@ sap.ui.define([
 
 			//	this._handleMessageBoxOpen("Are you sure you want to trigger Pipeline " + selectedJobId, selectedJobId, "confirm");
 		},
-		_handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
+		// _handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
 
-			MessageBox[sMessageBoxType](sMessage, {
-				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-				onClose: function (oAction) {
-					if (oAction === MessageBox.Action.YES) {
+		// 	MessageBox[sMessageBoxType](sMessage, {
+		// 		actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+		// 		onClose: function (oAction) {
+		// 			if (oAction === MessageBox.Action.YES) {
 
-					}
-					//if (oAction === MessageBox.Action.NO) {
-					this.getView().setBusy(false);
-					//	}
+		// 			}
+		// 			//if (oAction === MessageBox.Action.NO) {
+		// 			this.getView().setBusy(false);
+		// 			//	}
 
-				}.bind(this)
-			});
-		},
+		// 		}.bind(this)
+		// 	});
+		// },
 		_navigatetoBuilds: function (result, ijobId) {
 			MessageBox.information(result, {
 				actions: ["OK", MessageBox.Action.CLOSE],
@@ -140,7 +140,39 @@ sap.ui.define([
 			});
 
 		},
+
+		_handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
+			var jobids = {
+				"jobName": sjobId
+			};
+			MessageBox[sMessageBoxType](sMessage, {
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (oAction) {
+					if (oAction === MessageBox.Action.YES) {
+
+						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
+						var sHeaders = {
+							"Content-Type": "application/json",
+							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+						};
+						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
+							true,
+							"POST", false, false, sHeaders);
+
+						oModel_triggerJob.attachRequestCompleted(function () {
+							this._navigatetoBuilds(oModel_triggerJob.getData()["response"], sjobId);
+						}.bind(this));
+					}
+					//if (oAction === MessageBox.Action.NO) {
+					this.getView().setBusy(false);
+					//	}
+
+				}.bind(this)
+			});
+		},
+
 		gotoDeleteJob: function (oEvent) {
+
 			var selectedJobId = oEvent.getSource().getBindingContext("Jobs").getProperty("projectname");
 
 			var oModel_deleteJob = new sap.ui.model.json.JSONModel();

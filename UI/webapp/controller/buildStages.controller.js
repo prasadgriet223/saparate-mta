@@ -50,10 +50,10 @@ sap.ui.define([
 				this._buildid = buildId;
 				this.byId("idbc_build").setText(jobId);
 
-				sap.ui.core.BusyIndicator.show();
+				this.byId("idPipeLineBuildStageResults").setBusy(true);
 
-				this.loadDatatoViewwithKey_GET_filter("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
-					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.loadDatatoViewwithKey_GET_filter_2("JobStageResults", "?jobName=" + jobId + "&buildNumber=" + buildId, "Jobstatusdetails",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), this.byId("idPipeLineBuildStageResults"));
 
 				var sHeaders = {
 					"Content-Type": "application/json",
@@ -63,6 +63,7 @@ sap.ui.define([
 				this.byId("idBreadcrum_buildStages").setCurrentLocationText(buildId);
 				var oModel_buildstageslog = new sap.ui.model.json.JSONModel();
 
+				this.byId("idlog_content").setBusy(true);
 				oModel_buildstageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
 					"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
 
@@ -72,12 +73,10 @@ sap.ui.define([
 					var sResponse = oModel_buildstageslog.getData()["response"];
 					var r = JSON.stringify(sResponse).replace(/\\r\\n/g, "<br />");
 					var oText2 = new sap.ui.core.HTML();
-					oText2.setContent("<div>" + r + " </div>");
+					oText2.setContent("<div class='idBuildlogs_html'>" + r + " </div>");
 					oText2.placeAt(this.byId("idlog_content"));
-					this.getView().setBusy(false);
+					this.byId("idlog_content").setBusy(false);
 				}.bind(this));
-
-				sap.ui.core.BusyIndicator.hide();
 
 			}
 		},

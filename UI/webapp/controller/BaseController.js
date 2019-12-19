@@ -54,6 +54,19 @@ sap.ui.define([
 			}.bind(this));
 		},
 
+		loadDatatoViewwithKey_GET_filter_2: function (sProperty, sfilter, sView, sKey, oCtrl) {
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			var oModel = new JSONModel();
+			oModel.loadData(this.getApiCall(sProperty) + sfilter, null, true, "GET", null, false, sHeaders);
+			oModel.attachRequestCompleted(function () {
+				this.getView().setModel(oModel, sView);
+				oCtrl.setBusy(false);
+			}.bind(this));
+		},
+
 		loadDatatoViewwithKey_POST: function (sProperty, oInput, sView, sKey) {
 			var oModel = new JSONModel();
 			var sHeaders = {
@@ -67,8 +80,8 @@ sap.ui.define([
 				this.getView().setModel(oModel, sView);
 			}.bind(this));
 		},
-		
-			loadDatatoViewwithKey_POST_2: function (sProperty, oInput, sView, sKey,oCtrl) {
+
+		loadDatatoViewwithKey_POST_2: function (sProperty, oInput, sView, sKey, oCtrl) {
 			var oModel = new JSONModel();
 			var sHeaders = {
 				"Content-Type": "application/json",
@@ -76,7 +89,6 @@ sap.ui.define([
 			};
 			oModel.loadData(this.getApiCall(sProperty), JSON.stringify(oInput), true,
 				"POST", false, false, sHeaders);
-
 			oModel.attachRequestCompleted(function () {
 				this.getView().setModel(oModel, sView);
 				oCtrl.setBusy(false);

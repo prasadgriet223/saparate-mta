@@ -53,9 +53,9 @@ sap.ui.define([
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
-
-				this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + jobId, "Jobdetails",
-					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				this.byId("idPipeLineBuildResults").setBusy(true);
+				this.loadDatatoViewwithKey_GET_filter_2("jobresults", "?jobName=" + jobId, "Jobdetails",
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"),this.byId("idPipeLineBuildResults"));
 				this.byId("idBreadcrum_builds").setCurrentLocationText(jobId);
 
 			}
