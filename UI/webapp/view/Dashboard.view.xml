@@ -26,7 +26,7 @@
 				<contentLeft>
 					<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_dashboard">
 						<links>
-							<Link text="Project" emphasized="false" id="idlnk_Projects"/>
+							<Link text="{i18n>project}" emphasized="false" id="idlnk_Projects"/>
 						</links>
 					</Breadcrumbs>
 				</contentLeft>

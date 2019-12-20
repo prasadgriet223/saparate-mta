@@ -11,15 +11,15 @@
 						<contentLeft>
 							<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_builds">
 								<links>
-									<Link text="Project" emphasized="false" id="idlnk_Projects"/>
-									<Link text="Dashboard" emphasized="false" press="navigateTo"/>
-									<Link text="Release PipeLines" emphasized="false" press="navigateTo"/>
+									<Link text="{i18n>project}" emphasized="false" id="idlnk_Projects"/>
+									<Link text="{i18n>dashboard}" emphasized="false" press="navigateTo"/>
+									<Link text="{i18n>releasePipelines}" emphasized="false" press="navigateTo"/>
 								</links>
 							</Breadcrumbs>
 						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
-							<Button icon="sap-icon://create" text="Creat New ReleasePipeLine" press="navigatetoCreateReleasePipeline" id="button6"/>
+							<Button icon="sap-icon://create" text="{i18n>createNewReleasePipeline}" press="navigatetoCreateReleasePipeline" id="button6"/>
 						</contentRight>
 					</Bar>
 				</subHeader>

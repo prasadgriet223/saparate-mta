@@ -4,23 +4,23 @@
 		<sap.ui.layout:content>
 			<IconTabBar id="bar0" expandable="false">
 				<items>
-					<IconTabFilter text="Pre deployment action" id="idPreConditionfilter">
+					<IconTabFilter text="{i18n>preDeploymentAction}" id="idPreConditionfilter">
 						<content>
 							<form:SimpleForm editable="true" id="idPreConditionStageForm" layout="ResponsiveGridLayout">
 								<form:content>
-									<Label text="Select User"/>
+									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPreConditionSelectUser" value="{/0/assignedTo}"/>
-									<Label text="Message"/>
+									<Label text="{i18n>message}"/>
 									<Input width="30%" id="idPreConditionEnterMessage" value="{/0/Message}"/>
 								</form:content>
 							</form:SimpleForm>
 						</content>
 					</IconTabFilter>
-					<IconTabFilter text="Deployment" id="idDeployfilter">
+					<IconTabFilter text="{i18n>deployment}" id="idDeployfilter">
 						<content>
 							<form:SimpleForm editable="true" id="idDeployStageForm" layout="ResponsiveGridLayout">
 								<form:content>
-									<Label text="Select Environment"/>
+									<Label text="{i18n>selectEnv}"/>
 									<!--<Input  showValueHelp="true" id="idStageDeploycondition" />-->
 									<Select  width="30%" id="idEnvSelect_ReleasePipeline" selectedKey="{/1/cfCredentialsID}" items="{path: 'Environments>/'}">
 										<core:ListItem key="{Environments>id}" icon="sap-icon://action-settings" text="{Environments>name}"/>
@@ -29,13 +29,13 @@
 							</form:SimpleForm>
 						</content>
 					</IconTabFilter>
-					<IconTabFilter text="Post deployment action" id="idPostConditionfilter">
+					<IconTabFilter text="{i18n>postDeploymentAction}" id="idPostConditionfilter">
 						<content>
 							<form:SimpleForm editable="true" id="idPostConditionStageForm" layout="ResponsiveGridLayout">
 								<form:content>
-									<Label text="Select User"/>
+									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPostConditionSelectUser" value="{/2/assignedTo}"/>
-									<Label text="Message"/>
+									<Label text="{i18n>message}"/>
 									<Input width="30%" id="idPostConditionEnterMessage" value="{/2/Message}"/>
 								</form:content>
 							</form:SimpleForm>

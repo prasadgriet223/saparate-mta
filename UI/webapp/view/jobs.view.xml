@@ -2,36 +2,36 @@
 	controllerName="scp.com.saparate.controller.jobs">
 	<App>
 		<pages>
-			<Page title="List of Build Pipelines" showHeader="false">
+			<Page title="{i18n>listOfBuildPipelines}" showHeader="false">
 				<content>
 					<Table items="{path: 'Jobs>/'}" id="idtblAllPipelines" alternateRowColors="true">
 						<columns>
 							<Column demandPopin="true" minScreenWidth="Tablet">
-								<Text text="Build Pipelines"/>
+								<Text text="{i18n>buildPipelines}"/>
 							</Column>
 							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 							<!--	<Text text="Created On"/>-->
 							<!--</Column>-->
 							<Column demandPopin="true">
-								<Text text="Modified on"/>
+								<Text text="{i18n>modifiedOn}"/>
 							</Column>
 							<Column demandPopin="true" width="14rem">
-								<Text text="Repo"/>
+								<Text text="{i18n>repo}"/>
 							</Column>
 							<Column demandPopin="true" width="14rem">
-								<Text text="Branch"/>
+								<Text text="{i18n>branch}"/>
 							</Column>
 							<Column demandPopin="true">
-								<Text text="Build Now"/>
+								<Text text="{i18n>buildNow}"/>
 							</Column>
 							<Column demandPopin="true">
-								<Text text="Results"/>
+								<Text text="{i18n>results}"/>
 							</Column>
 							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 							<!--	<Text text="Edit"/>-->
 							<!--</Column>-->
 							<Column demandPopin="true">
-								<Text text="Delete"/>
+								<Text text="{i18n>delete}"/>
 							</Column>
 						</columns>
 						<items>
@@ -55,14 +55,14 @@
 						<contentLeft>
 							<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_buildpiplines">
 								<links>
-									<Link text="Project" emphasized="false" id="idlnk_Projects"/>
-									<Link text="Dashboard" emphasized="false" id="idlnk_Dashboard" press="navigatetoDashboard"/>
+									<Link text="{i18n>project}" emphasized="false" id="idlnk_Projects"/>
+									<Link text="{i18n>dashboard}" emphasized="false" id="idlnk_Dashboard" press="navigatetoDashboard"/>
 								</links>
 							</Breadcrumbs>
 						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
-							<Button icon="sap-icon://create" text="{i18n>createNewPipeline}" press="navigatetoCreatePipeline" id="button6"/>
+							<Button icon="sap-icon://create" text="{i18n>createBuildPipeline}" press="navigatetoCreatePipeline" id="button6"/>
 						</contentRight>
 					</Bar>
 				</subHeader>
