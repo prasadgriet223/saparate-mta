@@ -54,6 +54,7 @@ sap.ui.define([
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
+				this.byId("idJobName").setValue("");
 				this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
 				this.getView().setModel(this.getOwnerComponent().getModel("schedule"), "schedule");
 				this._oNavContainer.to(this._oWizardContentPage);
@@ -168,7 +169,7 @@ sap.ui.define([
 			// 	"POST", false, false, {
 			// 		"Content-Type": "application/json"
 			// 	});
-		//	this.getView().setModel(oModel_branches, "branch");
+			//	this.getView().setModel(oModel_branches, "branch");
 
 		},
 		handleCreateNewPipeLineSubmit: function (oEvent) {
