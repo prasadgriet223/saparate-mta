@@ -54,7 +54,7 @@ sap.ui.define([
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
-				this.byId("idJobName").setValue("");
+				this.byId("ip_JobName").setValue("");
 				this.getView().setModel(this.getOwnerComponent().getModel("repoType"), "RepoType");
 				this.getView().setModel(this.getOwnerComponent().getModel("schedule"), "schedule");
 				this._oNavContainer.to(this._oWizardContentPage);
@@ -206,6 +206,9 @@ sap.ui.define([
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
+
+						this.getView().setBusy(true);
+
 						var oNewPipeLineInput = {
 							"jobName": this.byId("ip_JobName").getValue(),
 							"jobType": "build",
@@ -273,6 +276,7 @@ sap.ui.define([
 								oNewPipeLineInput), true,
 							"POST", false, false, sHeaders);
 						oModel_CreatePipeLine.attachRequestCompleted(function () {
+							this.getView().setBusy(false);
 							MessageBox.show((oModel_CreatePipeLine.getData().response), {
 								title: "Result",
 								actions: [sap.m.MessageBox.Action.OK],
