@@ -2,12 +2,12 @@
 	controllerName="scp.com.saparate.controller.RLpipelines">
 	<App>
 		<pages>
-			<Page title="List of Release Pipelines" showHeader="false">
+			<Page title="{i18n>listOfRPipelines}" showHeader="false">
 				<content>
 					<Table items="{path: 'workflows>/'}" id="idtrlAllPipelines" alternateRowColors="true">
 						<columns>
 							<Column demandPopin="true" minScreenWidth="Tablet">
-								<Text text="Release Pipelines"/>
+								<Text text="{i18n>releasePipelines}"/>
 							</Column>
 							<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 							<!--	<Text text="Created By"/>-->
@@ -16,7 +16,7 @@
 							<!--	<Text text="Created Time"/>-->
 							<!--</Column>-->
 							<Column demandPopin="true" minScreenWidth="Tablet">
-								<Text text="Run"/>
+								<Text text="{i18n>run}"/>
 							</Column>
 						</columns>
 						<items>
@@ -36,15 +36,15 @@
 						<contentLeft>
 							<Breadcrumbs separatorStyle="GreaterThan" id="idBreadcrum_RLpipelines">
 								<links>
-									<Link text="Project" emphasized="false" id="idlnk_Projects"/>
-									<Link text="Dashboard" emphasized="false" press="navigateTo"/>
+									<Link text="{i18n>project}" emphasized="false" id="idlnk_Projects"/>
+									<Link text="{i18n>dashboard}" emphasized="false" press="navigateTo"/>
 								
 								</links>
 							</Breadcrumbs>
 						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
-							<Button icon="sap-icon://create" text="Create New Release PipeLine" press="navigatetoCreateReleasePipeline" id="button6"/>
+							<Button icon="sap-icon://create" text="{i18n>createNewReleasePipeline}" press="navigatetoCreateReleasePipeline" id="button6"/>
 						</contentRight>
 					</Bar>
 				</subHeader>

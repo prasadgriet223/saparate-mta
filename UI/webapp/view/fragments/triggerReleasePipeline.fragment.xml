@@ -4,11 +4,11 @@
 			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout"
 				id="idCredentialform">
 				<sap.ui.layout.form:content>
-					<Label text="Job Name"/>
+					<Label text="{i18n>jobName}"/>
 					<Text id="idReleasePipelineJobName" width="auto" text=""/>
-					<Label text="Build Name"/>
+					<Label text="{i18n>buildName}"/>
 					<Text id="idBuildnameTrigger_ReleasePipeline" width="auto" text=""/>
-					<Label text="Select Build#"/>
+					<Label text="{i18n>selectBuild}"/>
 					<Select id="idBuildnumberTrigger_ReleasePipeline" items="{path: 'Jobdetails>/'}" change="onLoadBuildNumbers">
 						<core:ListItem key="{Jobdetails>number}" icon="sap-icon://action-settings" text="{Jobdetails>number}"/>
 					</Select>
@@ -17,10 +17,10 @@
 			</sap.ui.layout.form:SimpleForm>
 		</content>
 		<beginButton>
-			<Button text="Trigger Job" press="onTriggerReleasePipeline"/>
+			<Button text="{i18n>triggerJob}" press="onTriggerReleasePipeline"/>
 		</beginButton>
 		<endButton>
-			<Button text="Cancel" press="onCancel"/>
+			<Button text="{i18n>cancel}" press="onCancel"/>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>

@@ -2,15 +2,15 @@
 	controllerName="scp.com.saparate.controller.RegisterEnvironments">
 	<App>
 		<pages>
-			<Page title="List of Enviroments">
+			<Page title="{i18n>listOfEnv}">
 				<headerContent>
 					<OverflowToolbar id="idoftbBuildStages">
 						<ToolbarSpacer/>
-						<Button icon="sap-icon://journey-arrive" text="Register Enviroment" press="onregisterEnviroment"/>
+						<Button icon="sap-icon://journey-arrive" text="{i18n>registerEnv}" press="onregisterEnviroment"/>
 					</OverflowToolbar>
 				</headerContent>
 				<content>
-					<List noDataText="Drop list items here" id="idEnviroments" items="{Environments>/}">
+					<List noDataText="{i18n>dropListOfItmes}" id="idEnviroments" items="{Environments>/}">
 						<items>
 							<!--<StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment"-->
 							<!--	/>-->

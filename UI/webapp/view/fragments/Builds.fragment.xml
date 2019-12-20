@@ -3,19 +3,19 @@
 	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}" alternateRowColors="true" >
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Pipeline"/>
+				<Text text="{i18n>pipeline}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Estimated Duration"/>
+				<Text text="{i18n>estimatedDuration}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Duration"/>
+				<Text text="{i18n>duration}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Result"/>
+				<Text text="{i18n>result}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Time"/>
+				<Text text="{i18n>time}"/>
 			</Column>
 		</columns>
 		<items>
@@ -41,7 +41,7 @@
 						</contentLeft>
 						<contentMiddle></contentMiddle>
 						<contentRight>
-							<Button xmlns="sap.m" text="Refresh" press="refreshData" icon="sap-icon://refresh"/>
+							<Button xmlns="sap.m" text="{i18n>refresh}" press="refreshData" icon="sap-icon://refresh"/>
 						</contentRight>
 					</Bar>
 				</content>

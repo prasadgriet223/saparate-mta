@@ -17,9 +17,9 @@
 						<contentLeft>
 							<Breadcrumbs xmlns="sap.m" separatorStyle="GreaterThan" id="idBreadcrum_buildStages">
 								<links>
-									<Link text="Project" emphasized="false" id="idlnk1_Projects"/>
-									<Link text="Dashboard" emphasized="false" press="navigateTo"/>
-									<Link text="Release PipeLines" emphasized="false" press="navigateTo"/>
+									<Link text="{i18n>project}" emphasized="false" id="idlnk1_Projects"/>
+									<Link text="{i18n>dashboard}" emphasized="false" press="navigateTo"/>
+									<Link text="{i18n>releasePipelines}" emphasized="false" press="navigateTo"/>
 									<!--<Link id="idbc_RCycle" emphasized="false" press="navigateTo"/>-->
 								</links>
 							</Breadcrumbs>

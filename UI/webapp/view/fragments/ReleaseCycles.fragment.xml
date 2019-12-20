@@ -18,19 +18,19 @@
 	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}" alternateRowColors="true" >
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Cycles"/>
+				<Text text="{i18n>cycles}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Triggered By"/>
+				<Text text="{i18n>triggeredBy}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Start Time"/>
+				<Text text="{i18n>startTime}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="End Time"/>
+				<Text text="{i18n>endTime}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="Status"/>
+				<Text text="{i18n>status}"/>
 			</Column>
 		</columns>
 		<items>
@@ -55,7 +55,7 @@
 						</contentLeft>
 						<contentMiddle></contentMiddle>
 						<contentRight>
-							<Button xmlns="sap.m" text="Refresh" press="refreshData" icon="sap-icon://refresh"/>
+							<Button xmlns="sap.m" text="{i18n>refresh}" press="refreshData" icon="sap-icon://refresh"/>
 						</contentRight>
 					</Bar>
 				</content>

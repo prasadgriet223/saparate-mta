@@ -27,7 +27,7 @@
 							<form:content>
 								<Label text="JobName" id="idJobName" required="true"/>
 								<Input width="30%" id="ip_JobName" liveChange="additionalInfoValidation"/>
-								<Label text="SCM Credentials" id="label2"/>
+								<Label text="{i18n>selectCredentials}" id="label2"/>
 								<Select width="30%" id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType">
 									<core:ListItem key="{credentials>id}" text="{credentials>name}" app:credkey="{credentials>credentialKey}"/>
 								</Select>
@@ -37,7 +37,7 @@
 					</WizardStep>
 					<WizardStep id="RepoTypeStep" activate="afterloadRepoType" title="Select RepoType" validated="false">
 						<HBox alignItems="Center" justifyContent="Center" width="100%"/>
-						<List noDataText="No Repo Types" items="{ path: 'RepoType>/RepoType' }" selectionChange="loadRepos" id="idRepoTypeList"
+						<List noDataText="{i18n>noRepoType}" items="{ path: 'RepoType>/RepoType' }" selectionChange="loadRepos" id="idRepoTypeList"
 							mode="SingleSelectLeft">
 							<items>
 								<StandardListItem title="{RepoType>title}" description="{RepoType>Description}" icon="{RepoType>icon}" app:repokey="{RepoType>key}"/>
@@ -46,7 +46,7 @@
 						<content/>
 					</WizardStep>
 					<WizardStep id="idReposStep" activate="afterloadReposStep" validated="false" title="Select Repo">
-						<List noDataText="No Repos" items="{ path: 'Repos>/' }" id="idReposList" selectionChange="selectRepo" mode="SingleSelectLeft">
+						<List noDataText="{i18n>noRepos}" items="{ path: 'Repos>/' }" id="idReposList" selectionChange="selectRepo" mode="SingleSelectLeft">
 							<items>
 								<ObjectListItem title="{Repos>name}" type="Active" app:repohttps="{Repos>httpsUrl}">
 									<attributes>
@@ -59,7 +59,7 @@
 						<HBox alignItems="Center" justifyContent="Center" width="100%"/>
 					</WizardStep>
 					<WizardStep id="idbranchesStep" activate="afterLoadBranchesStep" validated="false" title="Select Branch">
-						<List noDataText="No Repos" items="{ path: 'branch>/' }" id="idBranchList" selectionChange="selectBranch" mode="SingleSelectLeft">
+						<List noDataText="{i18n>noBranches}" items="{ path: 'branch>/' }" id="idBranchList" selectionChange="selectBranch" mode="SingleSelectLeft">
 							<items>
 								<StandardListItem title="{branch>branch}" app:branchkey="{branch>branch}"/>
 							</items>
@@ -81,13 +81,13 @@
 								</List>
 								<form:SimpleForm id="idfrmSchedule" visible="false" layout="ResponsiveGridLayout" title="Enter Time">
 									<form:content>
-										<Label text="Select Time" required="true"/>
+										<Label text="{i18n>selectTime}" required="true"/>
 										<TimePicker id="idScheduler" width="30%" valueFormat="HH:mm" displayFormat="HH:mm" change="handleHrChange"/>
 									</form:content>
 								</form:SimpleForm>
 								<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">
 									<form:content>
-										<Label text="URL" />
+										<Label text="{i18n>url}" />
 										<Text id="txtwebhookURL" text="https://na1.saparate.com/saparate/webhook/receive"></Text>
 									</form:content>
 								</form:SimpleForm>

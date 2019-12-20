@@ -17,18 +17,19 @@
 		<tnt:sideContent>
 			<tnt:SideNavigation expanded="false" selectedKey="" itemSelect="onItemSelect">
 				<tnt:NavigationList>
-					<tnt:NavigationListItem text="Dashboard" icon="sap-icon://home" select="gotoDashboard"/>
+					<tnt:NavigationListItem text="{i18n>dashboard}" icon="sap-icon://home" select="gotoDashboard"/>
 					<!--<tnt:NavigationListItem text="UserStory" id="user" icon="sap-icon://dimension" select="gotoUserStory"/>-->
 					<!--<tnt:NavigationListItem text="Precommit" icon="sap-icon://disconnected" select="gotoPrecommit"/>-->
 					<!--<tnt:NavigationListItem text="Browse Repo" icon="sap-icon://education" select="gotoPrecommit"/>-->
 					<!--<tnt:NavigationListItem text="Projects" icon="sap-icon://download-from-cloud" select="gotoProjects"/>-->
-					<tnt:NavigationListItem text="Build Pipelines" icon="sap-icon://globe" select="gotoPipelines"/>
-					<tnt:NavigationListItem text="Release Piplelines" icon="sap-icon://grid" select="gotoReleasePipeline"/>
-					<tnt:NavigationListItem text="Environments" icon="sap-icon://drill-down" select="gotoEnviroments"/>
+					<tnt:NavigationListItem text="{i18n>buildPipelines}" icon="sap-icon://globe" select="gotoPipelines"/>
+					<tnt:NavigationListItem text="{i18n>releasePipelines}" icon="sap-icon://grid" select="gotoReleasePipeline"/>
+					<tnt:NavigationListItem text="{i18n>environments}" icon="sap-icon://drill-down" select="gotoEnviroments"/>
 					<!--<tnt:NavigationListItem text="Image Artifact" icon="sap-icon://electrocardiogram" select="gotoImageRepo"/>-->
 					<!--<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>-->
-					<tnt:NavigationListItem text="Credentials" icon="sap-icon://factory" select="gotoCredentials"/>
-					<tnt:NavigationListItem text="Settings" icon="sap-icon://flight" select="gotoSettings"/>
+					<tnt:NavigationListItem text="{i18n>credentials}" icon="sap-icon://factory" select="gotoCredentials"/>
+					<tnt:NavigationListItem text="{i18n>inbox}" icon="sap-icon://factory" select="gotoInbox"/>
+					<tnt:NavigationListItem text="{i18n>settings}" icon="sap-icon://flight" select="gotoSettings"/>
 				</tnt:NavigationList>
 			</tnt:SideNavigation>
 		</tnt:sideContent>
