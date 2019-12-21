@@ -8,12 +8,12 @@
 						<u:secondaryContent>
 							<form:SimpleForm editable="true" id="idSelectBuildReleasePipeline" layout="ResponsiveGridLayout">
 								<form:content>
+									<Label text="{i18n>enterReleasePipelineName}"/>
+									<Input id="idWorkFlowName" value=""></Input>
 									<Label text="{i18n>artifactSource}"/>
 									<Select id="idArtifact_ReleasePipeline"  >
 										<core:ListItem key="BuildPipeline" icon="sap-icon://action-settings" text="BuildPipeline"/>
 									</Select>
-									<Label text="{i18n>enterReleasePipelineName}"/>
-									<Input id="idWorkFlowName" value=""></Input>
 									<Label text="{i18n>selectBuildPipeline}"/>
 									<Select id="idBuildSelect_ReleasePipeline" forceSelection="true" items="{path: 'Jobs>/'}" change="onLoadBuildNumbers">
 										<core:ListItem key="{Jobs>id}" icon="sap-icon://action-settings" text="{Jobs>projectname}"/>

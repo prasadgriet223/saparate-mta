@@ -40,8 +40,10 @@
 									<Text text="{Jobs>projectname}"/>
 									<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Jobs>lastModifiedDate'], formatter: '.formatter.getDate'}"
 										icon="sap-icon://date-time"/>
-									<Text text="{ parts : [ 'Jobs>scmUrl'], formatter: '.formatter.getRepoName'}"/>
-									<Text text="{ parts : [ 'Jobs>branchName'], formatter: '.formatter.getBranchName'}"/>
+									<!--<Text text="{ parts : [ 'Jobs>scmUrl'], formatter: '.formatter.getRepoName'}"/>-->
+									<!--<Text text="{ parts : [ 'Jobs>branchName'], formatter: '.formatter.getBranchName'}"/>-->
+									<Text text="{Jobs>scmUrl}"/>
+									<Text text="{Jobs>branchName}"/>
 									<Button class="roundButton" icon="sap-icon://physical-activity" text="" press="initiateTriggerJob"/>
 									<Button class="roundButton" icon="sap-icon://goalseek" text="" press="gotoBuilds"/>
 									<Button class="roundButton" icon="sap-icon://delete" press="gotoDeleteJob"/>

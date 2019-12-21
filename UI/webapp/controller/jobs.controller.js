@@ -70,7 +70,7 @@ sap.ui.define([
 			oRouter.navTo("Dashboard");
 		},
 		initiateTriggerJob: function (oEvent) {
-			//	this.getView().setBusy(true);
+
 			var selectedJobId = oEvent.getSource().getBindingContext("Jobs").getProperty("projectname");
 			//	oEvent.getSource().getParent().getParent().getItems()[1].setBusy(true);
 			oEvent.getSource().setBusy(true);
@@ -142,29 +142,36 @@ sap.ui.define([
 		},
 
 		_handleMessageBoxOpen: function (sMessage, sjobId, sMessageBoxType) {
-			var jobids = {
-				"jobName": sjobId
-			};
-			MessageBox[sMessageBoxType](sMessage, {
+			MessageBox.warning(sMessage, {
 				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 				onClose: function (oAction) {
 					if (oAction === MessageBox.Action.YES) {
-
-						var oModel_triggerJob = new sap.ui.model.json.JSONModel();
+						this.byId("idtblAllPipelines").setBusy(true);
+						var oModel_deleteJob = new sap.ui.model.json.JSONModel();
 						var sHeaders = {
 							"Content-Type": "application/json",
 							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 						};
-						oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
+						oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + sjobId,
+							null,
 							true,
-							"POST", false, false, sHeaders);
+							"GET", null, false, sHeaders);
 
-						oModel_triggerJob.attachRequestCompleted(function () {
-							this._navigatetoBuilds(oModel_triggerJob.getData()["response"], sjobId);
+						oModel_deleteJob.attachRequestCompleted(function () {
+							var msg = this.getView().getModel("i18n").getResourceBundle().getText("deleteBuildPipelineMessageSuccess");
+							MessageToast.show(msg);
+
+							this.loadDatatoViewwithKey_GET("jobs", "Jobs",
+								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
+							this.getView().getModel("Jobs").refresh(true);
+
+							//	this.getView().setBusy();
+							this.byId("idtblAllPipelines").setBusy(false);
 						}.bind(this));
 					}
 					//if (oAction === MessageBox.Action.NO) {
-					this.getView().setBusy(false);
+
 					//	}
 
 				}.bind(this)
@@ -175,20 +182,8 @@ sap.ui.define([
 
 			var selectedJobId = oEvent.getSource().getBindingContext("Jobs").getProperty("projectname");
 
-			var oModel_deleteJob = new sap.ui.model.json.JSONModel();
-			var sHeaders = {
-				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			};
-			oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId, null,
-				true,
-				"GET", null, false, sHeaders);
-
-			oModel_deleteJob.attachRequestCompleted(function () {
-				this.byId("idtblAllPipelines").getBinding("items").refresh();
-				var msg = 'Job Deleted Successfully';
-				MessageToast.show(msg);
-			}.bind(this));
+			this._handleMessageBoxOpen(this.getView().getModel("i18n").getResourceBundle().getText("deleteBuildPipeline"), selectedJobId,
+				"alert");
 
 			//	var oModel_deleteJob = new sap.ui.model.json.JSONModel();
 			//	oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId);
