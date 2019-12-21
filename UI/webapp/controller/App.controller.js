@@ -68,6 +68,9 @@ sap.ui.define([
 		},
 		gotoCredentials: function () {
 			this.getRouter().navTo("Credentials");
+		},
+		gotoInbox: function() {
+			this.getRouter().navTo("inbox");
 		}
 	});
 });

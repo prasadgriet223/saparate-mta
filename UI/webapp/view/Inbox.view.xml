@@ -1,0 +1,39 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="scp.com.saparate.controller.Inbox"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Title">
+				<content>
+					<Table items="{path: 'Inbox>/'}" id="idAllInbox" alternateRowColors="true">
+						<columns>
+							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="Task id"/>
+							</Column>
+							<Column demandPopin="true" >
+								<Text text="Task name"/>
+							</Column>
+							
+							<Column demandPopin="true" >
+								<Text text="Approve"/>
+							</Column>
+							<Column demandPopin="true" >
+								<Text text="Reject"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Active" press="doNothing">
+								<cells>
+									<Text text="{Inbox>humanTaskId}"/>
+									<Text text="{Inbox>assigneeId}"/>
+									
+									<Button type="Accept" text="Accept"  press="onAcceptButtonPress" ></Button>
+									<Button type="Reject" text="Reject" press="onRejectButtonPress" ></Button>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
