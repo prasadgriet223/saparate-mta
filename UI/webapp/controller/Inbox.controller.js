@@ -15,6 +15,7 @@ sap.ui.define([
 		onInit: function () {
 			this._oRouter = this.getOwnerComponent().getRouter();
 			this._oRouter.getRoute("Inbox").attachPatternMatched(this._onObjectMatched, this);
+			
 		},
 
 		_onObjectMatched: function (oEvent) {
