@@ -7,9 +7,9 @@
 					<Text id="idNewPipeLineCredentials"/>
 					<Label text="Repository Type"/>
 					<Text id="idNewPipeLineRepoType"/>
-					<Label text="Used Repository"/>
+					<Label text="{i18n>usedRepo}"/>
 					<Text id="idNewPipeLineRepository"/>
-					<Label text="Used Branch"/>
+					<Label text="{i18n>usedBranch}"/>
 					<Text id="idNewPipeLineBranch"/>
 					<Label text="Build Type"/>
 					<Text id="idNewPipeLineBuildType"/>

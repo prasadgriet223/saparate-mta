@@ -113,9 +113,20 @@ sap.ui.define([
 			oModel_buildstageslog_Stage.loadData(this.getOwnerComponent().getModel("servers").getProperty("stagelog") + "?jobName=" + this._jobid +
 				"&buildNumber=" + this._buildid + "&stageId=" + id, null, true, "GET", null, false, sHeaders);
 			oModel_buildstageslog_Stage.attachRequestCompleted(function () {
-				var response = oModel_buildstageslog_Stage.getData().text;
-				this.byId("idstagelog").setText(response);
-				this.byId("idpanel_Stage").setExpanded(true);
+
+				//	var response = oModel_buildstageslog_Stage.getData().text;
+				//	this.byId("idstagelog").setText(response);
+				//	this.byId("idpanel_Stage").setExpanded(true);
+
+				var p = this.byId("idpanel_Stage");
+				p.removeAllContent();
+				var sResponse = oModel_buildstageslog_Stage.getData()["response"];
+				var r = JSON.stringify(sResponse).replace(/\n/g, "<br />");
+				var oText2 = new sap.ui.core.HTML();
+				oText2.setContent("<div class='idBuildlogs_html'>" + r + " </div>");
+				oText2.placeAt(this.byId("idpanel_Stage"));
+				this.byId("idpanel_Stage").setBusy(false);
+
 			}.bind(this));
 
 		},

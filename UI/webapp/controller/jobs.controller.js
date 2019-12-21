@@ -90,17 +90,19 @@ sap.ui.define([
 				"POST", false, false, sHeaders);
 			oModel_triggerJob.attachRequestCompleted(function () {
 				//	oButtonctrl.setText(selectedJobId + "  " + "Triggered");
-				var oModel_Jobbuild = new sap.ui.model.json.JSONModel();
-				oModel_Jobbuild.loadData(this.getApiCall("jobresults") + "?jobName=" + selectedJobId, null, true, "GET", null, false, sHeaders);
-				oModel_Jobbuild.attachRequestCompleted(function () {
-					var buildNumber = oModel_Jobbuild.getData()[0].number;
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-					oButtonctrl.setBusy(false);
-					oRouter.navTo("buildStages", {
-						jobId: selectedJobId,
-						buildid: buildNumber
-					});
-				}.bind(this));
+				MessageToast.show(oModel_triggerJob.getData().cycleResponse);
+				oButtonctrl.setBusy(false);
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.navTo("buildStages", {
+					jobId: selectedJobId,
+					buildid: oModel_triggerJob.getData().cycleNumber
+				});
+				// var oModel_Jobbuild = new sap.ui.model.json.JSONModel();
+				// oModel_Jobbuild.loadData(this.getApiCall("jobresults") + "?jobName=" + selectedJobId, null, true, "GET", null, false, sHeaders);
+				// oModel_Jobbuild.attachRequestCompleted(function () {
+				// 	var buildNumber = oModel_Jobbuild.getData()[0].number;
+
+				// }.bind(this));
 			}.bind(this));
 
 			//	this._handleMessageBoxOpen("Are you sure you want to trigger Pipeline " + selectedJobId, selectedJobId, "confirm");
