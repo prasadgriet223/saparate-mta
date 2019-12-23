@@ -70,7 +70,7 @@ sap.ui.define([
 			this.getRouter().navTo("Credentials");
 		},
 		gotoInbox: function() {
-			this.getRouter().navTo("inbox");
+			this.getRouter().navTo("Inbox");
 		}
 	});
 });

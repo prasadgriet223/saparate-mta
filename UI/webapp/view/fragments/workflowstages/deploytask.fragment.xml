@@ -6,7 +6,7 @@
 			<ObjectAttribute text="{Stages>buildJobName}" title="buildJobName"></ObjectAttribute>
 			<ObjectAttribute title="buildJobNumber" text="{Stages>buildJobNumber}"/>
 			<ObjectAttribute title="Status" text="{Stages>status}"/>
-			<ObjectAttribute text="Logs" visible="{= ${Stages>status} === 'FAILED' }" active="true" press="showStageLogs"/>
+			<ObjectAttribute text="Logs"  active="true" press="showStageLogs"/>
 		</attributes>
 		<firstStatus>
 			<ObjectStatus text="{ parts : [ 'Stages>startTime'], formatter: '.formatter.Cyclestagetime' }" title="StartTime"/>

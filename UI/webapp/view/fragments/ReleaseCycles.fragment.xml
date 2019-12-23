@@ -1,20 +1,4 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
-	<!--	<pages>-->
-	<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
-	<!--			<customHeader>-->
-	<!--				<Bar id="bar0">-->
-	<!--					<contentLeft>-->
-	<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
-	<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
-	<!--						</Breadcrumbs>-->
-	<!--					</contentLeft>-->
-	<!--					<contentMiddle>-->
-	<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
-	<!--					</contentMiddle>-->
-	<!--				</Bar>-->
-	<!--			</customHeader>-->
-	<!--			<content>-->
 	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}" alternateRowColors="true" >
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
@@ -62,8 +46,4 @@
 			</Toolbar>
 		</headerToolbar>
 	</Table>
-	<!--		</content>-->
-	<!--	</Page>-->
-	<!--</pages>-->
-	<!--</App>-->
 </core:FragmentDefinition>

@@ -115,7 +115,7 @@ sap.ui.define([
 		},
 		onSaveJsontoCoreModel: function (oEvent) {
 			var oSelectedKey = this.byId("idTabNewReleasePipeline").getSelectedKey();
-			
+			//ApprovalTask,ManualTask
 			var oModel_Stage = new JSONModel([{
 				"name": "preconditionfor"+oSelectedKey,
 				"label": "PreCondition for " + oSelectedKey,
@@ -191,6 +191,7 @@ sap.ui.define([
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineJobName = this.byId(
 						"idBuildSelect_ReleasePipeline").getSelectedItem().getText();
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").label = this.byId("idWorkFlowName").getValue();
+					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").createdBy = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email");
 				}
 			}.bind(this));
 			

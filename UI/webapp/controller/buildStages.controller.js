@@ -121,7 +121,9 @@ sap.ui.define([
 				var p = this.byId("idpanel_Stage");
 				p.removeAllContent();
 				var sResponse = oModel_buildstageslog_Stage.getData()["response"];
-				var r = JSON.stringify(sResponse).replace(/\n/g, "<br />");
+				//	var r = JSON.stringify(sResponse).replace(/\\n\\n/g, "<br />");
+				var r = JSON.stringify(sResponse).replace(/\n\s*\n/g, "<br />");
+				r = r.replace(/\n/g, "<br />");
 				var oText2 = new sap.ui.core.HTML();
 				oText2.setContent("<div class='idBuildlogs_html'>" + r + " </div>");
 				oText2.placeAt(this.byId("idpanel_Stage"));

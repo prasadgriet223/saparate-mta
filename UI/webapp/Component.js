@@ -26,13 +26,15 @@ sap.ui.define([
 
 			var oKeyModel_data = {
 				"saparate": {
-					"key": ""
+					"key": "",
+					"email":""
 				}
 			};
 
 			var oReleasePipeLine = {
 				"workflowId": "",
 				"label": "",
+				"createdBy": "",
 				"releasePipelineBuildInput": {
 					"buildPipelineJobName": "",
 					"buildPipelineBuildID": ""
@@ -54,6 +56,7 @@ sap.ui.define([
 			var that = this;
 			oModel.attachRequestCompleted(function () {
 				var data = oModel.getData();
+				sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/email", data.id);
 				var sHeaders = {
 					"Authorization": "Bearer " + data.token.accessToken
 				};
@@ -63,6 +66,7 @@ sap.ui.define([
 					null, false, sHeaders);
 				oModel_2.attachRequestCompleted(function () {
 					data["userUUID"] = oModel_2.getData().user_id;
+					
 					var oModel_3 = new JSONModel();
 					oModel_3.loadData("https://na1.saparate.com/saparate/authorization/apitoken", JSON.stringify(data), true, "POST", false,
 						false, {
@@ -83,7 +87,7 @@ sap.ui.define([
 			});
 		//	test code
 			// sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
-			// 	"authorizationToken": "9863ef0f-2147-4e2e-a0e6-cfba7349277a"
+			// 	"authorizationToken": "50dc326e-2594-4551-a5f0-3309208eed94"
 			// });
 			// this.getRouter().initialize();
 			// var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
