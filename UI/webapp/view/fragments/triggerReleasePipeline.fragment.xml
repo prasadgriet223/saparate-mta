@@ -4,6 +4,8 @@
 			<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout"
 				id="idCredentialform">
 				<sap.ui.layout.form:content>
+					<Label text="{i18n>cycleName}"/>
+					<Input id="ip_cycle_name" width="auto" value=""/>
 					<Label text="{i18n>jobName}"/>
 					<Text id="idReleasePipelineJobName" width="auto" text=""/>
 					<Label text="{i18n>buildName}"/>

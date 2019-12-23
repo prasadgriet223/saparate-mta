@@ -20,7 +20,7 @@
 		<items>
 			<ColumnListItem type="Navigation" press = "handleSelectionChange_releaseCycle"  highlight="{parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus'}" >
 				<cells>
-					<ObjectStatus xmlns="sap.m" text="{Cycledetails>label}" state="Information"/>
+					<ObjectStatus xmlns="sap.m" text="{Cycledetails>cycleName}" state="Information"/>
 					<ObjectStatus xmlns="sap.m" text="{Cycledetails>instantiatedBy}" state="Information"/>
 					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"
 						icon="sap-icon://date-time"/>

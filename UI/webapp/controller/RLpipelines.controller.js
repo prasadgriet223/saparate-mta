@@ -73,7 +73,8 @@ sap.ui.define([
 		onTriggerReleasePipeline: function (oEvent) {
 			var oInput = new JSONModel({
 				"pipelineId": "10000",
-				"instantiatedBy": "ravi12",
+				"instantiatedBy": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"),
+				"cycleName": this.getView().byId("ip_cycle_name").getValue(),
 				"inputs": {
 					"name1": "deployTest",
 					"buildJobName": this.getView().byId("idBuildnameTrigger_ReleasePipeline").getText(),

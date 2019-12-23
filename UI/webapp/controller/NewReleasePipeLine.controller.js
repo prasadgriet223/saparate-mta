@@ -119,7 +119,7 @@ sap.ui.define([
 			var oModel_Stage = new JSONModel([{
 				"name": "preconditionfor"+oSelectedKey,
 				"label": "PreCondition for " + oSelectedKey,
-				"type": "humanTask",
+				"type": "approvalTask",
 				"taskCategory": "PRE_CONDITION",
 				"categoryFor": oSelectedKey,
 				"assignID": "",
@@ -139,7 +139,7 @@ sap.ui.define([
 			}, {
 				"name": "postconditionfor"+oSelectedKey,
 				"label": "postcondition for " + oSelectedKey,
-				"type": "humanTask",
+				"type": "manualTask",
 				"taskCategory": "POST_CONDITION",
 				"categoryFor": oSelectedKey,
 				"assignID": "",
