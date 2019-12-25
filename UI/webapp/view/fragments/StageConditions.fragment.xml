@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%" xmlns:tnt="sap.tnt">
+	<core:FragmentDefinition xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m" height="100%" xmlns:tnt="sap.tnt">
 	<sap.ui.layout:VerticalLayout xmlns:form="sap.ui.layout.form" id="idPanelStagesConditions" xmlns:core="sap.ui.core" xmlns="sap.m"
 		xmlns:sap.ui.layout="sap.ui.layout" width="100%">
 		<sap.ui.layout:content>
@@ -8,6 +8,11 @@
 						<content>
 							<form:SimpleForm editable="true" id="idPreConditionStageForm" layout="ResponsiveGridLayout">
 								<form:content>
+									<Label text="{i18n>selectTaskType}"/>
+									<Select width="30%" id="idpredeployment_TaskType" selectedKey="{/0/type}" >
+										<core:ListItem key="approvalTask" icon="sap-icon://employee-approvals" text="approvalTask"/>
+										<core:ListItem key="manualTask" icon="sap-icon://supplier" text="manualTask"/>
+									</Select>
 									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPreConditionSelectUser" value="{/0/assignedTo}"/>
 									<Label text="{i18n>message}"/>
@@ -21,8 +26,8 @@
 							<form:SimpleForm editable="true" id="idDeployStageForm" layout="ResponsiveGridLayout">
 								<form:content>
 									<Label text="{i18n>selectEnv}"/>
-									<!--<Input  showValueHelp="true" id="idStageDeploycondition" />-->
-									<Select  width="30%" id="idEnvSelect_ReleasePipeline" selectedKey="{/1/cfCredentialsID}" items="{path: 'Environments>/'}">
+									<!--<Input  showValueHelp="true" id="idStageDeploycondition" />     -->
+									<Select width="30%" id="idEnvSelect_ReleasePipeline" selectedKey="{/1/cfCredentialsID}"  items="{path: 'Environments>/'}">
 										<core:ListItem key="{Environments>id}" icon="sap-icon://action-settings" text="{Environments>name}"/>
 									</Select>
 								</form:content>
@@ -33,6 +38,11 @@
 						<content>
 							<form:SimpleForm editable="true" id="idPostConditionStageForm" layout="ResponsiveGridLayout">
 								<form:content>
+										<Label text="{i18n>selectTaskType}"/>
+									<Select width="30%" id="idpostdeployment_TaskType" selectedKey="{/2/type}" >
+										<core:ListItem key="approvalTask" icon="sap-icon://employee-approvals" text="approvalTask"/>
+										<core:ListItem key="manualTask" icon="sap-icon://supplier" text="manualTask"/>
+									</Select>
 									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPostConditionSelectUser" value="{/2/assignedTo}"/>
 									<Label text="{i18n>message}"/>
