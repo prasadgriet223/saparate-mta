@@ -95,7 +95,8 @@ sap.ui.define([
 			var oInput = {
 				"humanResponse": {
 					"msg": oEvent.getSource().getBindingContext("Stages").getProperty("waitUntil")
-				}
+				},
+				"actedBy":oEvent.getSource().getBindingContext("Stages").getProperty("assignedTo")
 			};
 
 			var action = "";
