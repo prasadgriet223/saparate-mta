@@ -26,18 +26,16 @@ sap.ui.define([
 		},
 		
 		onAcceptButtonPress: function(oEvent) {
-			var taskId = oEvent.getSource().getBindingContext("Inbox").getProperty("taskInstanceId");
-			/*var oModel = new JSONModel(oCtx);*/
-			/*oModel.getData();*/
 			
 			var oInput = {
 				"humanResponse": {
-					"msg": "accept message"
-				}
+					"msg": oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/waitUntil")
+				},
+				"actedBy":oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/assignedTo")
 			};
+			
+			var taskId = oEvent.getSource().getBindingContext("Inbox").getProperty("taskInstanceId");
 			var action = "COMPLETE";
-			/*if (oEvent.getSource().getText() === "Reject")
-				action = "REJECT";*/
 				
 			var sHeaders = {
 				"Content-Type": "application/json",
@@ -56,9 +54,13 @@ sap.ui.define([
 						if (oActions === "OK") {
 							
 							//need to call task inbox api again
-							var tasks = {"number":1,"totalItems":1,"size":1,"totalPages":1,"items":[{"humanTaskId":10001,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fd","assigneeId":"2334345","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"}]};
-							var oModel2= new JSONModel(tasks.items);
-							this.getView().setModel(oModel2, "Inbox");
+							//var tasks = {"number":1,"totalItems":1,"size":1,"totalPages":1,"items":[{"humanTaskId":10001,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fd","assigneeId":"2334345","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"}]};
+							//var oModel2= new JSONModel(tasks.items);
+							//this.getView().setModel(oModel2, "Inbox");
+							
+							this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid="+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"), "Inbox",
+									sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				
 							this.getView().getModel("Inbox").refresh();
 						}
 					}.bind(this)
