@@ -83,7 +83,7 @@ sap.ui.define([
 		},
 		StageFactory: function (sId, oContext) {
 			var oUIControl;
-			if (oContext.getProperty("type") === "humanTask") {
+			if (oContext.getProperty("type") === "manualTask" || oContext.getProperty("type") === "approvalTask") {
 				oUIControl = this.byId("humantask").clone(sId);
 			}
 			if (oContext.getProperty("type") === "deployTask") {
@@ -95,7 +95,8 @@ sap.ui.define([
 			var oInput = {
 				"humanResponse": {
 					"msg": oEvent.getSource().getBindingContext("Stages").getProperty("waitUntil")
-				}
+				},
+				"actedBy":oEvent.getSource().getBindingContext("Stages").getProperty("assignedTo")
 			};
 
 			var action = "";
