@@ -1,11 +1,12 @@
 sap.ui.define([
+	"scp/com/saparate/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox",
-], function (Controller, JSONModel, MessageBox) {
+	"sap/m/MessageBox"
+], function (BaseController, Controller, JSONModel, MessageBox) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.Inbox", {
+	return BaseController.extend("scp.com.saparate.controller.Inbox", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -19,22 +20,9 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
+			this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid="+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"), "Inbox",
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 			
-			/*var sHeaders = {
-				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			};
-			var oModel = new JSONModel();
-			this.getView().setBusy(true);
-			oModel.loadData("//3.232.119.28:8080/rateworkflow/tasks/user?userid=user1@releaseowl.com", null, true, "GET", null, false, sHeaders);
-			oModel.attachRequestCompleted(function () {
-				this.getView().setModel(oModel, "Inbox");
-				this.getView().setBusy(false);
-			}.bind(this));*/
-			
-			var tasks = {"number":1,"totalItems":1,"size":1,"totalPages":1,"items":[{"humanTaskId":10000,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fc","assigneeId":"2334344","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"},{"humanTaskId":10001,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fd","assigneeId":"2334345","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"}]};
-			var oModel= new JSONModel(tasks.items);
-			this.getView().setModel(oModel, "Inbox");
 		},
 		
 		onAcceptButtonPress: function(oEvent) {
