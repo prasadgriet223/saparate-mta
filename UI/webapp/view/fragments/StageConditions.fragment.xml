@@ -56,35 +56,3 @@
 		</sap.ui.layout:content>
 	</sap.ui.layout:VerticalLayout>
 </core:FragmentDefinition>
-<!--<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true">-->
-<!--	<headerToolbar>-->
-<!--		<Toolbar >-->
-<!--			<content>-->
-<!--				<CheckBox xmlns="sap.m" text="Deployment" selected="false"/>-->
-<!--			</content>-->
-<!--		</Toolbar>-->
-<!--	</headerToolbar>-->
-<!--	<content>-->
-<!--		<form:SimpleForm editable="true" layout="ResponsiveGridLayout">-->
-<!--			<form:content>-->
-<!--				<Label text="Select Environment"/>-->
-<!--				<Input width="30%" showValueHelp="true"/></form:content>-->
-<!--		</form:SimpleForm>-->
-<!--	</content>-->
-<!--</Panel>-->
-<!--<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true">-->
-<!--	<headerToolbar>-->
-<!--		<Toolbar>-->
-<!--			<content>-->
-<!--				<CheckBox xmlns="sap.m" text="PostCondition" selected="false"/>-->
-<!--			</content>-->
-<!--		</Toolbar>-->
-<!--	</headerToolbar>-->
-<!--	<content>-->
-<!--		<form:SimpleForm editable="true" layout="ResponsiveGridLayout">-->
-<!--			<form:content>-->
-<!--				<Label text="Select User"/>-->
-<!--				<Input width="30%"/></form:content>-->
-<!--		</form:SimpleForm>-->
-<!--	</content>-->
-<!--</Panel>-->

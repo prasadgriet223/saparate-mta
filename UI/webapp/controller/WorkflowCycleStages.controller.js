@@ -83,7 +83,7 @@ sap.ui.define([
 		},
 		StageFactory: function (sId, oContext) {
 			var oUIControl;
-			if (oContext.getProperty("type") === "humanTask") {
+			if (oContext.getProperty("type") === "approvalTask"  ||  oContext.getProperty("type") === "manualTask" ) {
 				oUIControl = this.byId("humantask").clone(sId);
 			}
 			if (oContext.getProperty("type") === "deployTask") {

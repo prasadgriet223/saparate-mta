@@ -117,7 +117,7 @@ sap.ui.define([
 			var oSelectedKey = this.byId("idTabNewReleasePipeline").getSelectedKey();
 			//ApprovalTask,ManualTask
 			var oModel_Stage = new JSONModel([{
-				"name": "preconditionfor"+oSelectedKey,
+				"name": "preconditionfor" + oSelectedKey,
 				"label": "PreCondition for " + oSelectedKey,
 				"type": "approvalTask",
 				"taskCategory": "PRE_CONDITION",
@@ -137,7 +137,7 @@ sap.ui.define([
 				"type": "deployTask",
 				"stageName": oSelectedKey
 			}, {
-				"name": "postconditionfor"+oSelectedKey,
+				"name": "postconditionfor" + oSelectedKey,
 				"label": "postcondition for " + oSelectedKey,
 				"type": "manualTask",
 				"taskCategory": "POST_CONDITION",
@@ -191,11 +191,10 @@ sap.ui.define([
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineJobName = this.byId(
 						"idBuildSelect_ReleasePipeline").getSelectedItem().getText();
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").label = this.byId("idWorkFlowName").getValue();
-					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").createdBy = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email");
+					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").createdBy = sap.ui.getCore().getModel('oKeyModel').getProperty(
+						"/saparate/email");
 				}
 			}.bind(this));
-			
-
 
 			var ip_workflow = this.byId("idWorkFlowName").getValue();
 
@@ -209,138 +208,22 @@ sap.ui.define([
 				ip_workflow, JSON.stringify(
 					sap.ui.getCore().getModel('oModelSaveReleasePipeline').getData()), true,
 				"POST", false, false, sHeaders);
-				
-							oModel_CreateReleasePipeLine.attachRequestCompleted(function () {
-								
-							MessageBox.show(("Release PipeLine "+oModel_CreateReleasePipeLine.getData().name +" Created"), {
-								title: "Message",
-								actions: [sap.m.MessageBox.Action.OK],
-								onClose: function (oActions) {
-									if (oActions === "OK") {
-										var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-										oRouter.navTo("RLpipelines");
-									}
-								}.bind(this)
-							});
-						}.bind(this));
-				
-				
-				
-				
 
-		//	console.log(sap.ui.getCore().getModel("oModelSaveReleasePipeline").getData());
+			oModel_CreateReleasePipeLine.attachRequestCompleted(function () {
+
+				MessageBox.show(("Release PipeLine " + oModel_CreateReleasePipeLine.getData().name + " Created"), {
+					title: "Message",
+					actions: [sap.m.MessageBox.Action.OK],
+					onClose: function (oActions) {
+						if (oActions === "OK") {
+							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+							oRouter.navTo("RLpipelines");
+						}
+					}.bind(this)
+				});
+			}.bind(this));
+			
+			
 		}
-
-		//this._oAddStageModel.getData().getProperty("/")[Stage].push({"name":Stage});
-		//console.log(this._oAddStageModel);
-
-		// var jsonStr = '{Stage:[{"teamId":"1","status":"pending"}]}';
-
-		// var oAddStage = JSON.parse(jsonStr);
-
-		// var obj = JSON.parse(jsonStr);
-		// obj['theTeam'].push({
-		// 	"teamId": "4",
-		// 	"status": "pending"
-		// });
-		// jsonStr = JSON.stringify(obj);
-
-		// icon="sap-icon://begin"
-		// 	iconColor="Positive"
-		// 	design="Horizontal"
-		// 	count="{/ProductCollectionStats/Counts/Weight/Ok} of {/ProductCollectionStats/Counts/Total}"
-		// 	text="Confirm Ok"
-		// 	key="Ok" />
-
-		/**
-		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
-		 * (NOT before the first rendering! onInit() is used for that one!).
-		 * @memberOf scp.com.saparate.view.NewReleasePipeLine
-		 */
-		//	onBeforeRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the View has been rendered (so its HTML is part of the document). Post-rendering manipulations of the HTML could be done here.
-		 * This hook is the same one that SAPUI5 controls get after being rendered.
-		 * @memberOf scp.com.saparate.view.NewReleasePipeLine
-		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf scp.com.saparate.view.NewReleasePipeLine
-		 */
-		//	onExit: function() {
-		//
-		//	}
-		// sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/tasks").push({
-		// 		"name": "precondition for " + oSelectedKey,
-		// 		"label": "Pre Condition for " + oSelectedKey,
-		// 		"type": "humanTask",
-		// 		"taskCategory": "PRE_CONDITION",
-		// 		"Stage": oSelectedKey,
-		// 		"categoryFor": oSelectedKey,
-		// 		"assignID": this.byId("idPreConditionSelectUser").getValue(),
-		// 		"assignedTo": this.byId("idPreConditionSelectUser").getValue(),
-		// 		"assignType": "USER",
-		// 		"waitUntil": "preConditionMsg"
-		// 	}, {
-		// 		"name": oSelectedKey,
-		// 		"label": oSelectedKey,
-		// 		"jenkinsJobStatus": null,
-		// 		"cfCredentialsID": "334343e342sdfsdfsf2343",
-		// 		"waitForMessage": "deployResponse",
-		// 		"type": "deployTask"
-		// 	}, {
-		// 		"name": "postcondition for " + oSelectedKey,
-		// 		"label": "postcondition for " + oSelectedKey,
-		// 		"type": "humanTask",
-		// 		"taskCategory": "POST_CONDITION",
-		// 		"Stage": oSelectedKey,
-		// 		"categoryFor": oSelectedKey,
-		// 		"assignID": this.byId("idPostConditionSelectUser").getValue(),
-		// 		"assignedTo": this.byId("idPostConditionSelectUser").getValue(),
-		// 		"assignType": "USER",
-		// 		"waitUntil": "postConditionMsg"
-		// 	}
-
-		// );
 	});
-
 });
-//	var oModel = new sap.ui.model.json.JSONModel();
-// oModel.setSizeLimit(10);
-// oModel.setData({
-// 	"lanes": []
-// });
-// this.oProcessFlow = this.getView().byId("idReleasePipelineProcessFlow");
-// this.oProcessFlow.setModel(oModel, "js");
-
-// var oLaneHeader2 = new ProcessFlowLaneHeader({
-// 	iconSrc: "sap-icon://it-host",
-// 	text: "Quality",
-// 	position: 1,
-// 	press: this.pressHeader
-// });
-
-// this.byId("idReleasePipelineProcessFlow").addLane(oLaneHeader2);
-
-// var iPosition = this.byId("idReleasePipelineProcessFlow").getLanes().length;
-
-// if (iPosition !== 0)
-// 	iPosition = iPosition + 1;
-
-// this.oProcessFlow.getModel("js").getProperty("/lanes").push({
-// 	"id": iPosition,
-// 	"icon": "sap-icon://it-host",
-// 	"label": Stage,
-// 	text: Stage,
-// 	"position": iPosition
-// });
-
-// this.oProcessFlow.getModel("js").refresh(true);
-// this.oProcessFlow.updateModel();
