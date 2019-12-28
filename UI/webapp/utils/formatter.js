@@ -47,7 +47,7 @@ sap.ui.define([], function () {
 		},
 		getDate: function (date) {
 			var d = new Date(date);
-			return (d.getFullYear() + "/" + d.getMonth() + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+			return (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		},
 		CyclestageStatus: function (status) {
 			var result = "";
