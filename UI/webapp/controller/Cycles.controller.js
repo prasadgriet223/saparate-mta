@@ -18,27 +18,24 @@ sap.ui.define([
 			this._cycleId = "";
 		},
 		_onObjectMatched: function (oEvent) {
-			sap.ui.core.BusyIndicator.show();
 			this._cycleId = oEvent.getParameter("arguments").cycleId;
-
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
 			} else {
-
-				this.loadDatatoViewwithKey_GET_filter("getCyclesforRelease", "/" + this._cycleId,
+				this.byId("idPipeLineCycleResults").setBusy(true);
+				this.loadDatatoViewwithKey_GET_filter_3("getCyclesforRelease", "/" + this._cycleId,
 					"Cycledetails",
-					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-				this.byId("idBreadcrum_builds").setCurrentLocationText(	this._cycleId);
-
+					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), this.byId("idPipeLineCycleResults"),this.byId("idBreadcrum_builds"));
+			
 			}
-			sap.ui.core.BusyIndicator.hide();
 		},
 		handleSelectionChange_releaseCycle: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("WorkflowCycleStages", {
 				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id,
-				CycleId: this._cycleId
+				CycleId: this._cycleId,
+				Rlname:oEvent.getSource().getBindingContext("Cycledetails").getObject().id	
 			});
 		},
 		navigateTo: function (oEvent) {
@@ -47,10 +44,10 @@ sap.ui.define([
 				if (route === "Dashboard") {
 					oRouter.navTo("Dashboard");
 				}
-				if (route === "Release PipeLines") {
+				if (route === "Release pipelines") {
 					oRouter.navTo("RLpipelines");
 				}
-			}
+			},
 			/**
 			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 			 * (NOT before the first rendering! onInit() is used for that one!).
@@ -65,9 +62,9 @@ sap.ui.define([
 		 * This hook is the same one that SAPUI5 controls get after being rendered.
 		 * @memberOf scp.com.saparate.view.Cycles
 		 */
-		//	onAfterRendering: function() {
-		//
-		//	},
+			onAfterRendering: function() {
+		//	this.byId("idBreadcrum_builds").setCurrentLocationText(this.getView().getModel("Cycledetails").getData().items[0].label);
+			}
 
 		/**
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.

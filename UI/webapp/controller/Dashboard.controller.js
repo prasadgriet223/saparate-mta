@@ -42,7 +42,8 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("WorkflowCycleStages", {
 				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id,
-				CycleId: "from"
+				CycleId: "from",
+				Rlname:"huk"
 			});
 
 		},

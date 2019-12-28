@@ -66,6 +66,19 @@ sap.ui.define([
 				oCtrl.setBusy(false);
 			}.bind(this));
 		},
+		loadDatatoViewwithKey_GET_filter_3: function (sProperty, sfilter, sView, sKey, oCtrl, bCrum_txt_val) {
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+			var oModel = new JSONModel();
+			oModel.loadData(this.getApiCall(sProperty) + sfilter, null, true, "GET", null, false, sHeaders);
+			oModel.attachRequestCompleted(function () {
+				this.getView().setModel(oModel, sView);
+				bCrum_txt_val.setCurrentLocationText(this.getView().getModel("Cycledetails").getData().items[0].label);
+				oCtrl.setBusy(false);
+			}.bind(this));
+		},
 
 		loadDatatoViewwithKey_POST: function (sProperty, oInput, sView, sKey) {
 			var oModel = new JSONModel();

@@ -4,7 +4,7 @@
 		<pages>
 			<Page showHeader="false">
 				<content>
-					<List headerText=""
+					<List id="idWorkFlowStageResults" headerText=""
 						items="{ path: 'Stages>/execution', sorter: { path: 'Stages>stageName', descending: true, group: true }, factory: '.StageFactory' ,groupHeaderFactory: '.getGroupHeader' }">
 						<dependents>
 							<core:Fragment fragmentName="scp.com.saparate.view.fragments.workflowstages.deploytask" type="XML"/>
@@ -20,7 +20,7 @@
 									<Link text="{i18n>project}" emphasized="false" id="idlnk1_Projects"/>
 									<Link text="{i18n>dashboard}" emphasized="false" press="navigateTo"/>
 									<Link text="{i18n>releasePipelines}" emphasized="false" press="navigateTo"/>
-									<!--<Link id="idbc_RCycle" emphasized="false" press="navigateTo"/>-->
+									<Link id="idbc_RCycle" emphasized="false" press="navigateTo"/>
 								</links>
 							</Breadcrumbs>
 						</contentLeft>

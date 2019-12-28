@@ -2,7 +2,7 @@
 	<sap.ui.layout:VerticalLayout xmlns:form="sap.ui.layout.form" id="idPanelStagesConditions" xmlns:core="sap.ui.core" xmlns="sap.m"
 		xmlns:sap.ui.layout="sap.ui.layout" width="100%">
 		<sap.ui.layout:content>
-			<IconTabBar id="bar0" expandable="false">
+			<IconTabBar id="idStagesIconTabbar" expandable="false">
 				<items>
 					<IconTabFilter text="{i18n>preDeploymentAction}" id="idPreConditionfilter">
 						<content>

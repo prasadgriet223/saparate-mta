@@ -50,7 +50,7 @@ sap.ui.define([
 				this.loadDatatoViewwithKey_GET("jobs", "Jobs",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 				this.byId("idtblAllPipelines").setBusy(false);
-				this.byId("idBreadcrum_buildpiplines").setCurrentLocationText("Build PipeLines");
+				this.byId("idBreadcrum_buildpiplines").setCurrentLocationText(this.getView().getModel("i18n").getResourceBundle().getText("buildPipelines"));
 			}
 		},
 		handleshowBuilddetails: function (oEvent) {

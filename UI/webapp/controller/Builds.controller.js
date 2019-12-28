@@ -75,7 +75,7 @@ sap.ui.define([
 			if (route === "Dashboard") {
 				oRouter.navTo("Dashboard");
 			}
-			if (route === "Build PipeLines") {
+			if (route === "Build pipelines") {
 				oRouter.navTo("jobs");
 			}
 		},

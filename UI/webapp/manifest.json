@@ -197,7 +197,7 @@
 				"target": ["RLpipelines"]
 			}, {
 				"name": "WorkflowCycleStages",
-				"pattern": "WorkflowCycleStages/{RjobId},{CycleId}",
+				"pattern": "WorkflowCycleStages/{RjobId},{CycleId},{Rlname}",
 				"titleTarget": "",
 				"greedy": false,
 				"target": ["WorkflowCycleStages"]

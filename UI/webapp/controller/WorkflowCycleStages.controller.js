@@ -26,7 +26,7 @@ sap.ui.define([
 				this.getRouter().navTo("Authorize");
 			} else {
 				var ReleasejobId = oEvent.getParameter("arguments").RjobId;
-				this._cycleId = ReleasejobId;
+			//	this._cycleId = ReleasejobId;
 				this.loadDatatoViewwithKey_GET_filter("getReleaseStages", "/" + ReleasejobId,
 					"Stages",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));

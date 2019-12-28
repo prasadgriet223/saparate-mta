@@ -25,7 +25,7 @@ sap.ui.define([
 				this.loadDatatoViewwithKey_GET("releaseworkflows", "workflows",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 				//this.byId("idtblAllPipelines").setBusy(false);
-				this.byId("idBreadcrum_RLpipelines").setCurrentLocationText("Release PipeLines");
+				this.byId("idBreadcrum_RLpipelines").setCurrentLocationText(this.getView().getModel("i18n").getResourceBundle().getText("releasePipelines"));
 			}
 		},
 		navigatetoCreateReleasePipeline: function (oEvent) {

@@ -1,4 +1,4 @@
-sap.ui.define([
+	sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"scp/com/saparate/model/models",
@@ -87,7 +87,7 @@ sap.ui.define([
 			// });	
 		//	test code
 			sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
-				"authorizationToken": "d084450d-26b3-440a-ad2c-d22b86f8e99b"
+				"authorizationToken": "b68ceaad-21b3-49a1-9b98-7702f342f91f	"
 			});
 			this.getRouter().initialize();
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
