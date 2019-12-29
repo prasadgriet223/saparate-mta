@@ -64,15 +64,17 @@ sap.ui.define([
 		 */
 		onAfterRendering: function () {
 			//	this.byId("idBreadcrum_builds").setCurrentLocationText(this.getView().getModel("Cycledetails").getData().items[0].label);
-		}
-
-		/**
-		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
-		 * @memberOf scp.com.saparate.view.Cycles
-		 */
-		//	onExit: function() {
-		//
-		//	}
+		},
+		refreshData_Cycles: function () {
+				this.refreshData_ui("getCyclesforRelease",  "/" + this._cycleId, "Cycledetails", this.byId("idPipeLineCycleResults"));
+			}
+			/**
+			 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
+			 * @memberOf scp.com.saparate.view.Cycles
+			 */
+			//	onExit: function() {
+			//
+			//	}
 
 	});
 

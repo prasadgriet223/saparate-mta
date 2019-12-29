@@ -43,7 +43,7 @@
 							<Text text="{i18n>panelContent}" id="text9"/>
 						</content>
 					</Panel>
-					<Panel xmlns="sap.m" width="auto" expandable="true" expanded="false" id="idpanel_Stage">
+					<Panel xmlns="sap.m" width="auto" expanded="true"  id="idpanel_Stage">
 						<headerToolbar>
 							<Toolbar id="idtoolbar_stagelog">
 								<Title id="idtoolbar_stagelog_title" text=""/>
