@@ -1,6 +1,6 @@
 <mvc:View xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" controllerName="scp.com.saparate.controller.Dashboard">
-	<Page xmlns="sap.m" id="pageId" title="Dash board" floatingFooter="true" showHeader="false">
+	<Page xmlns="sap.m" id="idDashboardPage" title="Dash board" floatingFooter="true" showHeader="false">
 		<content>
 			<l:VerticalLayout id="containerLayout" width="100%">
 				<l:BlockLayout id="BlockLayout" background="{/selectedBackground}">
@@ -9,7 +9,6 @@
 							<core:Fragment fragmentName="scp.com.saparate.view.fragments.Builds" type="XML"/>
 						</l:BlockLayoutCell>
 						<l:BlockLayoutCell title="">
-							
 						</l:BlockLayoutCell>
 					</l:BlockLayoutRow>
 					<l:BlockLayoutRow accentCells="Accent2">

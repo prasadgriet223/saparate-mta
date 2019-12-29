@@ -25,7 +25,8 @@ sap.ui.define([
 				this.loadDatatoViewwithKey_GET("releaseworkflows", "workflows",
 					sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 				//this.byId("idtblAllPipelines").setBusy(false);
-				this.byId("idBreadcrum_RLpipelines").setCurrentLocationText(this.getView().getModel("i18n").getResourceBundle().getText("releasePipelines"));
+				this.byId("idBreadcrum_RLpipelines").setCurrentLocationText(this.getView().getModel("i18n").getResourceBundle().getText(
+					"releasePipelines"));
 			}
 		},
 		navigatetoCreateReleasePipeline: function (oEvent) {
@@ -57,12 +58,13 @@ sap.ui.define([
 			this._getDialog().open();
 			var sBuildPipeLine = oEvent.getSource().getParent().getBindingContext("workflows").getObject().buildInput.buildPipelineJobName;
 			this.getView().byId("idBuildnameTrigger_ReleasePipeline").setText(sBuildPipeLine);
+			this.getView().byId("ip_cycle_name").setValue("");
 			this.getView().byId("idReleasePipelineJobName").setText(oEvent.getSource().getParent().getBindingContext("workflows").getObject().name);
-			this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + sBuildPipeLine,
+			this.getView().byId("idBuildnumberTrigger_ReleasePipeline").setBusy(true);
+			this.loadDatatoViewwithKey_GET_filter_2("jobresults", "?jobName=" + sBuildPipeLine,
 				"Jobdetails",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), this.getView().byId("idBuildnumberTrigger_ReleasePipeline"));
 		},
-
 		navigatetoCycles: function (oEvent) {
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.navTo("Cycles", {
@@ -90,7 +92,6 @@ sap.ui.define([
 			oModel_TriggerReleasePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("runReleaseline") + "/" +
 				selectedReleaseId, JSON.stringify(oInput.getData()), true,
 				"POST", false, false, sHeaders);
-
 			oModel_TriggerReleasePipeLine.attachRequestCompleted(function () {
 				MessageBox.show(("Successfully created Release PipeLine Cycle Id# " + oModel_TriggerReleasePipeLine.getData().id), {
 					title: "Message",
@@ -98,14 +99,17 @@ sap.ui.define([
 					onClose: function (oActions) {
 						if (oActions === "OK") {
 							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-							oRouter.navTo("RLpipelines");
+							oRouter.navTo("WorkflowCycleStages", {
+								RjobId: oModel_TriggerReleasePipeLine.getData().id,
+								CycleId: oModel_TriggerReleasePipeLine.getData().pipelineId.split(":")[0],
+								Rlname: oModel_TriggerReleasePipeLine.getData().label
+							});
 						}
 					}.bind(this)
 				});
 			}.bind(this));
 			this._getDialog().close();
 		}
-
 	});
 
 });

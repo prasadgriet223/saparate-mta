@@ -19,7 +19,7 @@
 						</contentLeft>
 						<contentMiddle/>
 						<contentRight>
-							<Button icon="sap-icon://create" text="{i18n>createNewReleasePipeline}" press="navigatetoCreateReleasePipeline" id="button6"/>
+							<!--<Button icon="sap-icon://create" text="{i18n>createNewReleasePipeline}" press="navigatetoCreateReleasePipeline" id="button6"/>-->
 						</contentRight>
 					</Bar>
 				</subHeader>

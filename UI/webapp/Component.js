@@ -86,17 +86,17 @@
 				});
 			});	
 		//	test code
-			sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
-				"authorizationToken": "b68ceaad-21b3-49a1-9b98-7702f342f91f	"
-			});
-			this.getRouter().initialize();
-			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-			sap.ui.core.BusyIndicator.hide();
-			if (typeof skey === "undefined" || skey === "" || skey === null) {
-				this.getRouter().navTo("Authorize");
-			} else {
-				this.getRouter().navTo("Dashboard");
-			}
+			// sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
+			// 	"authorizationToken": "92e342df-368a-479c-a0f5-994bb88a994b"
+			// });
+			// this.getRouter().initialize();
+			// var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+			// sap.ui.core.BusyIndicator.hide();
+			// if (typeof skey === "undefined" || skey === "" || skey === null) {
+			// 	this.getRouter().navTo("Authorize");
+			// } else {
+			// 	this.getRouter().navTo("Dashboard");
+			// }
 		//	test code
 		}
 	});

@@ -105,7 +105,6 @@ sap.ui.define([
 			var stage = otblRow.name;
 			this.byId("idtoolbar_stagelog_title").setText(stage + "-Logs");
 			var oModel_buildstageslog_Stage = new sap.ui.model.json.JSONModel();
-
 			var sHeaders = {
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
@@ -113,66 +112,23 @@ sap.ui.define([
 			oModel_buildstageslog_Stage.loadData(this.getOwnerComponent().getModel("servers").getProperty("stagelog") + "?jobName=" + this._jobid +
 				"&buildNumber=" + this._buildid + "&stageId=" + id, null, true, "GET", null, false, sHeaders);
 			oModel_buildstageslog_Stage.attachRequestCompleted(function () {
-
 				//	var response = oModel_buildstageslog_Stage.getData().text;
 				//	this.byId("idstagelog").setText(response);
 				//	this.byId("idpanel_Stage").setExpanded(true);
-
 				var p = this.byId("idpanel_Stage");
 				p.removeAllContent();
 				var sResponse = oModel_buildstageslog_Stage.getData()["response"];
-				//	var r = JSON.stringify(sResponse).replace(/\\n\\n/g, "<br />");
 				var r = JSON.stringify(sResponse).replace(/\n\s*\n/g, "<br />");
 				r = r.replace(/\n/g, "<br />");
 				var oText2 = new sap.ui.core.HTML();
 				oText2.setContent("<div class='idBuildlogs_html'>" + r + " </div>");
 				oText2.placeAt(this.byId("idpanel_Stage"));
 				this.byId("idpanel_Stage").setBusy(false);
-
 			}.bind(this));
-
 		},
-		navigateto: function (oEvent) {
-
+		refreshData: function (oEvent) {
+			this.refreshData_ui("JobStageResults", "?jobName=" + this._jobid + "&buildNumber=" + this._buildid, "Jobstatusdetails",this.byId(
+				"idPipeLineBuildStageResults"));
 		}
 	});
 });
-// var oModel_buildstatusdetails_cpp = new sap.ui.model.json.JSONModel();
-// oModel_buildstatusdetails_cpp.setData([{
-// 	"name": "#1",
-// 	"duartion": 0,
-// 	"estimatedDuration": 0,
-// 	"number": 1,
-// 	"buildResult": "FAILURE",
-// 	"testResult": null,
-// 	"testReport": null,
-// 	"timeStamp": "2019/10/22 22:55:50",
-// 	"stageResult": {
-// 		"stages": [{
-// 			"id": 7,
-// 			"name": "prepare----000",
-// 			"execNode": "",
-// 			"status": "SUCCESS",
-// 			"startTime": "2019/10/22 22:56:02",
-// 			"duration": 0,
-// 			"pauseDuration": 0
-// 		}, {
-// 			"id": 12,
-// 			"name": "prepareConfigYaml",
-// 			"execNode": "",
-// 			"status": "SUCCESS",
-// 			"startTime": "2019/10/22 22:56:04",
-// 			"duration": 0,
-// 			"pauseDuration": 0
-// 		}, {
-// 			"id": 17,
-// 			"name": "prepareBuild",
-// 			"execNode": "",
-// 			"status": "FAILED",
-// 			"startTime": "2019/10/22 22:56:04",
-// 			"duration": 0,
-// 			"pauseDuration": 0
-// 		}]
-// 	}
-// }]);
-// this.getView().setModel(oModel_buildstatusdetails_cpp, "Jobstatusdetails");

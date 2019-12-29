@@ -1,4 +1,4 @@
-	<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
 	controllerName="scp.com.saparate.controller.buildStages">
 	<App>
 		<pages>
@@ -26,7 +26,7 @@
 									<ObjectStatus state="Information" text="{Jobstatusdetails>name}" icon="sap-icon://badge"/>
 									<GenericTag text="{Jobstatusdetails>status}" status="{ parts : [ 'Jobstatusdetails>status'], formatter: '.formatter.buildStagesStatus' }"
 										design="StatusIconHidden"/>
-									<ObjectNumber number="{Jobstatusdetails>startTime}"  state="Information" class="sapUiSmallMargin"/>
+									<ObjectNumber number="{Jobstatusdetails>startTime}" state="Information" class="sapUiSmallMargin"/>
 									<ObjectNumber number="{Jobstatusdetails>duration}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
 								</cells>
 							</ColumnListItem>
@@ -37,7 +37,6 @@
 							<Toolbar id="toolbar1">
 								<Title text="{i18n>overallBuildLogs}"/>
 								<ToolbarSpacer/>
-							
 							</Toolbar>
 						</headerToolbar>
 						<content>
@@ -49,7 +48,6 @@
 							<Toolbar id="idtoolbar_stagelog">
 								<Title id="idtoolbar_stagelog_title" text=""/>
 								<ToolbarSpacer/>
-							
 							</Toolbar>
 						</headerToolbar>
 						<content>
@@ -70,6 +68,9 @@
 							</Breadcrumbs>
 						</contentLeft>
 						<contentMiddle/>
+						<contentRight>
+							<Button xmlns="sap.m" text="{i18n>refresh}" press="refreshData" icon="sap-icon://refresh"/>
+						</contentRight>
 					</Bar>
 				</subHeader>
 			</Page>

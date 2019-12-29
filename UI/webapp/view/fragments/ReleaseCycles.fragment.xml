@@ -39,7 +39,7 @@
 						</contentLeft>
 						<contentMiddle></contentMiddle>
 						<contentRight>
-							<Button xmlns="sap.m" text="{i18n>refresh}" press="refreshData" icon="sap-icon://refresh"/>
+							<Button xmlns="sap.m" text="{i18n>refresh}" press="refreshData_Cycles" icon="sap-icon://refresh"/>
 						</contentRight>
 					</Bar>
 				</content>

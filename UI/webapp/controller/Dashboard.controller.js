@@ -19,7 +19,6 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 
 		},
 		_onObjectMatched: function (oEvent) {
-
 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
 			if (typeof skey === "undefined" || skey === "" || skey === null) {
 				this.getRouter().navTo("Authorize");
@@ -43,25 +42,14 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 			oRouter.navTo("WorkflowCycleStages", {
 				RjobId: oEvent.getSource().getBindingContext("Cycledetails").getObject().id,
 				CycleId: oEvent.getSource().getBindingContext("Cycledetails").getObject().pipelineId.split(":")[0],
-				Rlname:oEvent.getSource().getBindingContext("Cycledetails").getObject().label
+				Rlname: oEvent.getSource().getBindingContext("Cycledetails").getObject().label
 			});
-
 		},
 		refreshData: function (oEvent) {
-			this.byId("idPipeLineBuildResults").setBusy(true);
-			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-			this.loadDatatoViewwithKey_GET_filter_2("latestBuildResults", "Jobdetails", skey, this.byId("idPipeLineBuildResults"));
-			this.getView().getModel("Jobdetails").refresh();
-			sap.ui.core.BusyIndicator.hide();
+			this.refreshData_ui("latestBuildResults", "", "Jobdetails",this.byId("idPipeLineBuildResults"));
 		},
-
 		refreshData_Cycles: function (oEvent) {
-			sap.ui.core.BusyIndicator.show();
-			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-			this.loadDatatoViewwithKey_GET("recentcycles", "Cycledetails", skey);
-			this.getView().getModel("Cycledetails").refresh();
-			sap.ui.core.BusyIndicator.hide();
+			this.refreshData_ui("recentcycles", "", "Cycledetails",this.byId("idPipeLineCycleResults"));
 		}
-
 	});
 });

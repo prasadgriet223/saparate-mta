@@ -63,14 +63,17 @@ sap.ui.define([], function () {
 			return stageName + " " + type;
 		},
 		Cyclestagetime: function (time) {
-			return time.replace("+0000", "").replace("T", " ");
+			if (time !== null) {
+				time = time.replace("+0000", "").replace("T", " ");
+			}
+			return time;
 		},
 		getRepoName: function (url) {
-			return url.substring(url.lastIndexOf("/")+1,url.length).split(".")[0];
+			return url.substring(url.lastIndexOf("/") + 1, url.length).split(".")[0];
 		},
 		getBranchName: function (branch) {
 			return branch.split("/")[1];
-			
+
 		}
 	};
 });

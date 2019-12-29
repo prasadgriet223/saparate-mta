@@ -80,10 +80,13 @@ sap.ui.define([
 			}
 		},
 		refreshData: function (oEvent) {
-			this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + this._jobid, "Jobdetails",
-				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+			// this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + this._jobid, "Jobdetails",
+			// 	sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
-			this.getView().getModel("Jobdetails").refresh();
+			// this.getView().getModel("Jobdetails").refresh();
+			
+				this.refreshData_ui("jobresults", "?jobName=" + this._jobid, "Jobdetails",this.byId("idPipeLineBuildResults"));
+			
 		}
 	});
 
