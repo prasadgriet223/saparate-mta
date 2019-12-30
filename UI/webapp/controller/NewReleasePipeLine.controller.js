@@ -53,7 +53,7 @@
 
 				},
 				onLoadBuildNumbers: function (oEvent) {
-					this.byId("idRbSelectBuild").setSelected(false);
+					//this.byId("idRbSelectBuild").setSelected(false);
 				},
 				onGetBuild: function (oEvent) {
 					this.loadDatatoViewwithKey_GET_filter("jobresults", "?jobName=" + this.byId("idBuildSelect_ReleasePipeline").getSelectedItem().getText(),
