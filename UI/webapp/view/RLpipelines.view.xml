@@ -13,6 +13,9 @@
 								<Text text="{i18n>CreatedBy}"/>
 							</Column>
 							<Column demandPopin="true" minScreenWidth="Tablet">
+								<Text text="{i18n>CreatedTime}"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="Tablet">
 								<Text text="{i18n>BuildPipeline}"/>
 							</Column>
 							<Column demandPopin="true" minScreenWidth="Tablet">
@@ -24,7 +27,8 @@
 								<cells>
 									<Text text="{workflows>name}"/>
 									<Text text="{workflows>createdBy}"/>
-										<Text text="{workflows>buildInput/buildPipelineJobName}"/>
+									<Text text="{ parts : [ 'workflows>createdTime'], formatter: '.formatter.getRecyclyeDate' }"/>
+									<Text text="{workflows>buildInput/buildPipelineJobName}"/>
 									<!--<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'workflows>createdTime'], formatter: '.formatter.getDateFromGivenDate' }"/>-->
 									<Button class="roundButton" icon="sap-icon://physical-activity" text="" press="initiateTriggerReleasePipeline"/>
 								</cells>
@@ -39,7 +43,6 @@
 								<links>
 									<Link text="{i18n>project}" emphasized="false" id="idlnk_Projects"/>
 									<Link text="{i18n>dashboard}" emphasized="false" press="navigateTo"/>
-								
 								</links>
 							</Breadcrumbs>
 						</contentLeft>

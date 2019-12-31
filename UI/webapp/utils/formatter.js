@@ -49,6 +49,14 @@ sap.ui.define([], function () {
 			var d = new Date(date);
 			return (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
 		},
+		getRecyclyeDate: function (date) {
+			if (date !== null) {
+				return date.replace("T"," ").replace(".000+0000", "");
+			} else {
+				return "";
+			}
+		},
+
 		CyclestageStatus: function (status) {
 			var result = "";
 			if (status === 'FAILED')
