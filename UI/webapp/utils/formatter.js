@@ -47,14 +47,16 @@ sap.ui.define([], function () {
 		},
 		getDate: function (date) {
 			var d = new Date(date);
-			return (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds());
+			return (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes());
 		},
-		getRecyclyeDate: function (date) {
-			if (date !== null) {
-				return date.replace("T"," ").replace(".000+0000", "");
-			} else {
-				return "";
+		getRecyclyeDate: function (time) {
+			if (time !== null) {
+				var parts = time.split("T");
+				var date = parts[0];
+				var timeM = parts[1];
+				return date + " " + timeM.split(":")[0] + ":" + timeM.split(":")[1];
 			}
+			return "";
 		},
 
 		CyclestageStatus: function (status) {
@@ -72,9 +74,12 @@ sap.ui.define([], function () {
 		},
 		Cyclestagetime: function (time) {
 			if (time !== null) {
-				time = time.replace("+0000", "").replace("T", " ");
+				var parts = time.split("T");
+				var date = parts[0];
+				var timeM = parts[1];
+				return date + " " + timeM.split(":")[0] + ":" + timeM.split(":")[1];
 			}
-			return time;
+			return null;
 		},
 		getRepoName: function (url) {
 			return url.substring(url.lastIndexOf("/") + 1, url.length).split(".")[0];
