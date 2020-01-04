@@ -2,7 +2,7 @@
 	<ObjectListItem id="humantask" icon="sap-icon://add-employee" type="Active" numberState="Error" title="{Stages>label}" number=""
 		numberUnit="{Stages>status}" press="initiateAction" highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
 		<attributes>
-			<ObjectAttribute title="User" text="{Stages>assignedTo}"></ObjectAttribute>
+			<ObjectAttribute title="Assigned To" text="{Stages>assignedTo}"></ObjectAttribute>
 			<ObjectAttribute title="UserMessage" text="{Stages>output/msg}"/>
 			<ObjectAttribute title="Status" text="{Stages>status}"/>
 			<ObjectAttribute text="Approve" visible = "{= ${Stages>status} === 'WAITING' }" active="true" press="initiateAction"/>

@@ -128,7 +128,7 @@
 					//ApprovalTask,ManualTask
 					var oModel_Stage = new JSONModel([{
 						"name": "preconditionfor" + oSelectedKey,
-						"label": "PreCondition for " + oSelectedKey,
+						"label": "Pre Condition - " + oSelectedKey,
 						"type": "approvalTask",
 						"taskCategory": "PRE_CONDITION",
 						"categoryFor": oSelectedKey,
@@ -137,7 +137,7 @@
 						"assignType": "USER",
 						"waitUntil": "preConditionMsg",
 						"stageName": oSelectedKey,
-						"Message": this.byId("idPreConditionEnterMessage").getValue()
+						"message": this.byId("idPreConditionEnterMessage").getValue()
 					}, {
 						"name": oSelectedKey,
 						"label": oSelectedKey,
@@ -148,7 +148,7 @@
 						"stageName": oSelectedKey
 					}, {
 						"name": "postconditionfor" + oSelectedKey,
-						"label": "postcondition for " + oSelectedKey,
+						"label": "Post Condition - " + oSelectedKey,
 						"type": "manualTask",
 						"taskCategory": "POST_CONDITION",
 						"categoryFor": oSelectedKey,
@@ -157,7 +157,7 @@
 						"assignType": "USER",
 						"waitUntil": "postConditionMsg",
 						"stageName": oSelectedKey,
-						"Message": this.byId("idPostConditionEnterMessage").getValue()
+						"message": this.byId("idPostConditionEnterMessage").getValue()
 					}]);
 					this.getView().setModel(oModel_Stage, oSelectedKey);
 					this.byId("idPreConditionStageForm").setModel(this.getView().getModel(oSelectedKey));
@@ -173,8 +173,8 @@
 
 				},
 				onSaveNewReleasePipeLineDialog: function (oEvent) {
-					MessageBox.show("Are you sure you want to create a New ReleasePipeLine? ", {
-						title: "Save NewRelease PipeLine",
+					MessageBox.show("Are you sure you want to create a release pipeline?", {
+						title: "Save Release PipeLine",
 						actions: [sap.m.MessageBox.Action.OK],
 						onClose: function (oActions) {
 							if (oActions === "OK") {

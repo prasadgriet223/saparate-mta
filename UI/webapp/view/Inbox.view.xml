@@ -7,7 +7,7 @@
 					<Table items="{path: 'Inbox>/items'}" id="idAllInbox" alternateRowColors="true">
 						<columns>
 							<Column demandPopin="true" minScreenWidth="Tablet">
-								<Text text="Workflow name"/>
+								<Text text="Release Pipeline Name"/>
 							</Column>
 							<Column demandPopin="true" >
 								<Text text="Cycle name"/>
