@@ -127,7 +127,7 @@
 					var oSelectedKey = this.byId("idTabNewReleasePipeline").getSelectedKey();
 					//ApprovalTask,ManualTask
 					var oModel_Stage = new JSONModel([{
-						"name": "preconditionfor" + oSelectedKey,
+						"name": "Pre Condition - " + oSelectedKey,
 						"label": "Pre Condition - " + oSelectedKey,
 						"type": "approvalTask",
 						"taskCategory": "PRE_CONDITION",
@@ -147,7 +147,7 @@
 						"type": "deployTask",
 						"stageName": oSelectedKey
 					}, {
-						"name": "postconditionfor" + oSelectedKey,
+						"name": "Post Condition - " + oSelectedKey,
 						"label": "Post Condition - " + oSelectedKey,
 						"type": "manualTask",
 						"taskCategory": "POST_CONDITION",

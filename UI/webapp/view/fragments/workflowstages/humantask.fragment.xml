@@ -3,7 +3,8 @@
 		numberUnit="{Stages>status}" press="initiateAction" highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
 		<attributes>
 			<ObjectAttribute title="Assigned To" text="{Stages>assignedTo}"></ObjectAttribute>
-			<ObjectAttribute title="UserMessage" text="{Stages>output/msg}"/>
+			<ObjectAttribute title="Task Type" text="{ parts : [ 'Stages>type'], formatter: '.formatter.TaskNameFormatter'}" ></ObjectAttribute>
+			<ObjectAttribute title="Task Details" text="{Stages>output/msg}"></ObjectAttribute>
 			<ObjectAttribute title="Status" text="{Stages>status}"/>
 			<ObjectAttribute text="Approve" visible = "{= ${Stages>status} === 'WAITING' }" active="true" press="initiateAction"/>
 			<ObjectAttribute text="Reject" visible = "{= ${Stages>status} === 'WAITING' }"  active="true" press="initiateAction"/>

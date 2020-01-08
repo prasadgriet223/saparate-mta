@@ -2,11 +2,12 @@ sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (BaseController, Controller, JSONModel, MessageBox) {
+	"sap/m/MessageBox", "scp/com/saparate/utils/formatter"
+], function (BaseController, Controller, JSONModel, MessageBox, formatter) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.Inbox", {
+		formatter: formatter,
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -16,27 +17,27 @@ sap.ui.define([
 		onInit: function () {
 			this._oRouter = this.getOwnerComponent().getRouter();
 			this._oRouter.getRoute("Inbox").attachPatternMatched(this._onObjectMatched, this);
-			
+
 		},
 
 		_onObjectMatched: function (oEvent) {
-			this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid="+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"), "Inbox",
+			this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=michaeljames7869@gmail.com", "Inbox",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-			
+
 		},
-		
-		onAcceptButtonPress: function(oEvent) {
-			
+
+		onAcceptButtonPress: function (oEvent) {
+
 			var oInput = {
 				"humanResponse": {
 					"msg": oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/waitUntil")
 				},
-				"actedBy":oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/assignedTo")
+				"actedBy": oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/assignedTo")
 			};
-			
+
 			var taskId = oEvent.getSource().getBindingContext("Inbox").getProperty("taskInstanceId");
 			var action = "COMPLETE";
-				
+
 			var sHeaders = {
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
@@ -52,27 +53,28 @@ sap.ui.define([
 					onClose: function (oActions) {
 						//	oEvent.getSource().setEnabled(false) ;
 						if (oActions === "OK") {
-							
+
 							//need to call task inbox api again
 							//var tasks = {"number":1,"totalItems":1,"size":1,"totalPages":1,"items":[{"humanTaskId":10001,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fd","assigneeId":"2334345","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"}]};
 							//var oModel2= new JSONModel(tasks.items);
 							//this.getView().setModel(oModel2, "Inbox");
-							
-							this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid="+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"), "Inbox",
-									sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-				
+
+							this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=" + sap.ui.getCore().getModel('oKeyModel').getProperty(
+									"/saparate/email"), "Inbox",
+								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
 							this.getView().getModel("Inbox").refresh();
 						}
 					}.bind(this)
 				});
 			}.bind(this));
 			this.getView().setBusy(false);
-			
+
 		},
-		showMessageBox: function() {
-			
+		showMessageBox: function () {
+
 		},
-		
+
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
 		 * (NOT before the first rendering! onInit() is used for that one!).

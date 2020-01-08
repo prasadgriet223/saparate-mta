@@ -87,6 +87,18 @@ sap.ui.define([], function () {
 		getBranchName: function (branch) {
 			return branch.split("/")[1];
 
+		},
+		TaskNameFormatter: function (task) {
+			if (task !== null) {
+				if (task === "manualTask")
+					task = "Manual task";
+				else if (task === "approvalTask")
+					task = "Approval task";
+				else {
+					task = "";
+				}
+				return task;
+			}
 		}
 	};
 });
