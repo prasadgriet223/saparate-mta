@@ -1,11 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<ObjectListItem id="deploytask" icon="sap-icon://arrow-bottom" type="Inactive"
-		title="{ parts : [ {path: 'Stages>stageName'}, {path: 'Stages>type'} ], formatter: '.formatter.deployTaskLabel' }"
-		highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
+	<ObjectListItem id="deploytask" icon="sap-icon://arrow-bottom" type="Inactive" title="{Stages>label}" highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
 		<attributes>
 			<ObjectAttribute text="{Stages>buildJobName}" title="buildJobName"></ObjectAttribute>
 			<ObjectAttribute title="buildJobNumber" text="{Stages>buildJobNumber}"/>
-			<ObjectAttribute title="Status" text="{Stages>status}"/>
+			<ObjectAttribute title="Status" text="{ parts : [ 'Stages>status'], formatter: '.formatter.deployTaskStatusFormatter'}"/>
 			<ObjectAttribute text="Logs" visible="{= ${Stages>status} === 'FAILED' }"  active="true" press="showStageLogs"/>
 		</attributes>
 		<firstStatus>

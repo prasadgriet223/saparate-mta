@@ -18,11 +18,12 @@
 							<Column demandPopin="true">
 								<Text text="Label"/>
 							</Column>
-							<Column demandPopin="true">
-								<Text text="Assign to"/>
-							</Column>
+						
 							<Column demandPopin="true">
 								<Text text="Task type"/>
+							</Column>
+								<Column demandPopin="true">
+								<Text text="Task Description"/>
 							</Column>
 							<Column demandPopin="true">
 								<Text text="Action"/>
@@ -35,8 +36,8 @@
 									<Text text="{Inbox>releaseCycleName}"/>
 									<Text text="{Inbox>humanTask/stageName}"/>
 									<Text text="{Inbox>humanTask/label}"/>
-									<Text text="{Inbox>humanTask/assignedTo}"/>
 									<Text text="{ parts : [ 'Inbox>humanTask/type'], formatter: '.formatter.TaskNameFormatter'}"/>
+									<Text text="{Inbox>humanTask/message}"/>
 									<HBox width="100%">
 										<items>
 											<!--visible = "{= ${Stages>status} === 'WAITING' }"-->

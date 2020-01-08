@@ -99,6 +99,15 @@ sap.ui.define([], function () {
 				}
 				return task;
 			}
+		},
+		deployTaskStatusFormatter: function (deploytaskStatus) {
+			if (deploytaskStatus !== null) {
+				if (deploytaskStatus === "WAITING") {
+					deploytaskStatus = "IN PROGRESS";
+				}
+				return deploytaskStatus;
+			}
+
 		}
 	};
 });

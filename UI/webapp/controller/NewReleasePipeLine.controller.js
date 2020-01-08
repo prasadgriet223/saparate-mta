@@ -127,7 +127,7 @@
 					var oSelectedKey = this.byId("idTabNewReleasePipeline").getSelectedKey();
 					//ApprovalTask,ManualTask
 					var oModel_Stage = new JSONModel([{
-						"name": "Pre Condition - " + oSelectedKey,
+						"name": "PreCondition",
 						"label": "Pre Condition - " + oSelectedKey,
 						"type": "approvalTask",
 						"taskCategory": "PRE_CONDITION",
@@ -140,14 +140,14 @@
 						"message": this.byId("idPreConditionEnterMessage").getValue()
 					}, {
 						"name": oSelectedKey,
-						"label": oSelectedKey,
+						"label": "Deploy Task - " + oSelectedKey,
 						"jenkinsJobStatus": null,
 						"cfCredentialsID": oSelectedKey,
 						"waitForMessage": "",
 						"type": "deployTask",
 						"stageName": oSelectedKey
 					}, {
-						"name": "Post Condition - " + oSelectedKey,
+						"name": "PostCondition",
 						"label": "Post Condition - " + oSelectedKey,
 						"type": "manualTask",
 						"taskCategory": "POST_CONDITION",

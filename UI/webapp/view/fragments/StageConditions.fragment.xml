@@ -16,7 +16,7 @@
 									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPreConditionSelectUser" value="{/0/assignedTo}"/>
 									<Label text="{i18n>message}"/>
-									<Input width="30%" id="idPreConditionEnterMessage" value="{/0/Message}"/>
+									<Input width="30%" id="idPreConditionEnterMessage" value="{/0/message}"/>
 								</form:content>
 							</form:SimpleForm>
 						</content>
@@ -46,7 +46,7 @@
 									<Label text="{i18n>selectUser}"/>
 									<Input width="30%" showValueHelp="true" id="idPostConditionSelectUser" value="{/2/assignedTo}"/>
 									<Label text="{i18n>message}"/>
-									<Input width="30%" id="idPostConditionEnterMessage" value="{/2/Message}"/>
+									<Input width="30%" id="idPostConditionEnterMessage" value="{/2/message}"/>
 								</form:content>
 							</form:SimpleForm>
 						</content>
