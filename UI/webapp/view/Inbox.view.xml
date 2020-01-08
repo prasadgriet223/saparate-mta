@@ -41,15 +41,15 @@
 										<items>
 											<!--visible = "{= ${Stages>status} === 'WAITING' }"-->
 											<ObjectAttribute visible="{= ${Inbox>humanTask/type} === 'approvalTask' }" text="Approve" class="sapUiTinyMarginEnd sapUiTinyMarginTop"
-												active="true" press="onAcceptButtonPress"/>
+												active="true" press="initiateAction"/>
 											<!--<Button class="roundButton " type="Accept" icon="sap-icon://accept" press="onAcceptButtonPress"/>-->
 											<!--<Button icon="sap-icon://media-pause" type="Transparent"></Button>-->
 											<Text text="/" visible="{= ${Inbox>humanTask/type} === 'approvalTask' }" class="sapUiTinyMarginTop"/>
 											<!--<core:Icon src="sap-icon://media-pause" class="sapUiSmallMarginTop" visible="{= ${Inbox>humanTask/type} === 'approvalTask' }"/>-->
 											<!--<Button class="roundButton " type="Reject" icon="sap-icon://decline" press="onRejectButtonPress"/>-->
 											<ObjectAttribute text="Reject" visible="{= ${Inbox>humanTask/type} === 'approvalTask' }"
-												class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" active="true" press="onRejectButtonPress"/>
-											<ObjectAttribute text="Complete" visible="{= ${Inbox>humanTask/type} === 'manualTask' }" active="true" press="onRejectButtonPress"/>
+												class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd" active="true" press="initiateAction"/>
+											<ObjectAttribute text="Complete" visible="{= ${Inbox>humanTask/type} === 'manualTask' }" active="true" press="initiateAction"/>
 										</items>
 									</HBox>
 								</cells>

@@ -26,7 +26,7 @@
 					this.getRouter().navTo("Authorize");
 				} else {
 					var ReleasejobId = oEvent.getParameter("arguments").RjobId;
-					this._cycleStageId= oEvent.getParameter("arguments").RjobId;
+					this._cycleStageId = oEvent.getParameter("arguments").RjobId;
 					this.byId("idbc_RCycle").setText(oEvent.getParameter("arguments").Rlname);
 					this.byId("idRlPipelineId_inv").setText(oEvent.getParameter("arguments").CycleId);
 					this.byId("idBreadcrum_buildStages").setCurrentLocationText(ReleasejobId);
@@ -108,6 +108,11 @@
 				var msg = "";
 
 				if (oEvent.getSource().getText() === "Approve") {
+					action = "COMPLETE";
+					msg = "Approved !";
+				}
+
+				if (oEvent.getSource().getText() === "Complete") {
 					action = "COMPLETE";
 					msg = "Approved !";
 				}

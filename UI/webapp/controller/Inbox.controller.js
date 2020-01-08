@@ -21,9 +21,11 @@ sap.ui.define([
 		},
 
 		_onObjectMatched: function (oEvent) {
-			this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=michaeljames7869@gmail.com", "Inbox",
+			// this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=michaeljames7869@gmail.com", "Inbox",
+			// 	sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+			this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=" + sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/email"),
+				"Inbox",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-
 		},
 
 		onAcceptButtonPress: function (oEvent) {
@@ -53,12 +55,6 @@ sap.ui.define([
 					onClose: function (oActions) {
 						//	oEvent.getSource().setEnabled(false) ;
 						if (oActions === "OK") {
-
-							//need to call task inbox api again
-							//var tasks = {"number":1,"totalItems":1,"size":1,"totalPages":1,"items":[{"humanTaskId":10001,"taskInstanceId":"af582e386a034a7da76740ad9ffb70fd","assigneeId":"2334345","assigneeType":"USER","assigneeName":"user1@releaseowl.com","businessLogicID":null,"assignDate":"2019-12-20"}]};
-							//var oModel2= new JSONModel(tasks.items);
-							//this.getView().setModel(oModel2, "Inbox");
-
 							this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=" + sap.ui.getCore().getModel('oKeyModel').getProperty(
 									"/saparate/email"), "Inbox",
 								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
@@ -73,6 +69,58 @@ sap.ui.define([
 		},
 		showMessageBox: function () {
 
+		},
+		initiateAction: function (oEvent) {
+			//	this.byId("idWorkFlowStageResults").setBusy(true);
+
+			var oInput = {
+				"humanResponse": {
+					"msg": oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/waitUntil")
+				},
+				"actedBy": oEvent.getSource().getBindingContext("Inbox").getProperty("humanTask/assignedTo")
+			};
+
+			var taskId = oEvent.getSource().getBindingContext("Inbox").getProperty("taskInstanceId");
+
+			var action = "";
+			var msg = "";
+
+			if (oEvent.getSource().getText() === "Approve") {
+				action = "COMPLETE";
+				msg = "Approved !";
+			}
+
+			if (oEvent.getSource().getText() === "Complete") {
+				action = "COMPLETE";
+				msg = "Completed !";
+			}
+
+			if (oEvent.getSource().getText() === "Reject") {
+				action = "REJECT";
+				msg = "Rejected !";
+			}
+			var sHeaders = {
+				"Content-Type": "application/json",
+				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			};
+
+			var oModel = new JSONModel();
+			oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
+				"PUT", false, false, sHeaders);
+			oModel.attachRequestCompleted(function () {
+				MessageBox.show(("Release PipeLine Stage  " + oModel.getData().label + " " + msg), {
+					title: "Message",
+					actions: [sap.m.MessageBox.Action.OK],
+					onClose: function (oActions) {
+						if (oActions === "OK") {
+							this.loadDatatoViewwithKey_GET_filter("getInbox", "?userid=" + sap.ui.getCore().getModel('oKeyModel').getProperty(
+									"/saparate/email"), "Inbox",
+								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+							this.getView().getModel("Inbox").refresh();
+						}
+					}.bind(this)
+				});
+			}.bind(this));
 		},
 
 		/**
