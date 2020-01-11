@@ -59,7 +59,7 @@ sap.ui.define([
 				"POST", false, false, sHeaders);
 			oModle_saveCred.attachRequestCompleted(function () {
 				this._getDialog().close();
-				MessageBox.show((oModle_saveCred.getData().name), {
+				MessageBox.show((oModle_saveCred.getData().name +"Credential Created"), {
 					title: "Result",
 					actions: [sap.m.MessageBox.Action.OK],
 					onClose: function (oActions) {
