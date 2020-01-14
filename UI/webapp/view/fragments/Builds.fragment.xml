@@ -1,12 +1,14 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-
-	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}" alternateRowColors="true" >
+	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}">
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>pipeline}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>estimatedDuration}"/>
+				<Text text="{i18n>buildNo}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>time}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>duration}"/>
@@ -14,21 +16,20 @@
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>result}"/>
 			</Column>
-			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>time}"/>
-			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press="handleSelectionChange" highlight="{parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.buildStatus'}"  >
+			<ColumnListItem type="Navigation" press="handleSelectionChange">
 				<cells>
-					<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"
-						class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
-					<ObjectNumber number="{Jobdetails>estimatedDuration}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
+					<!--<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"-->
+					<!--	class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>-->
+					<Text text="{Jobdetails>name}"/>
+					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
+					<!--<ObjectNumber number="{Jobdetails>number}" unit="Sec" state="Information" class="sapUiSmallMargin"/>-->
+					<!--<ObjectStatus xmlns="sap.m" state="Information"-->
+					<!--	icon="sap-icon://date-time"/>-->
+					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }" />
 					<ObjectNumber number="{Jobdetails>duartion}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
-					<GenericTag text="{Jobdetails>buildResult}" status="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.buildStatus' }"
-						design="StatusIconHidden"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"
-						icon="sap-icon://date-time"/>
+					<Text text="{Jobdetails>buildResult}" class="test"/>
 				</cells>
 			</ColumnListItem>
 		</items>
@@ -49,19 +50,19 @@
 		</headerToolbar>
 	</Table>
 </core:FragmentDefinition>
-	<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
-	<!--	<pages>-->
-	<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
-	<!--			<customHeader>-->
-	<!--				<Bar id="bar0">-->
-	<!--					<contentLeft>-->
-	<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
-	<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
-	<!--						</Breadcrumbs>-->
-	<!--					</contentLeft>-->
-	<!--					<contentMiddle>-->
-	<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
-	<!--					</contentMiddle>-->
-	<!--				</Bar>-->
-	<!--			</customHeader>-->
-	<!--			<content>-->
+<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
+<!--	<pages>-->
+<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
+<!--			<customHeader>-->
+<!--				<Bar id="bar0">-->
+<!--					<contentLeft>-->
+<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
+<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
+<!--						</Breadcrumbs>-->
+<!--					</contentLeft>-->
+<!--					<contentMiddle>-->
+<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
+<!--					</contentMiddle>-->
+<!--				</Bar>-->
+<!--			</customHeader>-->
+<!--			<content>-->

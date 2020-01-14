@@ -10,7 +10,7 @@
 					</OverflowToolbar>
 				</headerContent>
 				<content>
-					<List noDataText="{i18n>dropListOfItmes}" id="idEnviroments" items="{Environments>/}">
+					<List noDataText="{i18n>dropListOfItmes}" id="idEnviroments" mode="Delete" items="{Environments>/}">
 						<items>
 							<!--<StandardListItem type="Active" title="{Environments>name}" description="{Environments>url}" press="editEnvironmentFragment"-->
 							<!--	/>-->

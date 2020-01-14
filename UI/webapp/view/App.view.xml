@@ -9,8 +9,8 @@
 				</contentLeft>
 				<contentMiddle></contentMiddle>
 				<contentRight>
-					<Button icon="sap-icon://action-settings"/>
-					<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>
+					<!--<Button icon="sap-icon://action-settings"/>-->
+					<!--<Button icon="sap-icon://bell" text="2" type="Emphasized" press="handleMessagePopoverPress"/>-->
 				</contentRight>
 			</Bar>
 		</tnt:header>
@@ -29,7 +29,7 @@
 					<!--<tnt:NavigationListItem text="Teams" icon="sap-icon://explorer" select="gotoTeams"/>-->
 					<tnt:NavigationListItem text="{i18n>credentials}" icon="sap-icon://key-user-settings" select="gotoCredentials"/>
 					<tnt:NavigationListItem text="{i18n>inbox}" icon="sap-icon://inbox" select="gotoInbox"/>
-					<tnt:NavigationListItem text="{i18n>settings}" icon="sap-icon://settings" select="gotoSettings"/>
+					<!--<tnt:NavigationListItem text="{i18n>settings}" icon="sap-icon://settings" select="gotoSettings"/>-->
 				</tnt:NavigationList>
 			</tnt:SideNavigation>
 		</tnt:sideContent>
