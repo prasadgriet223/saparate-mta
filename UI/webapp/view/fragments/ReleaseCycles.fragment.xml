@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}" alternateRowColors="true" >
+	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}">
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>cycles}"/>
@@ -18,15 +18,17 @@
 			</Column>
 		</columns>
 		<items>
-			<ColumnListItem type="Navigation" press = "handleSelectionChange_releaseCycle"  highlight="{parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus'}" >
+			<!--highlight="{parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus'}"-->
+			<ColumnListItem type="Navigation" press="handleSelectionChange_releaseCycle">
 				<cells>
-					<ObjectStatus xmlns="sap.m" text="{Cycledetails>cycleName}" state="Information"/>
-					<ObjectStatus xmlns="sap.m" text="{Cycledetails>instantiatedBy}" state="Information"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"
-						icon="sap-icon://date-time"/>
-					<ObjectStatus xmlns="sap.m" state="Information" text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"
-						icon="sap-icon://date-time"/>
-					<GenericTag text="{Cycledetails>status}" design="StatusIconHidden" status="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus' }"/>
+					<Text text="{Cycledetails>cycleName}"/>
+					<Text text="{Cycledetails>instantiatedBy}"/>
+					<Text text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"/>
+					<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>
+					<!--<GenericTag text="{Cycledetails>status}" design="StatusIconHidden"-->
+					<!--	status="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus' }"/>-->
+					<Text text="{Cycledetails>status}" visible="{= ${Cycledetails>status === 'COMPLETED'} }" class="failed"/>
+					<Text text="{Cycledetails>status}" visible="{= ${Cycledetails>status === 'FAILED'} }" class="failed"/>
 				</cells>
 			</ColumnListItem>
 		</items>

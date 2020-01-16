@@ -20,17 +20,18 @@
 		<items>
 			<ColumnListItem type="Navigation" press="handleSelectionChange">
 				<cells>
-					<!--<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"-->
-					<!--	class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>-->
 					<Text text="{Jobdetails>name}"/>
 					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
+					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"/>
+					<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>
+					<Text text="{Jobdetails>buildResult}" visible="{= ${Jobdetails>buildResult === 'SUCCESS'} }" class="success"/>
+					<Text text="{Jobdetails>buildResult}" visible="{= ${Jobdetails>buildResult === 'FAILURE'} }" class="failed"/>
+				</cells>
 					<!--<ObjectNumber number="{Jobdetails>number}" unit="Sec" state="Information" class="sapUiSmallMargin"/>-->
 					<!--<ObjectStatus xmlns="sap.m" state="Information"-->
-					<!--	icon="sap-icon://date-time"/>-->
-					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }" />
-					<ObjectNumber number="{Jobdetails>duartion}" unit="Sec" state="Information" class="sapUiSmallMargin"/>
-					<Text text="{Jobdetails>buildResult}" class="test"/>
-				</cells>
+					<!--icon="sap-icon://date-time"/>-->
+					<!--<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"-->
+					<!--class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>-->
 			</ColumnListItem>
 		</items>
 		<headerToolbar>

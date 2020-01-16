@@ -47,7 +47,11 @@ sap.ui.define([], function () {
 		},
 		getDate: function (date) {
 			var d = new Date(date);
-			return (d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes());
+			var month = parseInt(d.getMonth()) + 1 <= 9 ? "0" + parseInt(d.getMonth()+1) : d.getMonth();
+			var day = parseInt(d.getDate()) <= 9 ? "0" + d.getDate() : d.getDate();
+			var hrs = parseInt(d.getHours()) <= 9 ? "0" + d.getHours() : d.getHours();
+			var mins = parseInt(d.getMinutes()) <= 9 ? "0" + d.getMinutes() : d.getMinutes();
+			return (day + "/" + month + "/" + d.getFullYear() + " " + hrs + ":" + mins);
 		},
 		getRecyclyeDate: function (time) {
 			if (time !== null) {

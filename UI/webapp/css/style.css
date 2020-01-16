@@ -1,71 +1,80 @@
-/* Enter your custom styles here */
-
-.Height_CSS {
-    overflow: hidden !important;
-}
-
-.sapTntNavLIGroup {
-    border-bottom: 0px solid #e5e5e5 !important;
-}
-
-.saparatebackground {
-    background: white;
-}
-
-.sapTntNavLIItem {
-    height: 3rem !important;
-}
-
-.margintop {
-    margin-top: 0.5rem !important;
-}
-
-.idJobdetailscss {
-    border: 0px !important;
-}
-
-.roundButton .sapMBtnInner {
-    border-radius: 2.5rem;
-}
-
-.sapUiBlockCellContent {
-    padding: 0.75rem !important;
-}
-
-.sapSuiteUiCommonsBorderBottomStateRegular {
-    border-bottom-color: #999999;
-    visibility: hidden;
-}
-
-.customtile {
-    margin-right: 1.5rem;
-    border-radius: 1.5rem;
-}
-
-.idBuildlogs_html {
-    font-size: 1.2rem;
-    font-family: monospace;
-}
-
-.test {
-    background: #41e198;
-    background: -moz-linear-gradient(-45deg, #41e198 0%, #3cb6b5 100%);
-    background: -webkit-linear-gradient(-45deg, #41e198 0%, #3cb6b5 100%);
-    background: linear-gradient(135deg, #41e198 0%, #3cb6b5 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#41e198', endColorstr='#3cb6b5', GradientType=1);
-    border-radius: 0.5rem;
-    height: 2rem;
-    text-align: justify;
-    width: 5rem;
-    text-align: b;
-    /* list-style: telugu; */
-    /* text-align: center !important; */
-    padding-top: 0.5rem;
-    padding-left: 0.5rem;
-    color: white!important;
-}
-
-
-
-
-
+	/* Enter your custom styles here */
+	
+	.Height_CSS {
+	    overflow: hidden !important;
+	}
+	
+	.sapTntNavLIGroup {
+	    border-bottom: 0px solid #e5e5e5 !important;
+	}
+	
+	.saparatebackground {
+	    background: white;
+	}
+	
+	.sapTntNavLIItem {
+	    height: 3rem !important;
+	}
+	
+	.margintop {
+	    margin-top: 0.5rem !important;
+	}
+	
+	.idJobdetailscss {
+	    border: 0px !important;
+	}
+	
+	.roundButton .sapMBtnInner {
+	    border-radius: 2.5rem;
+	}
+	
+	.sapUiBlockCellContent {
+	    padding: 0.75rem !important;
+	}
+	
+	.sapSuiteUiCommonsBorderBottomStateRegular {
+	    border-bottom-color: #999999;
+	    visibility: hidden;
+	}
+	
+	.customtile {
+	    margin-right: 1.5rem;
+	    border-radius: 1.5rem;
+	}
+	
+	.idBuildlogs_html {
+	    font-size: 1.2rem;
+	    font-family: monospace;
+	}
+	
+	.success {
+	    background: #41e198;
+	    background: -moz-linear-gradient(-45deg, #41e198 0%, #3cb6b5 100%);
+	    background: -webkit-linear-gradient(-45deg, #41e198 0%, #3cb6b5 100%);
+	    background: linear-gradient(135deg, #41e198 0%, #3cb6b5 100%);
+	    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#41e198', endColorstr='#3cb6b5', GradientType=1);
+	    border-radius: 0.5rem;
+	    height: 2rem;
+	    text-align: justify;
+	    width: 5rem;
+	    text-align: b;
+	    padding-top: 0.5rem;
+	    padding-left: 0.5rem;
+	    color: white!important;
+	}
+	
+	.failed {
+	    background: #f6529d;
+	    background: -moz-linear-gradient(-45deg, #f6529d 0%, #ff464c 100%);
+	    background: -webkit-linear-gradient(-45deg, #f6529d 0%, #ff464c 100%);
+	    background: linear-gradient(135deg, #f6529d 0%, #ff464c 100%);
+	    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f6529d', endColorstr='#ff464c', GradientType=1);
+	    border-radius: 0.5rem;
+	    height: 2rem;
+	    text-align: justify;
+	    width: 6rem;
+	    text-align: b;
+	    padding-top: 0.5rem;
+	    padding-left: 0.5rem;
+	    color: white!important;
+	}
