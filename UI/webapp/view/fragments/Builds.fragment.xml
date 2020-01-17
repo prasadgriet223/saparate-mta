@@ -24,14 +24,13 @@
 					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
 					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"/>
 					<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>
-					<Text text="{Jobdetails>buildResult}" visible="{= ${Jobdetails>buildResult === 'SUCCESS'} }" class="success"/>
-					<Text text="{Jobdetails>buildResult}" visible="{= ${Jobdetails>buildResult === 'FAILURE'} }" class="failed"/>
+					<Text text="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.formatStatusText' }" class="processstatus">
+						<customData>
+							<core:CustomData key="success" value="" writeToDom="{= ${Jobdetails>buildResult} === 'SUCCESS' }"/>
+							<core:CustomData key="fail" value="" writeToDom="{= ${Jobdetails>buildResult} === 'FAILURE' }"/>
+						</customData>
+					</Text>
 				</cells>
-					<!--<ObjectNumber number="{Jobdetails>number}" unit="Sec" state="Information" class="sapUiSmallMargin"/>-->
-					<!--<ObjectStatus xmlns="sap.m" state="Information"-->
-					<!--icon="sap-icon://date-time"/>-->
-					<!--<ObjectIdentifier title="{Jobdetails>name}" text="{ parts : [ 'Jobdetails>number'], formatter: '.formatter.addBuild' }"-->
-					<!--class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>-->
 			</ColumnListItem>
 		</items>
 		<headerToolbar>

@@ -1,5 +1,19 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
 	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}">
+		<ColumnListItem type="Navigation" press="handleSelectionChange_releaseCycle">
+			<cells>
+				<Text text="{Cycledetails>cycleName}"/>
+				<Text text="{Cycledetails>instantiatedBy}"/>
+				<Text text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"/>
+				<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>
+				<Text text="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.formatStatusText' }" class="processstatus">
+					<customData>
+						<core:CustomData key="success" value="" writeToDom="{= ${Cycledetails>status} === 'COMPLETED' }"/>
+						<core:CustomData key="fail" value="" writeToDom="{= ${Cycledetails>status} === 'FAILED' }"/>
+					</customData>
+				</Text>
+			</cells>
+		</ColumnListItem>
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>cycles}"/>
@@ -17,21 +31,6 @@
 				<Text text="{i18n>status}"/>
 			</Column>
 		</columns>
-		<items>
-			<!--highlight="{parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus'}"-->
-			<ColumnListItem type="Navigation" press="handleSelectionChange_releaseCycle">
-				<cells>
-					<Text text="{Cycledetails>cycleName}"/>
-					<Text text="{Cycledetails>instantiatedBy}"/>
-					<Text text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"/>
-					<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>
-					<!--<GenericTag text="{Cycledetails>status}" design="StatusIconHidden"-->
-					<!--	status="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.CycleStatus' }"/>-->
-					<Text text="{Cycledetails>status}" visible="{= ${Cycledetails>status === 'COMPLETED'} }" class="failed"/>
-					<Text text="{Cycledetails>status}" visible="{= ${Cycledetails>status === 'FAILED'} }" class="failed"/>
-				</cells>
-			</ColumnListItem>
-		</items>
 		<headerToolbar>
 			<Toolbar width="100%" id="toolbar2">
 				<content>
