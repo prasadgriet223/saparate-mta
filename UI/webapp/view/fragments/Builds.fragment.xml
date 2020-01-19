@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}">
+	<Table id="idPipeLineBuildResults" items="{Jobdetails>/}" class="releaseCyclestyle">
 		<columns>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>pipeline}"/>
@@ -8,11 +8,11 @@
 				<Text text="{i18n>buildNo}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>time}"/>
+				<Text text="{i18n>gitRef}"/>
 			</Column>
-			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>duration}"/>
-			</Column>
+			<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+			<!--	<Text text="{i18n>duration}"/>-->
+			<!--</Column>-->
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>result}"/>
 			</Column>
@@ -23,7 +23,7 @@
 					<Text text="{Jobdetails>name}"/>
 					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
 					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"/>
-					<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>
+					<!--<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>-->
 					<Text text="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.formatStatusText' }" class="processstatus">
 						<customData>
 							<core:CustomData key="success" value="" writeToDom="{= ${Jobdetails>buildResult} === 'SUCCESS' }"/>
@@ -50,19 +50,3 @@
 		</headerToolbar>
 	</Table>
 </core:FragmentDefinition>
-<!--<App xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">-->
-<!--	<pages>-->
-<!--		<Page id="idPipelineBuilds" title="" showNavButton="false" navButtonPress="navigatetoPrevious">-->
-<!--			<customHeader>-->
-<!--				<Bar id="bar0">-->
-<!--					<contentLeft>-->
-<!--						<Breadcrumbs xmlns="sap.m" currentLocationText="" links="{/}" id="idbreadcrumbs" separatorStyle="GreaterThan">-->
-<!--							<Link emphasized="true" text="{name}" href="{link}" press="onLinkPressNavigate"/>-->
-<!--						</Breadcrumbs>-->
-<!--					</contentLeft>-->
-<!--					<contentMiddle>-->
-<!--						<Text xmlns="sap.m" text="Text" id="idtxtDashboard"/>-->
-<!--					</contentMiddle>-->
-<!--				</Bar>-->
-<!--			</customHeader>-->
-<!--			<content>-->

@@ -24,9 +24,9 @@ sap.ui.define(["scp/com/saparate/controller/BaseController", "scp/com/saparate/u
 				this.getRouter().navTo("Authorize");
 			} else {
 				this.loadDatatoViewwithKey_GET("latestBuildResults", "Jobdetails", skey);
-				this.byId("idBuildstblHdr").setText("Recent Build Cycles");
+				this.byId("idBuildstblHdr").setText("Recent Build Cycles").addStyleClass("releaseCycledTitle");
 				this.loadDatatoViewwithKey_GET("recentcycles", "Cycledetails", skey);
-				this.byId("idReleasePipelinesHdr").setText("Recent Release Cycles");
+				this.byId("idReleasePipelinesHdr").setText("Recent Release Cycles").addStyleClass("releaseCycledTitle");
 				this.byId("idBreadcrum_dashboard").setCurrentLocationText("Dashboard");
 			}
 		},

@@ -1,11 +1,11 @@
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
-	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}">
+	<Table id="idPipeLineCycleResults" items="{Cycledetails>/items}" class="releaseCyclestyle">
 		<ColumnListItem type="Navigation" press="handleSelectionChange_releaseCycle">
 			<cells>
 				<Text text="{Cycledetails>cycleName}"/>
 				<Text text="{Cycledetails>instantiatedBy}"/>
 				<Text text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"/>
-				<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>
+				<!--<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>-->
 				<Text text="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.formatStatusText' }" class="processstatus">
 					<customData>
 						<core:CustomData key="success" value="" writeToDom="{= ${Cycledetails>status} === 'COMPLETED' }"/>
@@ -15,18 +15,18 @@
 			</cells>
 		</ColumnListItem>
 		<columns>
-			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>cycles}"/>
+			<Column demandPopin="true" class="tblHdrcss" minScreenWidth="Tablet">
+				<Text text="{i18n>cycles}" />
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>triggeredBy}"/>
+				<Text text="{i18n>environment}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>startTime}"/>
+				<Text text="{i18n>buildref}"/>
 			</Column>
-			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>endTime}"/>
-			</Column>
+			<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
+			<!--	<Text text="{i18n>endTime}"/>-->
+			<!--</Column>-->
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>status}"/>
 			</Column>
