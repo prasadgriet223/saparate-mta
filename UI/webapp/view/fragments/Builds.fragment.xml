@@ -22,7 +22,7 @@
 				<cells>
 					<Text text="{Jobdetails>name}"/>
 					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
-					<Text text="{ parts : [ 'Jobdetails>timeStamp'], formatter: '.formatter.getDate' }"/>
+					<Text text="Demo.git/master"/>
 					<!--<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>-->
 					<Text text="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.formatStatusText' }" class="processstatus">
 						<customData>

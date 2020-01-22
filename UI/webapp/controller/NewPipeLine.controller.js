@@ -173,10 +173,11 @@ sap.ui.define([
 
 		},
 		handleCreateNewPipeLineSubmit: function (oEvent) {
-			this._handleMessageBoxOpen("Are you sure you want to create a NewPipe Line?", "confirm");
+			this._handleMessageBoxOpen("Are you sure you want to create a new Build Pipeline?", "confirm");
+			
 		},
 		handleCreateNewPipeLineCancel: function () {
-			this._handleMessageBoxOpenforcancel("Are you sure you want to cancel your New PipeLineCreation?", "warning");
+			this._handleMessageBoxOpenforcancel("Are you sure you want to cancel the creation of your new Build Pipeline?", "warning");
 		},
 
 		additionalInfoValidation: function () {

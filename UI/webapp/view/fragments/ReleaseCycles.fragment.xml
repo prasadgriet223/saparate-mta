@@ -3,8 +3,8 @@
 		<ColumnListItem type="Navigation" press="handleSelectionChange_releaseCycle">
 			<cells>
 				<Text text="{Cycledetails>cycleName}"/>
-				<Text text="{Cycledetails>instantiatedBy}"/>
-				<Text text="{ parts : [ 'Cycledetails>startTime'], formatter: '.formatter.getDate' }"/>
+				<Text text="{Cycledetails>stagesummary/environments}"/>
+				<Text text="{Cycledetails>inputs/buildJobName}"/>
 				<!--<Text text="{ parts : [ 'Cycledetails>endTime'], formatter: '.formatter.getDate' }"/>-->
 				<Text text="{ parts : [ 'Cycledetails>status'], formatter: '.formatter.formatStatusText' }" class="processstatus">
 					<customData>
