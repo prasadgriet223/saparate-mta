@@ -88,13 +88,13 @@
 								<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">
 									<form:content>
 										<Label text="{i18n>url}" />
-										<Text id="txtwebhookURL" text="https://na1.saparate.com/saparate/webhook/receive"></Text>
+										<Text id="txtwebhookURL" text="https://na2.saparate.com/saparate/webhook/receive"></Text>
 									</form:content>
 								</form:SimpleForm>
 								<!--<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">-->
 								<!--	<form:content>-->
 								<!--		<Label text="URL">-->
-								<!--<Text width="100%" text="https://na1.saparate.com/saparate/webhook/receive"></Text>-->
+								
 								<!--		</form:content>-->
 								<!--	</form:SimpleForm>-->
 							</items>

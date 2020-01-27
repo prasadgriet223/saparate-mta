@@ -1,9 +1,9 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"scp/com/saparate/controller/BaseController"
+], function (BaseController) {
 	"use strict";
 
-	return Controller.extend("scp.com.saparate.controller.Projects", {
+	return BaseController.extend("scp.com.saparate.controller.Projects", {
 
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -42,8 +42,7 @@ sap.ui.define([
 		//	}
 		_onObjectMatched: function (oEvent) {
 			var oModel_jobs = new sap.ui.model.json.JSONModel();
-			oModel_jobs.loadData(this.getOwnerComponent().getModel("servers").getProperty("jobs"));
-			console.log(oModel_jobs);
+			oModel_jobs.loadData(this.getApiCall("jobs"));
 			this.getView().setModel(oModel_jobs,"Jobs");
 
 		},

@@ -51,7 +51,7 @@
 					"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 				};
 				var oModel_releasestageslog = new sap.ui.model.json.JSONModel();
-				oModel_releasestageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
+				oModel_releasestageslog.loadData(this.getApiCall("log") + "?jobName=" + jobId +
 					"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
 				oModel_releasestageslog.attachRequestCompleted(function () {
 					this._getDialog().open();
@@ -128,7 +128,7 @@
 
 				var taskId = oEvent.getSource().getBindingContext("Stages").getProperty("id");
 				var oModel = new JSONModel();
-				oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
+				oModel.loadData("//"+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain")+"/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
 					"PUT", false, false, sHeaders);
 				oModel.attachRequestCompleted(function () {
 					MessageBox.show(("Release PipeLine Stage  " + oModel.getData().label + " " + msg), {

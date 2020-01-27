@@ -214,7 +214,7 @@
 					};
 
 					var oModel_CreateReleasePipeLine = new sap.ui.model.json.JSONModel();
-					oModel_CreateReleasePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("saveReleaseline") + "/" +
+					oModel_CreateReleasePipeLine.loadData(this.getApiCall("saveReleaseline") + "/" +
 						ip_workflow, JSON.stringify(
 							sap.ui.getCore().getModel('oModelSaveReleasePipeline').getData()), true,
 						"POST", false, false, sHeaders);

@@ -85,7 +85,7 @@ sap.ui.define([
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
-			oModel_triggerJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("triggerjob"), JSON.stringify(jobids),
+			oModel_triggerJob.loadData(this.getApiCall("triggerjob"), JSON.stringify(jobids),
 				true,
 				"POST", false, false, sHeaders);
 			oModel_triggerJob.attachRequestCompleted(function () {
@@ -154,7 +154,7 @@ sap.ui.define([
 							"Content-Type": "application/json",
 							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 						};
-						oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + sjobId,
+						oModel_deleteJob.loadData(this.getApiCall("DeleteJob") + "?jobName=" + sjobId,
 							null,
 							true,
 							"GET", null, false, sHeaders);
@@ -186,42 +186,9 @@ sap.ui.define([
 
 			this._handleMessageBoxOpen(this.getView().getModel("i18n").getResourceBundle().getText("deleteBuildPipeline"), selectedJobId,
 				"alert");
-
-			//	var oModel_deleteJob = new sap.ui.model.json.JSONModel();
-			//	oModel_deleteJob.loadData(this.getOwnerComponent().getModel("servers").getProperty("DeleteJob") + "?jobName=" + selectedJobId);
-
-			//	this.getView().getModel().refresh();
-
 		},
 		navigatetoBuilds: function (oEvent) {
 			this.gotoBuilds(oEvent);
 		}
 	});
 });
-// function(Controller, MessageBox) {
-//       "use strict";
-
-//       return Controller.extend("myController", {
-//         onPress: function() {
-//           var sMessageText = "Message Text";
-//           var icon, stitle, actions, id, sFinalText, bCompact;
-//           MessageBox.show(sMessageText, {
-//             icon: icon ? icon : MessageBox.Icon.NONE,
-//             title: stitle ? stitle : "",
-//             actions: actions ? actions : MessageBox.Action.CLOSE,
-//             id: id ? id : "DefaultMessageBoxId",
-//             details: sFinalText ? sFinalText : "Error",
-//             styleClass: bCompact ? "sapUiSizeCompact" : "",
-//             onClose: function(oAction) {
-//               if (oAction === "CLOSE") {
-//                 this.okFunction();
-//               }
-//             }.bind(this),
-//           });
-//         },
-
-//         okFunction() {
-//           alert("okFunction was executed")
-//         }
-//       });
-//     }

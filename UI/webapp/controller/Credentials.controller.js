@@ -54,7 +54,7 @@ sap.ui.define([
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
-			oModle_saveCred.loadData(this.getOwnerComponent().getModel("servers").getProperty("addorupdate"), JSON.stringify(oDialogModel_data),
+			oModle_saveCred.loadData(this.getApiCall("addorupdate"), JSON.stringify(oDialogModel_data),
 				true,
 				"POST", false, false, sHeaders);
 			oModle_saveCred.attachRequestCompleted(function () {

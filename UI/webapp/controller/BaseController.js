@@ -18,7 +18,8 @@ sap.ui.define([
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		},
 		getApiCall: function (sProperty) {
-			return this.getOwnerComponent().getModel("servers").getProperty(sProperty);
+			var serverName = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain");
+			return this.getOwnerComponent().getModel("servers").getProperty(sProperty).replace("{server_name}", serverName);
 		},
 		authModel: function () {
 			//return this.getOwnerComponent().getModel();

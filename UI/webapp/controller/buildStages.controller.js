@@ -64,7 +64,7 @@ sap.ui.define([
 				var oModel_buildstageslog = new sap.ui.model.json.JSONModel();
 
 				this.byId("idlog_content").setBusy(true);
-				oModel_buildstageslog.loadData(this.getOwnerComponent().getModel("servers").getProperty("log") + "?jobName=" + jobId +
+				oModel_buildstageslog.loadData(this.getApiCall("log") + "?jobName=" + jobId +
 					"&buildNumber=" + buildId, null, true, "GET", null, false, sHeaders);
 
 				oModel_buildstageslog.attachRequestCompleted(function () {
@@ -111,7 +111,7 @@ sap.ui.define([
 			};
 			var p = this.byId("idpanel_Stage");
 			p.setBusy(true);
-			oModel_buildstageslog_Stage.loadData(this.getOwnerComponent().getModel("servers").getProperty("stagelog") + "?jobName=" + this._jobid +
+			oModel_buildstageslog_Stage.loadData(this.getApiCall("stagelog") + "?jobName=" + this._jobid +
 				"&buildNumber=" + this._buildid + "&stageId=" + id, null, true, "GET", null, false, sHeaders);
 			oModel_buildstageslog_Stage.attachRequestCompleted(function () {
 				p.removeAllContent();

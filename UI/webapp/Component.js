@@ -27,7 +27,8 @@
 			var oKeyModel_data = {
 				"saparate": {
 					"key": "",
-					"email":""
+					"email":"",
+					"domain":""
 				}
 			};
 
@@ -49,6 +50,12 @@
 			sap.ui.getCore().setModel(oKeyModel, "oKeyModel");
 
 			this.getSkey();
+			var domainName = window.location.origin.split("//")[1].split("-")[0];
+			if ( domainName === "p2001579154trial" || domainName === "webidetesting4718256") {
+				sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/domain", "na2.saparate.com");
+			} else if ( domainName === "p2001885952trial") {
+				sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/domain", "na1.saparate.com");
+			}
 		},
 		getSkey: function () {
 			var oModel = new JSONModel();
@@ -68,7 +75,10 @@
 					data["userUUID"] = oModel_2.getData().user_id;
 					
 					var oModel_3 = new JSONModel();
-					oModel_3.loadData("https://na1.saparate.com/saparate/authorization/apitoken", JSON.stringify(data), true, "POST", false,
+					var serverName = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain");
+					var apiTokenUrl = "https://{server_name}/saparate/authorization/apitoken";
+					apiTokenUrl = apiTokenUrl.replace("{server_name}", serverName);
+					oModel_3.loadData(apiTokenUrl, JSON.stringify(data), true, "POST", false,
 						false, {
 							"Content-Type": "application/json"
 						});

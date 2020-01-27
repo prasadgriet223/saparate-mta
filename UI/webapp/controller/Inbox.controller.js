@@ -46,7 +46,7 @@ sap.ui.define([
 			};
 			this.getView().setBusy(true);
 			var oModel = new JSONModel();
-			oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
+			oModel.loadData("//"+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain")+"/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
 				"PUT", false, false, sHeaders);
 			oModel.attachRequestCompleted(function () {
 				MessageBox.show(("Stage  " + oModel.getData().label + " Approved!  "), {
@@ -105,7 +105,7 @@ sap.ui.define([
 			};
 
 			var oModel = new JSONModel();
-			oModel.loadData("//na1.saparate.com/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
+			oModel.loadData("//"+sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain")+"/rateworkflow/tasks/" + taskId + "?action=" + action, JSON.stringify(oInput), true,
 				"PUT", false, false, sHeaders);
 			oModel.attachRequestCompleted(function () {
 				MessageBox.show(("Release PipeLine Stage  " + oModel.getData().label + " " + msg), {

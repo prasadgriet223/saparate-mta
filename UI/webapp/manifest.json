@@ -86,7 +86,7 @@
 			"servers": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {},
-				"preload": false,
+				"preload": true,
 				"uri": "i18n/Servers.properties"
 			},
 			"BreadCrumb": {

@@ -3,7 +3,7 @@ _schema-version: '2.1'
 version: 0.0.1
 
 modules:
- - name: UI
+ - name: RO-UI
    type: html5
    path: UI
    parameters:

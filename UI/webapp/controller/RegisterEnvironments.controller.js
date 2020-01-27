@@ -89,7 +89,7 @@ sap.ui.define([
 				"Content-Type": "application/json",
 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
 			};
-			oModle_saveEnv.loadData(this.getOwnerComponent().getModel("servers").getProperty("addcfc"), JSON.stringify(oDialogModel_data), true,
+			oModle_saveEnv.loadData(this.getApiCall("addcfc"), JSON.stringify(oDialogModel_data), true,
 				"POST", false, false, sHeaders);
 			oModle_saveEnv.attachRequestCompleted(function () {
 				this._getDialog().close();

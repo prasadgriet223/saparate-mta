@@ -89,7 +89,7 @@ sap.ui.define([
 			};
 			var selectedReleaseId = this.getView().byId("idReleasePipelineJobName").getText();
 			var oModel_TriggerReleasePipeLine = new sap.ui.model.json.JSONModel();
-			oModel_TriggerReleasePipeLine.loadData(this.getOwnerComponent().getModel("servers").getProperty("runReleaseline") + "/" +
+			oModel_TriggerReleasePipeLine.loadData(this.getApiCall("runReleaseline") + "/" +
 				selectedReleaseId, JSON.stringify(oInput.getData()), true,
 				"POST", false, false, sHeaders);
 			oModel_TriggerReleasePipeLine.attachRequestCompleted(function () {
