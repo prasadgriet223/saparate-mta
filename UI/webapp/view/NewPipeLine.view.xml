@@ -25,7 +25,7 @@
 						<!--</Select>-->
 						<form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
 							<form:content>
-								<Label text="JobName" id="idJobName" required="true"/>
+								<Label text="{i18n>buildName}" id="idJobName" required="true"/>
 								<Input width="30%" id="ip_JobName" liveChange="additionalInfoValidation"/>
 								<Label text="{i18n>selectCredentials}" id="label2"/>
 								<Select width="30%" id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType">
