@@ -39,45 +39,7 @@ sap.ui.define([
 			var crId = oEvent.getParameter("listItem").getBindingContext("Credentials").getProperty("id");
 			this._handleMessageBoxOpen(this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential"), crId,
 				"alert");
-			// var srcCtrl = oEvent.getSource();
-			// var sDeletiontxt = this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential");
-			// var sDeletiondialogtitle = this.getView().getModel("i18n").getResourceBundle().getText("Deletiondialogtitle");
-
-			// MessageBox.show(sDeletiontxt, {
-			// 	title: sDeletiondialogtitle,
-			// 	actions: [sap.m.MessageBox.Action.OK, MessageBox.Action.CANCEL],
-			// 	onClose: function (oActions) {
-			// 		if (oActions === "OK") {
-			// 			//	srcCtrl.setBusy(true);
-
-			// 			var oModel_DeleteCredential = new sap.ui.model.json.JSONModel();
-
-			// 			var sHeaders = {
-			// 				"Content-Type": "application/json",
-			// 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			// 			};
-
-			// 			//	https://na2.saparate.com/saparate/credential/delete?id=35
-
-			// 			oModel_DeleteCredential.loadData(this.getApiCall("deletecredential") + "?id=" + crId, null, true, "GET", null, false,
-			// 				sHeaders);
-
-			// 			oModel_DeleteCredential.attachRequestCompleted(function () {
-			// 				MessageBox.show((oModel_DeleteCredential.getData().response), {
-			// 					title: "Message",
-			// 					actions: [sap.m.MessageBox.Action.OK],
-			// 					onClose: function (oActions) {
-			// 						if (oActions === "OK") {
-			// 							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// 							oRouter.navTo("Credentials");
-			// 						}
-			// 					}.bind(this)
-			// 				});
-			// 			}.bind(this));
-
-			// 		}
-			// 	}.bind(this)
-			// });
+	
 		},
 
 		_handleMessageBoxOpen: function (sMessage, sCredID, sMessageBoxType) {
@@ -165,7 +127,7 @@ sap.ui.define([
 					"POST", false, false, sHeaders);
 				oModle_saveCred.attachRequestCompleted(function () {
 					this._getDialog().close();
-					MessageBox.show((oModle_saveCred.getData().name + "Credential Created"), {
+					MessageBox.show((oModle_saveCred.getData().name + "  Credential Created"), {
 						title: "Result",
 						actions: [sap.m.MessageBox.Action.OK],
 						onClose: function (oActions) {

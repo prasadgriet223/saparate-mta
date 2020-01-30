@@ -5,17 +5,20 @@
 				id="idEnvironmentform">
 				<sap.ui.layout.form:content>
 					<Label text="{i18n>name}" id="label0"/>
-					<Input width="auto" id="input0" value="{Data>/name}"/>
+					<!--<Input required="true" width="auto" id="ip_EnvName" value="{Data>/name}"/>-->
+					<Input required="true" id="ip_EnvName" placeholder="only alphanumerics allowed" validationError="handleValidationError"
+						validationSuccess="handleValidationSuccess"
+						value="{path: 'Data>/name', type: 'sap.ui.model.type.String', constraints: { search: '^[A-Za-z0-9]*$' }}" valueLiveUpdate="true"/>
 					<Label text="{i18n>cloudFoundryUrl}" id="label1"/>
-					<Input width="auto" id="input2" value="{Data>/url}"/>
-					<Label text="{i18n>space}" width="100%" id="label0_1571681561027"/>
-					<Input xmlns="sap.m" id="input0_1571681569206" width="auto" value="{Data>/space}"/>
+					<Input required="true" width="auto" id="ip_CFUrl" value="{Data>/url}"/>
+					<Label text="{i18n>space}" width="100%"/>
+					<Input required="true" xmlns="sap.m" id="ip_CFspace" width="auto" value="{Data>/space}"/>
 					<Label text="{i18n>org}" width="100%" id="label1_1571681624463"/>
-					<Input xmlns="sap.m" id="input1" fieldWidth="10%" width="auto" value="{Data>/org}"/>
+					<Input required="true" xmlns="sap.m" id="ip_CForg" fieldWidth="10%" width="auto" value="{Data>/org}"/>
 					<Label text="{i18n>apiEndpoint}" width="100%" id="label2"/>
-					<Input xmlns="sap.m" id="input2_1571681711203" width="auto" value="{Data>/apiendpoint}"/>
+					<Input required="true" xmlns="sap.m" id="id_CFApiEndpoint" width="auto" value="{Data>/apiendpoint}"/>
 					<Label text="{i18n>credentialKey}" width="100%" id="label3"/>
-					<Select id="idCredSelect_Env" selectedKey="{Data>/credentialKey}" items="{path: 'credentials>/'}">
+					<Select id="idCredSelect_Env" forceSelection="false" selectedKey="{Data>/credentialKey}" items="{path: 'credentials>/'}">
 						<core:ListItem key="{credentials>credentialKey}" text="{credentials>name}"/>
 					</Select>
 					<Label xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
@@ -23,7 +26,7 @@
 			</sap.ui.layout.form:SimpleForm>
 		</content>
 		<beginButton>
-				<Button text="{i18n>save}" press="onSaveEditEnvironment"/>
+			<Button text="{i18n>save}" press="onSaveEditEnvironment"/>
 		</beginButton>
 		<endButton>
 			<Button text="{i18n>cancel}" press="onCancel"/>

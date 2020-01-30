@@ -1,8 +1,8 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
 	"sap/ui/model/json/JSONModel", "sap/m/MessageBox",
-	"scp/com/saparate/utils/formatter"
-], function (BaseController, JSONModel, MessageBox,formatter) {
+	"scp/com/saparate/utils/formatter", "sap/m/MessageToast"
+], function (BaseController, JSONModel, MessageBox, formatter, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.RegisterEnvironments", {
@@ -50,7 +50,18 @@ sap.ui.define([
 			this.loadDatatoViewwithKey_GET("credentials", "credentials",
 				sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 		},
+		onEnvFinished: function (oEvent) {
+			var oList = oEvent.getSource();
+			var oItems = oList.getItems();
+			for (var i = 0; i < oItems.length; i++) {
+				var oItem = oItems[i];
+				var oDeleteControl = oItem.getDeleteControl();
+				oDeleteControl.setIcon("sap-icon://delete");
+				oDeleteControl.setTooltip("Delete");
+			}
+		},
 		onregisterEnviroment: function (oEvent) {
+
 			var oModel_empty = new JSONModel({
 				"name": "",
 				"url": "",
@@ -61,10 +72,21 @@ sap.ui.define([
 			this._getDialog().setModel(oModel_empty, "Data");
 			this._operation = "add";
 			this._getDialog().open();
+
 		},
+
+		handleValidationError: function (oEvent) {
+			oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
+			oEvent.getSource().setValue("");
+		},
+
+		handleValidationSuccess: function (oEvent) {
+			oEvent.getSource().setValueState(sap.ui.core.ValueState.Success);
+		},
+
 		_getDialog: function () {
 			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("scp.com.saparate.view.fragments.Enviromnent", this);
+				this._oDialog = sap.ui.xmlfragment(this.getView().getId(), "scp.com.saparate.view.fragments.Enviromnent", this);
 				this.getView().addDependent(this._oDialog);
 			}
 			return this._oDialog;
@@ -80,31 +102,83 @@ sap.ui.define([
 			this._getDialog().open();
 		},
 		onSaveEditEnvironment: function (oEvent) {
-			var oModle_saveEnv = new JSONModel();
-			var oDialogModel_data = oEvent.getSource().getParent().getModel("Data").getData();
-			if (this._operation === "add") {
-				oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
+
+			if (this.byId("id_CFApiEndpoint").getValue() === "" || this.byId("ip_CFspace").getValue() === "" || this.byId("ip_EnvName").getValue() ===
+				"" || this.byId("ip_CFUrl").getValue() === "" || this.byId("ip_CForg").getValue() === "" || this.byId("idCredSelect_Env").getSelectedKey() ===
+				"") {
+				sap.m.MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("CredentialMandatory"));
+			} else {
+
+				var oModle_saveEnv = new JSONModel();
+				var oDialogModel_data = oEvent.getSource().getParent().getModel("Data").getData();
+				if (this._operation === "add") {
+					oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
+				}
+				var sHeaders = {
+					"Content-Type": "application/json",
+					"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+				};
+				oModle_saveEnv.loadData(this.getApiCall("addcfc"), JSON.stringify(oDialogModel_data), true,
+					"POST", false, false, sHeaders);
+				oModle_saveEnv.attachRequestCompleted(function () {
+					this._getDialog().close();
+					MessageBox.show((oModle_saveEnv.getData().name + "   has been Added/Updated." ), {
+						title: "Result",
+						actions: [sap.m.MessageBox.Action.OK],
+						onClose: function (oActions) {
+							if (oActions === "OK") {
+								this.loadDatatoViewwithKey_GET("getcfc", "Environments",
+									sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+							}
+						}.bind(this)
+					});
+				}.bind(this));
 			}
-			var sHeaders = {
-				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			};
-			oModle_saveEnv.loadData(this.getApiCall("addcfc"), JSON.stringify(oDialogModel_data), true,
-				"POST", false, false, sHeaders);
-			oModle_saveEnv.attachRequestCompleted(function () {
-				this._getDialog().close();
-				MessageBox.show( (oModle_saveEnv.getData().name ), {
-					title: "Result",
-					actions: [sap.m.MessageBox.Action.OK],
-					onClose: function (oActions) {
-						if (oActions === "OK") {
+
+		},
+		handleDelete: function (oEvent) {
+
+			var envId = oEvent.getParameter("listItem").getBindingContext("Environments").getProperty("id");
+			this._handleMessageBoxOpen(this.getView().getModel("i18n").getResourceBundle().getText("deleteEnvironment"), envId,
+				"alert");
+
+		},
+		_handleMessageBoxOpen: function (sMessage, sEnvID, sMessageBoxType) {
+			MessageBox.warning(sMessage, {
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (oAction) {
+					if (oAction === MessageBox.Action.YES) {
+						this.byId("idEnviroments").setBusy(true);
+						var oModel_deleteJob = new sap.ui.model.json.JSONModel();
+						var sHeaders = {
+							"Content-Type": "application/json",
+							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+						};
+						oModel_deleteJob.loadData(this.getApiCall("deleteEnviroment") + "?id=" + sEnvID,
+							null,
+							true,
+							"GET", null, false, sHeaders);
+
+						oModel_deleteJob.attachRequestCompleted(function () {
+							var msg = oModel_deleteJob.getData().response
+							MessageToast.show(msg);
+
 							this.loadDatatoViewwithKey_GET("getcfc", "Environments",
 								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-						}
-					}.bind(this)
-				});
-			}.bind(this));
+							this.getView().getModel("Environments").refresh(true);
+
+							//	this.getView().setBusy();
+							this.byId("idEnviroments").setBusy(false);
+						}.bind(this));
+					}
+					//if (oAction === MessageBox.Action.NO) {
+
+					//	}
+
+				}.bind(this)
+			});
 		}
+
 	});
 
 });
