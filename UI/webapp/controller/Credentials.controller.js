@@ -1,7 +1,7 @@
 sap.ui.define([
 	"scp/com/saparate/controller/BaseController",
-	"sap/ui/model/json/JSONModel", "sap/m/MessageBox"
-], function (BaseController, JSONModel, MessageBox) {
+	"sap/ui/model/json/JSONModel", "sap/m/MessageBox", "sap/m/MessageToast"
+], function (BaseController, JSONModel, MessageBox, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("scp.com.saparate.controller.Credentials", {
@@ -35,23 +35,88 @@ sap.ui.define([
 			}
 		},
 		handleDelete: function (oEvent) {
-			var crId = oEvent.getParameter("listItem").getBindingContext("Credentials").getProperty("id");
-			var srcCtrl = oEvent.getSource();
-			var sDeletiontxt = this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential");
-			var sDeletiondialogtitle = this.getView().getModel("i18n").getResourceBundle().getText("Deletiondialogtitle");
 
-			MessageBox.show(sDeletiontxt, {
-				title: sDeletiondialogtitle,
-				actions: [sap.m.MessageBox.Action.OK, MessageBox.Action.CANCEL],
-				onClose: function (oActions) {
-					if (oActions === "OK") {
-						srcCtrl.setBusy(true);
-						this.loadDatatoViewwithKey_GET_filter_2("deletecredential", "?id=" + crId, "Credentials",
-							sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), srcCtrl);
+			var crId = oEvent.getParameter("listItem").getBindingContext("Credentials").getProperty("id");
+			this._handleMessageBoxOpen(this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential"), crId,
+				"alert");
+			// var srcCtrl = oEvent.getSource();
+			// var sDeletiontxt = this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential");
+			// var sDeletiondialogtitle = this.getView().getModel("i18n").getResourceBundle().getText("Deletiondialogtitle");
+
+			// MessageBox.show(sDeletiontxt, {
+			// 	title: sDeletiondialogtitle,
+			// 	actions: [sap.m.MessageBox.Action.OK, MessageBox.Action.CANCEL],
+			// 	onClose: function (oActions) {
+			// 		if (oActions === "OK") {
+			// 			//	srcCtrl.setBusy(true);
+
+			// 			var oModel_DeleteCredential = new sap.ui.model.json.JSONModel();
+
+			// 			var sHeaders = {
+			// 				"Content-Type": "application/json",
+			// 				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+			// 			};
+
+			// 			//	https://na2.saparate.com/saparate/credential/delete?id=35
+
+			// 			oModel_DeleteCredential.loadData(this.getApiCall("deletecredential") + "?id=" + crId, null, true, "GET", null, false,
+			// 				sHeaders);
+
+			// 			oModel_DeleteCredential.attachRequestCompleted(function () {
+			// 				MessageBox.show((oModel_DeleteCredential.getData().response), {
+			// 					title: "Message",
+			// 					actions: [sap.m.MessageBox.Action.OK],
+			// 					onClose: function (oActions) {
+			// 						if (oActions === "OK") {
+			// 							var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+			// 							oRouter.navTo("Credentials");
+			// 						}
+			// 					}.bind(this)
+			// 				});
+			// 			}.bind(this));
+
+			// 		}
+			// 	}.bind(this)
+			// });
+		},
+
+		_handleMessageBoxOpen: function (sMessage, sCredID, sMessageBoxType) {
+			MessageBox.warning(sMessage, {
+				actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+				onClose: function (oAction) {
+					if (oAction === MessageBox.Action.YES) {
+						this.byId("idCredentialsList").setBusy(true);
+						var oModel_deleteJob = new sap.ui.model.json.JSONModel();
+						var sHeaders = {
+							"Content-Type": "application/json",
+							"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+						};
+						oModel_deleteJob.loadData(this.getApiCall("deletecredential") + "?id=" + sCredID,
+							null,
+							true,
+							"GET", null, false, sHeaders);
+
+						oModel_deleteJob.attachRequestCompleted(function () {
+							var msg = oModel_deleteJob.getData().response
+							MessageToast.show(msg);
+
+							this.loadDatatoViewwithKey_GET("credentials", "Credentials",
+								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+
+							this.getView().getModel("Credentials").refresh(true);
+
+							//	this.getView().setBusy();
+							this.byId("idCredentialsList").setBusy(false);
+						}.bind(this));
 					}
+					//if (oAction === MessageBox.Action.NO) {
+
+					//	}
+
 				}.bind(this)
 			});
 		},
+
 		handleValidationError: function (oEvent) {
 			oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
 			oEvent.getSource().setValue("");
