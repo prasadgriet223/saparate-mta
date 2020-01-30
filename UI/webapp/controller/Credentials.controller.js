@@ -19,12 +19,47 @@ sap.ui.define([
 		},
 		_getDialog: function () {
 			if (!this._oDialog) {
-				this._oDialog = sap.ui.xmlfragment("scp.com.saparate.view.fragments.Credentials", this);
+				this._oDialog = sap.ui.xmlfragment(this.getView().getId(), "scp.com.saparate.view.fragments.Credentials", this);
 				this.getView().addDependent(this._oDialog);
 			}
 			return this._oDialog;
 		},
+		onFinished: function (oEvent) {
+			var oList = oEvent.getSource();
+			var oItems = oList.getItems();
+			for (var i = 0; i < oItems.length; i++) {
+				var oItem = oItems[i];
+				var oDeleteControl = oItem.getDeleteControl();
+				oDeleteControl.setIcon("sap-icon://delete");
+				oDeleteControl.setTooltip("Delete");
+			}
+		},
+		handleDelete: function (oEvent) {
+			var crId = oEvent.getParameter("listItem").getBindingContext("Credentials").getProperty("id");
+			var srcCtrl = oEvent.getSource();
+			var sDeletiontxt = this.getView().getModel("i18n").getResourceBundle().getText("deleteCredential");
+			var sDeletiondialogtitle = this.getView().getModel("i18n").getResourceBundle().getText("Deletiondialogtitle");
 
+			MessageBox.show(sDeletiontxt, {
+				title: sDeletiondialogtitle,
+				actions: [sap.m.MessageBox.Action.OK, MessageBox.Action.CANCEL],
+				onClose: function (oActions) {
+					if (oActions === "OK") {
+						srcCtrl.setBusy(true);
+						this.loadDatatoViewwithKey_GET_filter_2("deletecredential", "?id=" + crId, "Credentials",
+							sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"), srcCtrl);
+					}
+				}.bind(this)
+			});
+		},
+		handleValidationError: function (oEvent) {
+			oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
+			oEvent.getSource().setValue("");
+		},
+
+		handleValidationSuccess: function (oEvent) {
+			oEvent.getSource().setValueState(sap.ui.core.ValueState.Success);
+		},
 		onregisterCredential: function () {
 			var oModel_empty = new JSONModel({
 				"name": "",
@@ -45,31 +80,40 @@ sap.ui.define([
 			this._getDialog().open();
 		},
 		onSaveEditCredential: function (oEvent) {
-			var oModle_saveCred = new JSONModel();
-			var oDialogModel_data = oEvent.getSource().getParent().getModel("Data").getData();
-			// if (this._operation === "add") {
-			// 	oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
-			// }
-			var sHeaders = {
-				"Content-Type": "application/json",
-				"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
-			};
-			oModle_saveCred.loadData(this.getApiCall("addorupdate"), JSON.stringify(oDialogModel_data),
-				true,
-				"POST", false, false, sHeaders);
-			oModle_saveCred.attachRequestCompleted(function () {
-				this._getDialog().close();
-				MessageBox.show((oModle_saveCred.getData().name +"Credential Created"), {
-					title: "Result",
-					actions: [sap.m.MessageBox.Action.OK],
-					onClose: function (oActions) {
-						if (oActions === "OK") {
-							this.loadDatatoViewwithKey_GET("credentials", "Credentials",
-								sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
-						}
-					}.bind(this)
-				});
-			}.bind(this));
+
+			if (this.byId("idCrdName").getValue() === "" || this.byId("idCrdUserName").getValue() === "" || this.byId("idCrdPW").getValue() ===
+				"") {
+				sap.m.MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("CredentialMandatory"));
+			} else {
+
+				var oModle_saveCred = new JSONModel();
+				var oDialogModel_data = oEvent.getSource().getParent().getModel("Data").getData();
+				// if (this._operation === "add") {
+				// 	oDialogModel_data["credentialKey"] = oEvent.getSource().getParent().getContent()[0].getContent()[11].getSelectedKey();
+				// }
+				var sHeaders = {
+					"Content-Type": "application/json",
+					"Authorization": sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken
+				};
+				oModle_saveCred.loadData(this.getApiCall("addorupdate"), JSON.stringify(oDialogModel_data),
+					true,
+					"POST", false, false, sHeaders);
+				oModle_saveCred.attachRequestCompleted(function () {
+					this._getDialog().close();
+					MessageBox.show((oModle_saveCred.getData().name + "Credential Created"), {
+						title: "Result",
+						actions: [sap.m.MessageBox.Action.OK],
+						onClose: function (oActions) {
+							if (oActions === "OK") {
+								this.loadDatatoViewwithKey_GET("credentials", "Credentials",
+									sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
+							}
+						}.bind(this)
+					});
+				}.bind(this));
+
+			}
+
 		},
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

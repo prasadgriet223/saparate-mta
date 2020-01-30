@@ -12,6 +12,17 @@
 				<Image src="images/Logo.png" class="sapImgcustom"></Image>
 				<Image src="images/left-shadow.jpg" class="marginLeftimg"></Image>
 				<core:Icon src="sap-icon://menu2" press="onPressExpand" class="Dashboardleftpane"></core:Icon>
+				<ToolbarSpacer>
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>
+					</layoutData>
+				</ToolbarSpacer>
+				
+				<Text text="" id="idBtnusertxt"  >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Text>
 			</tnt:ToolHeader>
 			<!--<Bar id="bar0" class="saparatebackground">-->
 			<!--	<contentLeft>-->

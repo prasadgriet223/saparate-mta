@@ -117,6 +117,12 @@ sap.ui.define([], function () {
 				status = status.toLowerCase();
 				return status.charAt(0).toUpperCase() + status.slice(1);
 			}
-		}
+		},
+		addDeselectOption: function() {
+    var that = this;
+    this.getBinding("items").attachDataReceived(function(){
+        that.insertItem(new sap.ui.core.ListItem({text: '', key: undefined}), 0);
+    });
+}
 	};
 });

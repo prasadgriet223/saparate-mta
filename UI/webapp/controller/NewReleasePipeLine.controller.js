@@ -24,8 +24,21 @@
 					var oSplitContainer = this.byId("idReleasePipelineContainer");
 					oSplitContainer.setShowSecondaryContent(!oSplitContainer.getShowSecondaryContent());
 				},
+				additionalInfoValidation_release: function () {
+					var jobName = this.byId("idWorkFlowName").getValue();
+					var regex = /^[A-Za-z0-9]+$/;
+					if (!jobName.match(regex)) {
+						this.byId("idWorkFlowName").setValue("");
+					}
+					if (jobName.length > 0) {
+						this.byId("idBtnsaveworkflow").setEnabled(true);
+					} else {
+						this.byId("idBtnsaveworkflow").setEnabled(false);
+					}
+				},
 				_onObjectMatched: function (oEvent) {
 
+					this.byId("idBuildSelect_ReleasePipeline").setSelectedKey("");
 					this.loadDatatoViewwithKey_GET("jobs", "Jobs",
 						sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key"));
 
@@ -41,8 +54,10 @@
 					this.byId("idWorkFlowName").setValue("");
 
 					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getData().releasePipelineBuildInput.buildPipelineJobName = "";
-					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getData().releasePipelineBuildInput.buildPipelineBuildID = "";
-					sap.ui.getCore().getModel("oModelSaveReleasePipeline").getData().tasks = [];
+					sap.ui.getCore()
+						.getModel("oModelSaveReleasePipeline").getData().releasePipelineBuildInput.buildPipelineBuildID = "";
+					sap.ui.getCore().getModel(
+						"oModelSaveReleasePipeline").getData().tasks = [];
 
 				},
 				onAddStageName: function (oEvent) {
@@ -198,8 +213,9 @@
 								sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/tasks").push(arrObj);
 							});
 
-							sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineJobName = this.byId(
-								"idBuildSelect_ReleasePipeline").getSelectedItem().getText();
+							sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/releasePipelineBuildInput").buildPipelineJobName =
+								this.byId(
+									"idBuildSelect_ReleasePipeline").getSelectedItem().getText();
 							sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").label = this.byId("idWorkFlowName").getValue();
 							sap.ui.getCore().getModel("oModelSaveReleasePipeline").getProperty("/").createdBy = sap.ui.getCore().getModel('oKeyModel').getProperty(
 								"/saparate/email");

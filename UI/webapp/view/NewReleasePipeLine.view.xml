@@ -9,13 +9,16 @@
 							<form:SimpleForm editable="true" id="idSelectBuildReleasePipeline" layout="ResponsiveGridLayout">
 								<form:content>
 									<Label text="{i18n>enterReleasePipelineName}"/>
-									<Input id="idWorkFlowName" value=""></Input>
+									<!--<Input id="idWorkFlowName" value=""></Input>-->
+									
+									<Input  id="idWorkFlowName" placeholder="only alphanumerics allowed" liveChange="additionalInfoValidation_release"/>
+									
 									<Label text="{i18n>artifactSource}"/>
 									<Select id="idArtifact_ReleasePipeline"  >
 										<core:ListItem key="BuildPipeline" icon="sap-icon://action-settings" text="BuildPipeline"/>
 									</Select>
 									<Label text="{i18n>selectBuildPipeline}"/>
-									<Select id="idBuildSelect_ReleasePipeline" forceSelection="true" items="{path: 'Jobs>/'}" change="onLoadBuildNumbers">
+									<Select id="idBuildSelect_ReleasePipeline" forceSelection="false" items="{path: 'Jobs>/'}" change="onLoadBuildNumbers">
 										<core:ListItem key="{Jobs>id}" icon="sap-icon://action-settings" text="{Jobs>projectname}"/>
 									</Select>
 									<Label text="{i18n>selectBuildPipeline}"/>
@@ -38,7 +41,7 @@
 					<Bar id="idReleasePipelinebar">
 						<contentLeft>
 							<!--<core:Icon src="sap-icon://menu" text="Boards" size="1em" id="icon0" press="openBoardSearch"/>-->
-							<Button xmlns="sap.m" text="{i18n>buildPipelines}" icon="sap-icon://menu2" press="openBuildPipeLineSearch"/>
+							<Button xmlns="sap.m" text="{i18n>buildPipelinesforRelease}" icon="sap-icon://menu2" press="openBuildPipeLineSearch"/>
 						</contentLeft>
 						<contentMiddle>
 							<Text xmlns="sap.m" text="{i18n>createNewReleasePipeline}"/>
@@ -46,7 +49,7 @@
 							<Button xmlns="sap.m" text="{i18n>removeStage}" visible="false" icon="sap-icon://sys-minus" press="onRemoveStageName"/>
 						</contentMiddle>
 						<contentRight>
-							<Button text="{i18n>saveWorkflow}" icon="sap-icon://create" press="onSaveNewReleasePipeLineDialog"/>
+							<Button text="{i18n>saveWorkflow}" enabled="false" id="idBtnsaveworkflow" icon="sap-icon://create" press="onSaveNewReleasePipeLineDialog"/>
 						</contentRight>
 					</Bar>
 				</customHeader>

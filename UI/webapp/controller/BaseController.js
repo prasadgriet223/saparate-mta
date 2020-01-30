@@ -132,6 +132,12 @@ sap.ui.define([
 				oCtrl.getModel(sView).refresh(true);
 				oGlobalBusyDialog.close();
 			}.bind(this));
+		},
+		handleValidationError: function (oEvent) {
+		
+		},
+		handleValidationSuccess: function (oEvent) {
+		
 		}
 	});
 

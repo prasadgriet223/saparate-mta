@@ -26,9 +26,17 @@
 						<form:SimpleForm editable="true" layout="ResponsiveGridLayout" id="form0">
 							<form:content>
 								<Label text="{i18n>buildName}" id="idJobName" required="true"/>
-								<Input width="30%" id="ip_JobName" liveChange="additionalInfoValidation"/>
+								<!--<Input required="true" width="30%" id="ip_JobName" liveChange="additionalInfoValidation" placeholder="only alphanumerics allowed"-->
+								<!--	validationError="handleValidationError" validationSuccess="handleValidationSuccess"-->
+								<!--	value="{path: 'Data>/name', type: 'sap.ui.model.type.String', constraints: { search: '^[A-Za-z0-9]*$' }}" valueLiveUpdate="true"/>-->
+								<!--<MaskInput mask="CCCCCCCC" width="30%" id="ip_JobName"  liveChange="additionalInfoValidation" placeholder="only alphanumerics allowed">-->
+								<!--	<rules>-->
+								<!--		<MaskInputRule maskFormatSymbol="C" regex="[a-zA-Z0-9]"/>-->
+								<!--	</rules>-->
+								<!--</MaskInput>-->
+								<Input width="30%" id="ip_JobName" placeholder="only alphanumerics allowed" liveChange="additionalInfoValidation"/>
 								<Label text="{i18n>selectCredentials}" id="label2"/>
-								<Select width="30%" id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType">
+								<Select width="30%" id="idCredSelect" items="{path: 'credentials>/'}" change="selectRepoType" forceSelection="false">
 									<core:ListItem key="{credentials>id}" text="{credentials>name}" app:credkey="{credentials>credentialKey}"/>
 								</Select>
 							</form:content>
@@ -87,14 +95,13 @@
 								</form:SimpleForm>
 								<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">
 									<form:content>
-										<Label text="{i18n>url}" />
+										<Label text="{i18n>url}"/>
 										<Text id="txtwebhookURL" text="https://na2.saparate.com/saparate/webhook/receive"></Text>
 									</form:content>
 								</form:SimpleForm>
 								<!--<form:SimpleForm id="idfrmWebHook" visible="false" layout="ResponsiveGridLayout" title="WebHook URL">-->
 								<!--	<form:content>-->
 								<!--		<Label text="URL">-->
-								
 								<!--		</form:content>-->
 								<!--	</form:SimpleForm>-->
 							</items>

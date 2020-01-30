@@ -11,8 +11,8 @@ sap.ui.define([
 		 * @memberOf scp.com.saparate.view.App
 		 */
 		onInit: function () {
-			// this._oRouter = this.getRouter();
-			// this._oRouter.getRoute("App").attachPatternMatched(this._onObjectMatched, this);
+			this._oRouter = this.getRouter();
+			this._oRouter.getRoute("App").attachPatternMatched(this._onObjectMatched, this);
 
 		},
 		/**
@@ -39,7 +39,13 @@ sap.ui.define([
 		//
 		//	}
 		_onObjectMatched: function (oEvent) {
+			this.getView().setModel(sap.ui.getCore().getModel("oKeyModel"), "oKeyModel");
+			this.byId("idBtnusertxt").setText(sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/user"));
+				//	var skeyff = ;
+		//	console.log(skeyff);
+			//	sap.ui.getCore().setModel(oModelSaveReleasePipeline, "oModelSaveReleasePipeline");
 
+			//	this.getView().setModel(oModel, sView);
 		},
 		onPressExpand: function () {
 			var toolPage = this.byId("toolPage");
@@ -69,7 +75,7 @@ sap.ui.define([
 		gotoCredentials: function () {
 			this.getRouter().navTo("Credentials");
 		},
-		gotoInbox: function() {
+		gotoInbox: function () {
 			this.getRouter().navTo("Inbox");
 		}
 	});
