@@ -25,12 +25,14 @@
 					oSplitContainer.setShowSecondaryContent(!oSplitContainer.getShowSecondaryContent());
 				},
 				additionalInfoValidation_release: function () {
-					var jobName = this.byId("idWorkFlowName").getValue();
+					//	var jobName = this.byId("idWorkFlowName").getValue();
 					var regex = /^[A-Za-z0-9]+$/;
-					if (!jobName.match(regex)) {
+					if (!this.byId("idWorkFlowName").getValue().match(regex)) {
+						this.byId("idBtnsaveworkflow").setEnabled(false);
 						this.byId("idWorkFlowName").setValue("");
+
 					}
-					if (jobName.length > 0) {
+					if (this.byId("idWorkFlowName").getValue().length > 0) {
 						this.byId("idBtnsaveworkflow").setEnabled(true);
 					} else {
 						this.byId("idBtnsaveworkflow").setEnabled(false);
@@ -190,9 +192,9 @@
 				onSaveNewReleasePipeLineDialog: function (oEvent) {
 					MessageBox.show("Are you sure you want to create a release pipeline?", {
 						title: "Save Release PipeLine",
-						actions: [sap.m.MessageBox.Action.OK],
+						actions: [MessageBox.Action.YES, MessageBox.Action.NO],
 						onClose: function (oActions) {
-							if (oActions === "OK") {
+							if (oActions === "YES") {
 								this.onSaveNewReleasePipeLine();
 							}
 						}.bind(this)
