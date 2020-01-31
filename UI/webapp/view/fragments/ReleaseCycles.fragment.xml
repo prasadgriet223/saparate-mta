@@ -10,15 +10,16 @@
 					<customData>
 						<core:CustomData key="success" value="" writeToDom="{= ${Cycledetails>status} === 'COMPLETED' }"/>
 						<core:CustomData key="fail" value="" writeToDom="{= ${Cycledetails>status} === 'FAILED' }"/>
-						<core:CustomData key="Waiting" value="" writeToDom="{= ${Cycledetails>status} === 'Waiting' }"/>
+						<core:CustomData key="Waiting" value="" writeToDom="{= ${Cycledetails>status} === 'WAITING' }"/>
+						<core:CustomData key="Stopped" value="" writeToDom="{= ${Cycledetails>status} === 'STOPPED' }"/>
+						<core:CustomData key="Started" value="" writeToDom="{= ${Cycledetails>status} === 'STARTED' }"/>
 					</customData>
 				</Text>
 			</cells>
 		</ColumnListItem>
-		
 		<columns>
 			<Column demandPopin="true" class="tblHdrcss" minScreenWidth="Tablet">
-				<Text text="{i18n>cycles}" />
+				<Text text="{i18n>cycles}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
 				<Text text="{i18n>environment}"/>

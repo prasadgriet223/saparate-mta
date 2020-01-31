@@ -9,10 +9,7 @@
 							<form:SimpleForm editable="true" id="idSelectBuildReleasePipeline" layout="ResponsiveGridLayout">
 								<form:content>
 									<Label text="{i18n>enterReleasePipelineName}"/>
-									<!--<Input id="idWorkFlowName" value=""></Input>-->
-									
 									<Input  id="idWorkFlowName" placeholder="only alphanumerics allowed" liveChange="additionalInfoValidation_release"/>
-									
 									<Label text="{i18n>artifactSource}"/>
 									<Select id="idArtifact_ReleasePipeline"  >
 										<core:ListItem key="BuildPipeline" icon="sap-icon://action-settings" text="BuildPipeline"/>
@@ -57,41 +54,3 @@
 		</pages>
 	</App>
 </mvc:View>
-<!--<p:ProcessFlow id="idReleasePipelineProcessFlow" scrollable="false" nodePress="onStagePress" lanes="{js>/lanes}">-->
-<!--	<p:lanes>-->
-<!--		<p:ProcessFlowLaneHeader laneId="{js>id}" iconSrc="{js>icon}" text="{js>label}" position="{js>position}"/>-->
-<!--	</p:lanes>-->
-<!--	<p:nodes>-->
-<!--<p:ProcessFlowNode nodeId="1" laneId="id0" title="Sales Order 1" titleAbbreviation="SO 1" isTitleClickable="false" children="2,11,12"-->
-<!--	state="Positive" stateText="Positive Status" texts=""/>-->
-<!--	</p:nodes>-->
-<!--</p:ProcessFlow>-->
-<!--<IconTabBar id="bar0">-->
-<!--	<items>-->
-<!--		<IconTabFilter text="PreCondition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter0">-->
-<!--			<content>-->
-<!--				<List noDataText="No data" id="list0">-->
-<!--					<items>-->
-<!--						<StandardListItem title="List Item 1" id="item1"/>-->
-<!--						<StandardListItem title="List Item 2" id="item2"/>-->
-<!--						<StandardListItem title="List Item 3" id="item3"/></items>-->
-<!--				</List>-->
-<!--			</content>-->
-<!--		</IconTabFilter>-->
-<!--		<IconTabFilter text="Deployement" icon="sap-icon://task" iconColor="Critical" id="filter1"/>-->
-<!--		<IconTabFilter text="Post Condition" icon="sap-icon://shipping-status" iconColor="Positive" id="filter2"/></items>-->
-<!--</IconTabBar>-->
-<!--<IconTabFilter icon="sap-icon://it-host" iconColor="Positive" design="Horizontal"-->
-<!--	count="Development" text="Confirm Ok" key="Ok"/>-->
-<!--<IconTabSeparator icon="sap-icon://media-forward"/>-->
-<!--<IconTabFilter icon="sap-icon://it-host" iconColor="Critical" design="Horizontal"-->
-<!--	count="{/ProductCollectionStats/Counts/Weight/Heavy} of {/ProductCollectionStats/Counts/Total}" text="Check Heavys" key="Heavy"/>-->
-<!--<IconTabSeparator icon="sap-icon://media-forward"/>-->
-<!--<IconTabFilter icon="sap-icon://it-host" iconColor="Negative" design="Horizontal"-->
-<!--	count="{/ProductCollectionStats/Counts/Weight/Overweight} of {/ProductCollectionStats/Counts/Total}" text="Claim Overweights"-->
-<!--	key="Overweight"/>-->
-<!--<Bar>-->
-<!--	<contentMiddle>-->
-<!--		<Button text="Save" icon="sap-icon://save" press="onCreateaNewPipeline" type="Accept"/>-->
-<!--	</contentMiddle>-->
-<!--</Bar>-->

@@ -8,7 +8,10 @@
 				<Text text="{i18n>buildNo}"/>
 			</Column>
 			<Column demandPopin="true" minScreenWidth="Tablet">
-				<Text text="{i18n>gitRef}"/>
+				<Text text="{i18n>repo}"/>
+			</Column>
+			<Column demandPopin="true" minScreenWidth="Tablet">
+				<Text text="{i18n>branch}"/>
 			</Column>
 			<!--<Column demandPopin="true" minScreenWidth="Tablet">-->
 			<!--	<Text text="{i18n>duration}"/>-->
@@ -22,7 +25,8 @@
 				<cells>
 					<Text text="{Jobdetails>name}"/>
 					<Text text="{Jobdetails>number}" class="sapUiSmallMargin"/>
-					<Text text="Demo.git/master"/>
+					<Text text="{Jobdetails>repoName}"/>
+					<Text text="{Jobdetails>branchName}"/>
 					<!--<ObjectNumber number="{Jobdetails>duartion}" unit="sec" class="sapUiSmallMargin"/>-->
 					<Text text="{ parts : [ 'Jobdetails>buildResult'], formatter: '.formatter.formatStatusText' }" class="processstatus">
 						<customData>
