@@ -59,46 +59,46 @@
 			}
 		},
 		getSkey: function () {
-			// var oModel = new JSONModel();
-			// oModel.loadData("/getuserinfo");
-			// var that = this;
-			// oModel.attachRequestCompleted(function () {
-			// 	var data = oModel.getData();
-			// 	sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/email", data.id);
-			// 	var sHeaders = {
-			// 		"Authorization": "Bearer " + data.token.accessToken
-			// 	};
-			// 	var oModel_2 = new JSONModel();
-			// 	oModel_2.loadData(data.token.oauthOptions.url + "/userinfo", null, true,
-			// 		"GET",
-			// 		null, false, sHeaders);
-			// 	oModel_2.attachRequestCompleted(function () {
-			// 		data["userUUID"] = oModel_2.getData().user_id;
-			// 	sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/user", oModel_2.getData().name);
+			var oModel = new JSONModel();
+			oModel.loadData("/getuserinfo");
+			var that = this;
+			oModel.attachRequestCompleted(function () {
+				var data = oModel.getData();
+				sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/email", data.id);
+				var sHeaders = {
+					"Authorization": "Bearer " + data.token.accessToken
+				};
+				var oModel_2 = new JSONModel();
+				oModel_2.loadData(data.token.oauthOptions.url + "/userinfo", null, true,
+					"GET",
+					null, false, sHeaders);
+				oModel_2.attachRequestCompleted(function () {
+					data["userUUID"] = oModel_2.getData().user_id;
+				sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/user", oModel_2.getData().name);
 					
-			// 		var oModel_3 = new JSONModel();
-			// 		var serverName = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain");
-			// 		var apiTokenUrl = "https://{server_name}/saparate/authorization/apitoken";
-			// 		apiTokenUrl = apiTokenUrl.replace("{server_name}", serverName);
-			// 		oModel_3.loadData(apiTokenUrl, JSON.stringify(data), true, "POST", false,
-			// 			false, {
-			// 				"Content-Type": "application/json"
-			// 			});
-			// 		oModel_3.attachRequestCompleted(function () {
-			// 			sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", oModel_3.getData());
-			// 			that.getRouter().initialize();
-			// 			var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
-			// 			sap.ui.core.BusyIndicator.hide();
-			// 			if (typeof skey === "undefined" || skey === "" || skey === null) {
-			// 				that.getRouter().navTo("Authorize");
-			// 			} else {
-			// 				that.getRouter().navTo("Dashboard");
-			// 			}
-			// 		});
-			// 	});
-			// });	
+					var oModel_3 = new JSONModel();
+					var serverName = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/domain");
+					var apiTokenUrl = "https://{server_name}/saparate/authorization/apitoken";
+					apiTokenUrl = apiTokenUrl.replace("{server_name}", serverName);
+					oModel_3.loadData(apiTokenUrl, JSON.stringify(data), true, "POST", false,
+						false, {
+							"Content-Type": "application/json"
+						});
+					oModel_3.attachRequestCompleted(function () {
+						sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", oModel_3.getData());
+						that.getRouter().initialize();
+						var skey = sap.ui.getCore().getModel('oKeyModel').getProperty("/saparate/key").authorizationToken;
+						sap.ui.core.BusyIndicator.hide();
+						if (typeof skey === "undefined" || skey === "" || skey === null) {
+							that.getRouter().navTo("Authorize");
+						} else {
+							that.getRouter().navTo("Dashboard");
+						}
+					});
+				});
+			});	
 		//	test code
-			sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
+			/*sap.ui.getCore().getModel('oKeyModel').setProperty("/saparate/key", {
 				"authorizationToken": "285d8b7b-b2ec-411f-a650-7f609642b2c9"
 			});
 			this.getRouter().initialize();
@@ -108,7 +108,7 @@
 				this.getRouter().navTo("Authorize");
 			} else {
 				this.getRouter().navTo("Dashboard");
-			}
+			}*/
 		//	test code
 		}
 	});

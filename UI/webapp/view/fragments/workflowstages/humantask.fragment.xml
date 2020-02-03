@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<ObjectListItem id="humantask" icon="sap-icon://add-employee" type="Active" numberState="Error" title="{Stages>label}" number=""
-		numberUnit="{Stages>status}" press="initiateAction" highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
+	<ObjectListItem id="humantask" icon="sap-icon://add-employee" type="Inactive" numberState="Error" title="{Stages>label}" number=""
+		numberUnit="{Stages>status}"  highlight="{ parts : [ 'Stages>status'], formatter: '.formatter.CyclestageStatus' }">
 		<attributes>
 			<ObjectAttribute title="Assigned To" text="{Stages>assignedTo}"></ObjectAttribute>
 			<ObjectAttribute title="Task Type" text="{ parts : [ 'Stages>type'], formatter: '.formatter.TaskNameFormatter'}" ></ObjectAttribute>
