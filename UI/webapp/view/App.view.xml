@@ -17,12 +17,11 @@
 						<OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px"/>
 					</layoutData>
 				</ToolbarSpacer>
-				
-				<Text text="" id="idBtnusertxt"  >
+				<ObjectStatus state="Information" text="" id="idBtnusertxt" class="sapUiSmallMargin" icon="sap-icon://customer">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow"/>
 					</layoutData>
-				</Text>
+				</ObjectStatus>
 			</tnt:ToolHeader>
 			<!--<Bar id="bar0" class="saparatebackground">-->
 			<!--	<contentLeft>-->

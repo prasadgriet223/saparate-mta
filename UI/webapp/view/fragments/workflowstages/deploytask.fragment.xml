@@ -11,7 +11,7 @@
 			<ObjectStatus text="{ parts : [ 'Stages>startTime'], formatter: '.formatter.Cyclestagetime' }" title="StartTime"/>
 		</firstStatus>
 		<secondStatus>
-			<ObjectStatus text="{ parts : [ 'Stages>endTime'], formatter: '.formatter.Cyclestagetime' }" title="EndTime"/>
+			<ObjectStatus text="{ parts : [ 'Stages>endTime'], formatter: '.formatter.Cyclestagetime' }" visible="{= ${Stages>status} === 'COMPLETED' || ${Stages>status} === 'FAILED' }"  title="EndTime"/>
 		</secondStatus>
 	</ObjectListItem>
 </core:FragmentDefinition>
